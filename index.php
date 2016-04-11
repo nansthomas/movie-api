@@ -3,7 +3,10 @@
 // Config
 include 'config/options.php';
 include 'config/facebook.php';
-// include 'config/database.php';
+include 'config/database.php';
+
+// includ 'caca';
+
 
 // Get the query
 $q = empty($_GET['q']) ? '' : $_GET['q'];
