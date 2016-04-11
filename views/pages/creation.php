@@ -6,77 +6,69 @@
 			<h4>INFORMATIONS GENERALES</h4>
 			<section>
 				<div> 
-					<label for="crea_name">Nom de l'évènement</label>
-					<input type="text" name="crea_name" id="crea_name" value="">
+					<label for="event_name">Nom de l'évènement</label>
+					<input type="text" name="event_name" id="event_name" value="">
 				</div>
 				<div>
-					<label for="crea_date">Date</label>
-					<input type="date" name="crea_date" id="crea_date" value="">
+					<label for="begin_date">Date</label> <!-- Need to be in this format : AAAA-MM-JJ  -->
+					<input type="date" name="begin_date" id="begin_date" value="">
 				</div>
 				<div>
-					<label for="crea_hour">Heure</label>
-					<input type="time" name="crea_hour" id="crea_hour" value="">
+					<label for="begin_hour">Heure</label>
+					<input type="time" name="begin_hour" id="begin_hour" value="">
 				</div>
 				<div>
-					<label for="crea_film"> Nom du film </label>
-					<input type="text" name="crea_film" id="crea_film" value="">
+					<label for="crea_additional">Description</label>
+					<textarea name="crea_additional" id="crea_additional" value=""></textarea>
+				</div>
+				<div>
+					<label for="movie_name">Nom du film</label>
+					<input type="text" name="movie_name" id="movie_name" value="">
 				</div>
 			</section>
 
 			<h4>LIEUX</h4>
 			<section class="places"> 
 				<div>
-					<label for="crea_adress">Voie</label>
-					<input type="text" name="crea_adress" id="crea_adress" value="">
+					<label for="adress">Adresse</label>
+					<input type="text" name="adress" id="adress" value="">
 				</div>
 				<div>
-					<label for="crea_city">Ville</label>
-					<input type="text" name="crea_city" id="crea_city" value="">
+					<label for="city">Ville</label>
+					<input type="text" name="city" id="city" value="">
 				</div>
 				<div>
-					<label for="crea_postal">Code Postal</label>
-					<input type="text" name="crea_postal" id="crea_postal" value="">
+					<label for="zip_code">Code Postal</label>
+					<input type="text" name="zip_code" id="zip_code" value="">
 				</div>
 
 				<div>
-					<label for="crea_zone">Zone géographique</label>
-					<input type="text" name="crea_zone" id="crea_zone" value="">
-				</div>
-				<br>
-				<div>
-					<label for="crea_screen">Type d'écran</label>
-					<select name="crea_screen" id="crea_screen">
+					<label for="setup_display">Type d'écran</label>
+					<select name="setup_display" id="setup_display">
 						<option value="PC">Ordinateur</option>
 						<option value="tv">Télévision</option>
 						<option value="projector">Projecteur</option>
 					</select>				
 				</div>
 				<div>
-					<label for="crea_definition"> Défintion d'écran </label>
+					<label for="setup_sound">Installation son</label>
 					<select name="crea_definition" id="crea_definition">
-						<option value="BD">Basse défintion</option>
-						<option value="HD">Haute définition</option>
-						<option value="4K">4K</option>
+						<option value="natif">Natif</option>
+						<option value="bq">Enceinte Basse-Qualité</option>
+						<option value="hq">Enceinte Haute-Qualité</option>
 					</select>
 				</div>
 				<div>
-					<label for="crea_seats"> Nombre de places </label>
-					<input type="number" name="crea_seats" id="crea_seats" value="">
+					<label for="places_nb">Nombre de places</label>
+					<input type="number" name="places_nb" id="places_nb" value="">
 				</div>
 			</section>
 			
 			<h4>AUTRES</h4>
 			<section>
-				<p>Faut-il apporter de quoi faire un apéritif ?</p>
-				<div> 
-					<label><input type="radio" name="food" value="lieu1">Oui</label>
-					<label><input type="radio" name="food" value="lieu2">Non</label> 
-				</div>
 				<div>
-					<p>Informations complémentaires</p>
-					<label for="crea_additional">
-						<textarea name="crea_additional" id="crea_additional" value="" placeholder="Je n'accepte pas les enfants - Apportez des sushis - Venez déguisés"></textarea>
-					</label>
+					<label for="supp_info">Informations complémentaires</label>
+					<textarea name="supp_info" id="supp_info" value="" placeholder="Je n'accepte pas les enfants - Apportez des sushis - Venez déguisés"></textarea>
 				</div>
 			</section>
 
