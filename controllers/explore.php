@@ -1,4 +1,4 @@
 <?php 
 
-	$title = 'News';
-	$class = 'news';
+	$title = 'Explore';
+	$class = 'explore';
