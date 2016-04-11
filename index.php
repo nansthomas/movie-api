@@ -39,8 +39,3 @@ include 'views/partials/nav.php';
 include 'views/pages/'.$page.'.php';
 include 'views/partials/footer.php';
 include 'views/partials/html-bottom.php';
-
-echo '<h1>DEBUG</h1>';
-echo '<pre>';
-print_r($_SESSION);
-echo '</pre>';
