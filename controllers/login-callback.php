@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 require 'vendor/autoload.php';
 
 $fb = new Facebook\Facebook([
@@ -11,17 +9,9 @@ $fb = new Facebook\Facebook([
   //'default_access_token' => '{access-token}', // optional
 ]);
 
-// Use one of the helper classes to get a Facebook\Authentication\AccessToken entity.
 $helper = $fb->getRedirectLoginHelper();
-//   $helper = $fb->getJavaScriptHelper();
-  // $helper = $fb->getCanvasHelper();
-//   $helper = $fb->getPageTabHelper();
-
 try {
-  // Get the Facebook\GraphNodes\GraphUser object for the current user.
-  // If you provided a 'default_access_token', the '{access-token}' is optional.
   $accessToken = $helper->getAccessToken();
-  $response = $fb->get('/me?fields=id,name', $accessToken);
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
   // When Graph returns an error
   echo 'Graph returned an error: ' . $e->getMessage();
@@ -32,5 +22,10 @@ try {
   exit;
 }
 
-$me = $response->getGraphUser();
-echo 'Logged in as ' . $me->getName();
+if (isset($accessToken)) {
+  // Logged in!
+  $_SESSION['facebook_access_token'] = (string) $accessToken;
+
+  // Now you can redirect to another page and use the
+  // access token from $_SESSION['facebook_access_token']
+}
