@@ -20,6 +20,8 @@ else if($q == 'seance')
 	$page = 'seance';
 else if($q == 'dashboard')
 	$page = 'dashboard';
+else if($q == 'creation')
+	$page = 'creation';
 else
 	$page = '404';
 
