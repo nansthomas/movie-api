@@ -2,7 +2,6 @@
 
 // Config
 include 'config/options.php';
-// include 'config/facebook.php';
 // include 'config/database.php';
 
 // Get the query
