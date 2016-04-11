@@ -5,6 +5,7 @@ include 'config/options.php';
 include 'config/facebook.php';
 include 'config/database.php';
 
+
 // Get the query
 $q = empty($_GET['q']) ? '' : $_GET['q'];
 
