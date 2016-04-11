@@ -1,5 +1,6 @@
 <section>
-
+	<h2>Création Séance</h2>
+	
 	<div class="container">
 		<form action="#" method="post">
 			<h4>INFORMATIONS GENERALES</h4>

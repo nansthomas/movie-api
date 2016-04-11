@@ -7,12 +7,3 @@
 	<link rel="stylesheet" href="<?= URL ?>src/css/style.css">
 </head>
 <body class="page-<?= $class ?>">
-	<header>
-		<h1>Mon site</h1>
-
-		<nav>
-			<a href="<?= URL ?>">Home</a>
-			<a href="<?= URL ?>about">About</a>
-			<a href="<?= URL ?>news">News</a>
-		</nav>
-	</header>

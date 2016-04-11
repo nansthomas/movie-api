@@ -1,3 +1,3 @@
 <section>
-	<h2>404</h2>
+	<h2>Séance</h2>
 </section>

@@ -1,4 +1,4 @@
 <?php 
 
-	$title = 'Mon site';
-	$class = 'home';
+	$title = 'Page d\'accueil';
+	$class = 'home-page';

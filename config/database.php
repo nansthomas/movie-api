@@ -1,7 +1,7 @@
 <?php
 
 define('DB_HOST','localhost');
-define('DB_NAME','database_name');
+define('DB_NAME','h2_si_api');
 define('DB_USER','root');
 define('DB_PASS','root');
 

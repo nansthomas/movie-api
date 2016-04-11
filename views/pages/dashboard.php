@@ -1,3 +1,3 @@
 <section>
-	News Single
+	<h2>Dashboard</h2>
 </section>

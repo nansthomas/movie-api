@@ -1,3 +1,3 @@
 <section>
-	Home
+	<h2>Home</h2>
 </section>
