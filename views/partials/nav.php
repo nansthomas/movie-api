@@ -3,6 +3,8 @@
 	<ul>
 		<li><a href="<?= URL ?>">Home</a></li>
 		<li><a href="<?= URL ?>explore">Explore</a></li>
-		<li><a href="<?= URL ?>dashboard">Dashboard</a></li>
+		<?php if (!empty($_SESSION)): ?>
+			<li><a href="<?= URL ?>dashboard">Dashboard</a></li>
+		<?php endif ?>
 	</ul>
 </nav>
