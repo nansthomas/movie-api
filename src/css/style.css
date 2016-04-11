@@ -22,3 +22,7 @@ h4 {
 input, select {
 	border: 1px solid #000000;
 }
+
+body > section {
+	padding: 30px;
+}
