@@ -105,7 +105,6 @@ class RegisterFacebook {
   }
 
   public function checkUser ($user, $pdo) {
-
     $facebook_id = $user['id'];
 
     $query = 'SELECT *
@@ -117,18 +116,18 @@ class RegisterFacebook {
     $prepare->execute();
     $db_user = $prepare->fetchAll();
 
-    if (empty($db_user))
-        return false;
-    else
-        return true;
+    return $db_user;
   }
 
   public function getUser ($user) {
-
-    $itemQuery = $this->pdo->prepare("INSERT INTO User (firstName, lastName, email) VALUES (:firstName, :lastName, :email)");
-    $itemQuery->bindParam(':firstName', $user['first_name']);
-    $itemQuery->bindParam(':lastName', $user['last_name']);
+    $query = 'INSERT INTO User (first_name, last_name, picture_url, email, facebook_id) 
+              VALUES (:first_name, :last_name, :picture_url, :email, :facebook_id)';
+    $itemQuery = $this->pdo->prepare($query);
+    $itemQuery->bindParam(':first_name', $user['first_name']);
+    $itemQuery->bindParam(':last_name', $user['last_name']);
+    $itemQuery->bindParam(':picture_url', $user['picture']['url']);
     $itemQuery->bindParam(':email', $user['email']);
+    $itemQuery->bindParam(':facebook_id', $user['id']);
     $q = $itemQuery->execute();
 
   }
