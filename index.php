@@ -28,6 +28,7 @@ if (is_string($user)) {
 
 // Get the query
 $q = empty($_GET['q']) ? '' : $_GET['q'];
+$controller = empty($_GET['controller']) ? '' : $_GET['controller'];
 
 // Routes
 if($q == '')

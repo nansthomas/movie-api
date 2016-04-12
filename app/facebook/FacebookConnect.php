@@ -67,7 +67,7 @@ class FacebookConnect {
 
         // getting basic info about user
         try {
-            $profile_request = $fb->get('/me?fields=name,first_name,last_name,email');
+            $profile_request = $fb->get('/me?fields=name,first_name,last_name,email,picture');
             $profile = $profile_request->getGraphNode()->asArray();
 
 

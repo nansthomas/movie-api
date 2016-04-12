@@ -34,6 +34,7 @@ $title = 'Page de l\'évênement';
 $class = 'seance';
 
 $event_id = $_GET['event_id'];
+$user_id = $_SESSION['user_id'];
 
 // Get organisator info
 $query = 'SELECT users.*, events.*
@@ -57,7 +58,19 @@ $prepare->bindValue('event_id',$event_id);
 $prepare->execute();
 $movie_list = $prepare->fetchAll();
 
-$movie_detail = getMovieDetailInfo($movie_list[0]->movie_id);
+// User status concerning a certain event
+$query = 'SELECT *
+		  FROM attend
+		  WHERE event_id = :event_id
+		  AND user_id = :user_id';
+$prepare = $pdo->prepare($query);
 
+$prepare->bindValue('event_id',$event_id);
+$prepare->bindValue('user_id',$user_id);
+$prepare->execute();
+
+$user_status = $prepare->fetchAll();
+
+$movie_detail = getMovieDetailInfo($movie_list[0]->movie_id);
 $movie_detail->runtime = convertToHoursMins($movie_detail->runtime);
 

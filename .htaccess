@@ -6,3 +6,4 @@ RewriteCond %{SCRIPT_FILENAME} !-f
 
 RewriteRule ^([a-zA-Z]*)$ ./index.php?q=$1
 RewriteRule ^(seance)/([0-9]+)$ ./index.php?q=$1&event_id=$2
+RewriteRule ^(ajax)/([a-z-]*)/([0-9]*)$ ./ajax.php?q=$2&par=$3

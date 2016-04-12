@@ -5,6 +5,7 @@
 	<div><?= 'Par '.$event_info[0]->first_name ?></div>
 	<div>Durée (Approximation): <?= $event_info[0]->approximate_duration ?></div>
 	<div>Setup: <?= $event_info[0]->setup_display.' et '.$event_info[0]->setup_sound ?></div>
+	<a id='<?= $event_info[0]->event_id ?>' class='send-attend' href='#'><?= empty($user_status) == true  ? 'Rejoindre' : 'En attente' ?></a>
 	<?php if ($event_info[0]->description): ?>
 		<div>
 			<h5>Description</h5>
