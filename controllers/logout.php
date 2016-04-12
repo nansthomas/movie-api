@@ -2,5 +2,5 @@
 
 session_destroy();
 
-header('Location: URL');
+header('Location: ./');
 exit;

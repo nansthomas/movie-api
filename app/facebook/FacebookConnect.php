@@ -2,6 +2,8 @@
 
 namespace App\Facebook;
 
+use App\Config\Database;
+
 use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Facebook;
@@ -98,21 +100,22 @@ class FacebookConnect {
   }
 }
 
-class RegisterFacebook {
+class RegisterFacebook extends Database {
 
-  function __construct ($pdo) {
-    $this->pdo = $pdo;
+  function __construct () {
+
   }
 
-  public function checkUser ($user, $pdo) {
+  public function checkUser ($user) {
     $facebook_id = $user['id'];
 
     $query = 'SELECT *
           FROM users
           WHERE facebook_id = :facebook_id';
-    $prepare = $pdo->prepare($query);
 
-    $prepare->bindValue('facebook_id',$facebook_id);
+    $prepare = $this->getPDO()->prepare($query);
+
+    $prepare->bindValue(':facebook_id', $facebook_id);
     $prepare->execute();
     $db_user = $prepare->fetchAll();
 
@@ -120,7 +123,7 @@ class RegisterFacebook {
 
   }
 
-  public function getUser ($user, $pdo) {
+  public function getUser ($user) {
     $query = 'INSERT INTO users (first_name, last_name, picture_url, email, facebook_id, genre)
               VALUES (:first_name, :last_name, :picture_url, :email, :facebook_id, :genre)';
     $itemQuery = $this->pdo->prepare($query);

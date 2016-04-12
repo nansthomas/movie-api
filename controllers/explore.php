@@ -1,13 +1,9 @@
-<?php 
+<?php
 
 $title = 'Explore';
 $class = 'explore';
 
 $user_id = $_SESSION['user_id'];
-
-$geolocalisation = 'API HTML';
-$radius = '3km';
-
 
 if (array_key_exists('user_id', $_SESSION)) {
 	$query = 'SELECT events.*, users.*
@@ -25,7 +21,7 @@ else {
 		  AND events.places_nb > events.place_taken';
 }
 
-$prepare = $pdo->prepare($query);
+$prepare = $this->getPDO()->prepare($query);
 
 $prepare->bindValue('user_id',$user_id);
 $prepare->execute();

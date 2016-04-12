@@ -4,26 +4,24 @@ ini_set('display_errors', 1);
 
 // Config
 include 'config/options.php';
-include 'config/database.php';
 
 use App\Facebook\FacebookConnect;
 use App\Facebook\RegisterFacebook;
-use App\Database;
+use App\Config\Database;
 
 require 'vendor/autoload.php';
 
 session_start();
 
 //Initialized object
-$pdo = new Database('moviehome');
 $connect = new FacebookConnect(APP_ID, APP_SECRET);
 $user = null;
 $user = $connect->connect($user);
 
-if (!is_string($user))  
+if (!is_string($user))
 {
-	$write = new RegisterFacebook($pdo, $user);
-	$db_user = $write->checkUser($user, $pdo);
+	$write = new RegisterFacebook();
+	$db_user = $write->checkUser($user);
 
 
   	if (!empty($db_user)) {
@@ -64,4 +62,3 @@ include 'views/partials/nav.php';
 include 'views/pages/'.$page.'.php';
 include 'views/partials/footer.php';
 include 'views/partials/html-bottom.php';
-

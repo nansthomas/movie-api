@@ -16,7 +16,7 @@ function get_http_response_code($url) {
 
 function getMovieDetailInfo($movie_id) {
 	$url = 'http://api.themoviedb.org/3/movie/'.$movie_id.'?language=fr&api_key='.API_KEY;
-	
+
 	if (get_http_response_code($url) == '200') {
 		// Execute if the summoner was found
 		$data = file_get_contents($url);
@@ -70,4 +70,3 @@ $user_status = $prepare->fetchAll();
 
 $movie_detail = getMovieDetailInfo($movie_list[0]->movie_id);
 $movie_detail->runtime = convertToHoursMins($movie_detail->runtime);
-
