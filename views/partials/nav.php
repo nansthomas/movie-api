@@ -1,18 +1,3 @@
-<!-- <nav class="nav-bar">
-	<h1><a href="<?= URL ?>">H2 SI API</a></h1>
-	<?php if (!empty($_SESSION)): ?>
-		<p>Connecté en tant que <?= $_SESSION['first_name'] ?></p>
-	<?php endif ?>
-	<ul>
-		<li><a href="<?= URL ?>">Home</a></li>
-		<li><a href="<?= URL ?>explore">Explore</a></li>
-		<?php if (!empty($_SESSION)): ?>
-			<li><a href="<?= URL ?>dashboard">Dashboard</a></li>
-		<?php endif ?>
-	</ul>
-</nav> -->
-
-
 <header class="header">
   <div class="container">
     <!-- Left side -->
@@ -33,19 +18,19 @@
 
     <!-- Right side -->
     <div class="header-right header-menu">
-      <?php if (!empty($_SESSION)): ?>
+      <?php if (array_key_exists('user_id', $_SESSION)): ?>
         <span class="header-item"><p>Hey <strong><?= $_SESSION['first_name'] ?></strong>, comment vas-tu ?</p></span>
       <?php endif ?>
       <span class="header-item">
         <a href="<?= URL ?>dashboard">Dashboard</a>
       </span>
-      <?php if (empty($_SESSION)): ?>
+      <?php if (!array_key_exists('user_id', $_SESSION)): ?>
         <span class="header-item">
           <a class="button" href="<?= $user  ?>">Login with Facebook!</a>
         </span>
       <?php else: ?>
         <span class="header-item">
-          <a class="button" href="<?= $user  ?>">Deconexion</a>
+          <a class="button" href="<?= URL ?>logout">Deconexion</a>
         </span>
       <?php endif ?>
 

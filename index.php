@@ -11,6 +11,8 @@ require 'vendor/autoload.php';
 
 session_start();
 
+var_dump($_SESSION);
+
 $connect = new FacebookConnect(APP_ID, APP_SECRET);
 $user = null;
 $user = $connect->connect($user);
@@ -32,8 +34,6 @@ if (!is_string($user))
 	}
 }
 
-var_dump($_SESSION);
-
 // Get the query
 $q = empty($_GET['q']) ? '' : $_GET['q'];
 $event_id = empty($_GET['event_id']) ? '' : $_GET['event_id'];
@@ -41,10 +41,6 @@ $event_id = empty($_GET['event_id']) ? '' : $_GET['event_id'];
 // Routes
 if($q == '')
 	$page = 'home';
-else if($q == 'login')
-	$page = 'login';
-else if($q == 'login-callback')
-	$page = 'login-callback';
 else if($q == 'explore')
 	$page = 'explore';
 else if($q == 'seance')
@@ -53,6 +49,8 @@ else if($q == 'dashboard')
 	$page = 'dashboard';
 else if($q == 'creation')
 	$page = 'creation';
+else if($q == 'logout')
+	$page = 'logout';
 else
 	$page = '404';
 
