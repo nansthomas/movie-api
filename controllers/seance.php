@@ -37,16 +37,13 @@ $event_id = $_GET['event_id'];
 $user_id = $_SESSION['user_id'];
 
 // Get organisator and event info
-$query = 'SELECT users.*, events.*
+$query = "SELECT users.*, events.*
 		  FROM users, events, organized
-		  WHERE events.event_id = :event_id
+		  WHERE events.event_id = $event_id
 		  AND events.event_id = organized.event_id
-		  AND organized.user_id = users.user_id';
-$prepare = $pdo->prepare($query);
+		  AND organized.user_id = users.user_id";
 
-$prepare->bindValue('event_id',$event_id);
-$prepare->execute();
-$event_info = $prepare->fetchAll();
+$prepare = $pdo->prepare($query);
 
 // Get movie detail
 $query = 'SELECT *

@@ -96,7 +96,7 @@ if(!empty($_POST))
         try {
 		    $pdo->beginTransaction();
 
-		    // 1ST INSET
+		    // 1ST INSERT
 	    	$query = 'INSERT INTO events (event_name,begin_date,begin_hour,description,adress,city,zip_code,setup_display,setup_sound,places_nb,supp_info)
 	        		  VALUES(:event_name,:begin_date,:begin_hour,:description,:adress,:city,:zip_code,:setup_display,:setup_sound,:places_nb,:supp_info)';
 	        $prepare = $pdo->prepare($query);
