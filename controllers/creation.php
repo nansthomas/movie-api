@@ -81,14 +81,16 @@ if(!empty($_POST))
 	    $delay = 10; // In minute
 
 	    $approximate_duration = $movie_info->runtime + $delay;
+
 	    $approximate_duration = convertToHoursMins($approximate_duration);
 
+
 	    $query = "UPDATE events
-        		  SET approximate_duration = $approximate_duration
+        		  SET approximate_duration = '$approximate_duration'
         		  WHERE event_id = $event_id";
         $prepare = $pdo->prepareQuery($query);
     }
-    
+
     $movieid = $movie->getMovieId($movie_name);
 
 }
