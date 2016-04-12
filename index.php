@@ -14,6 +14,7 @@ require 'vendor/autoload.php';
 session_start();
 
 //Initialized object
+$pdo = new Database('moviehome');
 $connect = new FacebookConnect(APP_ID, APP_SECRET);
 $user = null;
 $user = $connect->connect($user);
@@ -23,16 +24,12 @@ if (!is_string($user))
 	$write = new RegisterFacebook();
 	$db_user = $write->checkUser($user);
 
-
   	if (!empty($db_user)) {
 		$_SESSION['user_id'] = $db_user[0]->user_id;
 		$_SESSION['first_name'] = $db_user[0]->first_name;
 		$_SESSION['last_name'] = $db_user[0]->last_name;
-
 	  } else {
-
-		$data = $write->addUser($user);
-    
+		$isAdded = $write->addUser($user);
 	}
 }
 

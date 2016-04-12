@@ -109,35 +109,32 @@ class RegisterFacebook extends Database {
   public function checkUser ($user) {
     $facebook_id = $user['id'];
 
-    $query = 'SELECT *
+    $query = "SELECT *
           FROM users
-          WHERE facebook_id = :facebook_id';
-
-    $prepare = $this->getPDO()->prepare($query);
-
-    $prepare->bindValue(':facebook_id', $facebook_id);
-    $prepare->execute();
-    $db_user = $prepare->fetchAll();
+          WHERE facebook_id = $facebook_id";
+    $db_user = $this->select($query);
 
     return $db_user;
 
   }
 
   public function addUser ($user) {
-    $query = 'INSERT INTO users (first_name, last_name, picture_url, email, facebook_id, genre)
-              VALUES (:first_name, :last_name, :picture_url, :email, :facebook_id, :genre)';
+    $first_name = $user['first_name'];
+    $last_name = $user['last_name'];
+    $picture_url = $user['picture']['url'];
+    $email = $user['email'];
+    $facebook_id = $user['id'];
+    $genre = $user['gender'];
 
-    $prepare = $this->getPDO()->prepare($query);
-    $prepare->bindValue(':first_name', $user['first_name']);
-    $prepare->bindValue(':last_name', $user['last_name']);
-    $prepare->bindValue(':picture_url', $user['picture']['url']);
-    $prepare->bindValue(':email', $user['email']);
-    $prepare->bindValue(':facebook_id', $user['id']);
-    $prepare->bindValue(':genre', $user['gender']);
+    $query = "INSERT INTO users (first_name, last_name, picture_url, email, facebook_id, genre)
+              VALUES ($first_name, $last_name, $picture_url, $email, $facebook_id, $genre)";
 
-    $prepare->execute();
-
-    // Return Something ?
+    $insert = $this->prepareQuery($query);
+    
+    if ($insert->execute())
+        return true;
+    else
+        return false;
 
   }
 

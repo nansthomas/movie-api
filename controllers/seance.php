@@ -43,30 +43,21 @@ $query = "SELECT users.*, events.*
 		  AND events.event_id = organized.event_id
 		  AND organized.user_id = users.user_id";
 
-$prepare = $pdo->prepare($query);
+$event_info = $pdo->select($query);
 
 // Get movie detail
-$query = 'SELECT *
+$query = "SELECT *
 		  FROM event_movies
-		  WHERE event_id = :event_id';
-$prepare = $pdo->prepare($query);
+		  WHERE event_id = $event_id";
 
-$prepare->bindValue('event_id',$event_id);
-$prepare->execute();
-$movie_list = $prepare->fetchAll();
+$movie_list = $pdo->select($query);
 
 // User status concerning a certain event
-$query = 'SELECT *
+$query = "SELECT *
 		  FROM attend
-		  WHERE event_id = :event_id
-		  AND user_id = :user_id';
-$prepare = $pdo->prepare($query);
-
-$prepare->bindValue('event_id',$event_id);
-$prepare->bindValue('user_id',$user_id);
-$prepare->execute();
-
-$user_status = $prepare->fetchAll();
+		  WHERE event_id = $event_id
+		  AND user_id = $user_id";
+$user_status = $pdo->select($query);
 
 $movie_detail = getMovieDetailInfo($movie_list[0]->movie_id);
 $movie_detail->runtime = convertToHoursMins($movie_detail->runtime);
