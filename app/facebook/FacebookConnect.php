@@ -32,7 +32,6 @@ class FacebookConnect {
         } else {
             $accessToken = $helper->getAccessToken();
         }
-
     } catch(FacebookResponseException $e) {
         // When Graph returns an error
         echo 'Graph returned an error: ' . $e->getMessage();
@@ -92,9 +91,8 @@ class FacebookConnect {
         // Now you can redirect to another page and use the access token from $_SESSION['facebook_access_token']
 
     } else {
-
         // replace your website URL same as added in the developers.facebook.com/apps e.g. if you used http instead of https and you used non-www version or www version of your website then you must add the same here
-        $loginUrl = $helper->getLoginUrl('http://localhost:8888/', $permissions);
+        $loginUrl = $helper->getLoginUrl(URL, $permissions);
         return $loginUrl;
     }
   }
@@ -107,17 +105,31 @@ class RegisterFacebook {
   }
 
   public function checkUser ($user) {
-    // SELECT
-    // IF USER FOUND -> PAS LA
-    // NOT FOUND -> PAS GETUSER
+    $facebook_id = $user['id'];
+
+    $query = 'SELECT *
+          FROM users
+          WHERE facebook_id = :facebook_id';
+    $prepare = $pdo->prepare($query);
+
+    $prepare->bindValue('facebook_id',$facebook_id);
+    $prepare->execute();
+    $db_user = $prepare->fetchAll();
+
+    if (empty($db_user))
+        // return false;
+        echo "false";
+    else 
+        // return true;
+        echo "true";
   }
 
   public function getUser ($user) {
 
-    $itemQuery = $this->pdo->prepare("INSERT INTO User (firstName, lastName, mail) VALUES (:firstName, :lastName, :mail)");
+    $itemQuery = $this->pdo->prepare("INSERT INTO User (firstName, lastName, email) VALUES (:firstName, :lastName, :email)");
     $itemQuery->bindParam(':firstName', $user['first_name']);
     $itemQuery->bindParam(':lastName', $user['last_name']);
-    $itemQuery->bindParam(':mail', $user['email']);
+    $itemQuery->bindParam(':email', $user['email']);
     $q = $itemQuery->execute();
 
   }

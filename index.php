@@ -11,10 +11,7 @@ require 'vendor/autoload.php';
 
 session_start();
 
-$appId = '1703544296582819';
-$appSecret = '841701dd4b9b535e585993653976e086';
-
-$connect = new FacebookConnect($appId, $appSecret);
+$connect = new FacebookConnect(APP_ID, APP_SECRET);
 $user = null;
 $user = $connect->connect($user);
 
@@ -22,13 +19,13 @@ if (is_string($user)) {
   echo '<a href="' . $user . '">Log in with Facebook!</a>';
 } else {
   $write = new RegisterFacebook($pdo, $user);
-  $data = $write->getUser($user);
-  var_dump($user);
+  $db_user = $write->checkUser($user);
+  // $data = $write->getUser($user);
 }
 
 // Get the query
 $q = empty($_GET['q']) ? '' : $_GET['q'];
-$controller = empty($_GET['controller']) ? '' : $_GET['controller'];
+$event_id = empty($_GET['event_id']) ? '' : $_GET['event_id'];
 
 // Routes
 if($q == '')

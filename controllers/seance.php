@@ -36,7 +36,7 @@ $class = 'seance';
 $event_id = $_GET['event_id'];
 $user_id = $_SESSION['user_id'];
 
-// Get organisator info
+// Get organisator and event info
 $query = 'SELECT users.*, events.*
 		  FROM users, events, organized
 		  WHERE events.event_id = :event_id
