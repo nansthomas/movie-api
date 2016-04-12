@@ -88,8 +88,7 @@ if(!empty($_POST))
         		  WHERE event_id = $event_id";
         $prepare = $pdo->prepareQuery($query);
     }
-
-    $movie = new getMovie($pdo);
+    
     $movieid = $movie->getMovieId($movie_name);
 
 }
