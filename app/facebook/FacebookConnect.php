@@ -104,7 +104,8 @@ class RegisterFacebook {
     $this->pdo = $pdo;
   }
 
-  public function checkUser ($user) {
+  public function checkUser ($user, $pdo) {
+
     $facebook_id = $user['id'];
 
     $query = 'SELECT *
@@ -119,7 +120,7 @@ class RegisterFacebook {
     if (empty($db_user))
         // return false;
         echo "false";
-    else 
+    else
         // return true;
         echo "true";
   }

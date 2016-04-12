@@ -19,7 +19,7 @@ if (is_string($user)) {
   echo '<a href="' . $user . '">Log in with Facebook!</a>';
 } else {
   $write = new RegisterFacebook($pdo, $user);
-  $db_user = $write->checkUser($user);
+  $db_user = $write->checkUser($user, $pdo);
   // $data = $write->getUser($user);
 }
 
