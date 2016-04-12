@@ -1,3 +1,4 @@
 <section>
-	<h2>Séance</h2>
+	<h2>Séance: </h2>
+
 </section>

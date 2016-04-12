@@ -25,7 +25,7 @@ else if($q == 'login-callback')
 	$page = 'login-callback';
 else if($q == 'explore')
 	$page = 'explore';
-else if(preg_match('/^seance\/[0-9]+$/',$q))
+else if($q == 'seance')
 	$page = 'seance';
 // else if($q == 'seance')
 // 	$page = 'seance';
@@ -42,4 +42,9 @@ include 'views/partials/html-top.php';
 include 'views/partials/nav.php';
 include 'views/pages/'.$page.'.php';
 include 'views/partials/footer.php';
+
+echo '<pre>';
+print_r($_GET);
+echo '</pre>';
+
 include 'views/partials/html-bottom.php';

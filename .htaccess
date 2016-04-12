@@ -3,5 +3,6 @@ RewriteEngine On
  
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
- 
-RewriteRule ^(.*)$ ./index.php?q=$1
+
+RewriteRule ^([a-zA-Z]*)$ ./index.php?q=$1
+RewriteRule ^(seance)/([0-9]+)$ ./index.php?q=$1&event_id=$2
