@@ -123,17 +123,21 @@ class RegisterFacebook extends Database {
 
   }
 
-  public function getUser ($user) {
+  public function addUser ($user) {
     $query = 'INSERT INTO users (first_name, last_name, picture_url, email, facebook_id, genre)
               VALUES (:first_name, :last_name, :picture_url, :email, :facebook_id, :genre)';
-    $itemQuery = $this->pdo->prepare($query);
-    $itemQuery->bindParam(':first_name', $user['first_name']);
-    $itemQuery->bindParam(':last_name', $user['last_name']);
-    $itemQuery->bindParam(':picture_url', $user['picture']['url']);
-    $itemQuery->bindParam(':email', $user['email']);
-    $itemQuery->bindParam(':facebook_id', $user['id']);
-    $itemQuery->bindParam(':genre', $user['gender']);
-    $q = $itemQuery->execute();
+
+    $prepare = $this->getPDO()->prepare($query);
+    $prepare->bindValue(':first_name', $user['first_name']);
+    $prepare->bindValue(':last_name', $user['last_name']);
+    $prepare->bindValue(':picture_url', $user['picture']['url']);
+    $prepare->bindValue(':email', $user['email']);
+    $prepare->bindValue(':facebook_id', $user['id']);
+    $prepare->bindValue(':genre', $user['gender']);
+
+    $prepare->execute();
+
+    // Return Something ? 
 
   }
 

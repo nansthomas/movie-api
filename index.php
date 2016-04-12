@@ -31,7 +31,8 @@ if (!is_string($user))
 
 	  } else {
 
-		$data = $write->getUser($user, $pdo);
+		$data = $write->addUser($user);
+    
 	}
 }
 
