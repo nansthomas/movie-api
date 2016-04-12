@@ -137,7 +137,7 @@ class RegisterFacebook extends Database {
 
     $prepare->execute();
 
-    // Return Something ? 
+    // Return Something ?
 
   }
 
