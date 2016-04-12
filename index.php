@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // Config
 include 'config/options.php';
@@ -6,6 +8,7 @@ include 'config/database.php';
 
 use App\Facebook\FacebookConnect;
 use App\Facebook\RegisterFacebook;
+use App\Database;
 
 require 'vendor/autoload.php';
 
