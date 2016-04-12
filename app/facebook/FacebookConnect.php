@@ -118,11 +118,9 @@ class RegisterFacebook {
     $db_user = $prepare->fetchAll();
 
     if (empty($db_user))
-        // return false;
-        echo "false";
+        return false;
     else
-        // return true;
-        echo "true";
+        return true;
   }
 
   public function getUser ($user) {
