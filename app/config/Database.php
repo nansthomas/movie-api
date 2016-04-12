@@ -10,7 +10,7 @@ class Database {
   private $db_user;
   private $db_pass;
   private $db_host;
-  private $pdo;
+  public $pdo;
 
   public function __construct ($db_name, $db_user='root', $db_pass='root', $db_host='localhost') {
     $this->db_name = $db_name;
@@ -51,4 +51,7 @@ class Database {
     return $prepare;
   }
 
+    public function beginTransaction(){
+      $this->getPDO()->beginTransaction();
+    }
 }

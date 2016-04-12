@@ -60,8 +60,8 @@
 					</select>
 				</div>
 				<div>
-					<label for="places_nb">Nombre de places</label>
-					<input type="number" name="places_nb" id="places_nb" value="<?= $places_nb ?>">
+					<label for="place_nb">Nombre de places</label>
+					<input type="number" name="place_nb" id="place_nb" value="<?= $place_nb ?>">
 				</div>
 			</section>
 			

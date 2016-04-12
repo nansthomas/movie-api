@@ -4,13 +4,7 @@ $title = 'Création d\'une séance';
 $class = 'creation';
 
 use App\Movies\getMovie;
-
-// function get_http_response_code($url) {
-//     $headers = get_headers($url);
-//     return substr($headers[0], 9, 3);
-// }
-
-
+$movie = new getMovie();
 
 function convertToHoursMins($time, $format = '%02d:%02d') {
     if ($time < 1) {
@@ -19,38 +13,6 @@ function convertToHoursMins($time, $format = '%02d:%02d') {
     $hours = floor($time / 60);
     $minutes = ($time % 60);
     return sprintf($format, $hours, $minutes);
-}
-
-// function getMovieId($search_query) {
-// 	$url = 'https://api.themoviedb.org/3/search/movie?query='.$search_query.'&language=fr&api_key='.API_KEY;
-//
-// 	if (get_http_response_code($url) == '200') {
-// 		// Execute if the summoner was found
-// 		$data = file_get_contents($url);
-// 		$data = json_decode($data);
-// 	}
-// 	else {
-// 		// Else, false
-// 		$data = false;
-// 	}
-//
-// 	return $data->results[0]->id;
-// }
-
-function getMovieDetailInfo($movie_id) {
-	$url = 'http://api.themoviedb.org/3/movie/'.$movie_id.'?language=fr&api_key='.API_KEY;
-
-	if (get_http_response_code($url) == '200') {
-		// Execute if the summoner was found
-		$data = file_get_contents($url);
-		$data = json_decode($data);
-	}
-	else {
-		// Else, false
-		$data = false;
-	}
-
-	return $data;
 }
 
 // Instantiaze errors array
@@ -69,7 +31,7 @@ $city          = '';
 $zip_code      = '';
 $setup_display = '';
 $setup_sound   = '';
-$places_nb     = '';
+$place_nb      = '';
 $supp_info     = '';
 
 if(!empty($_POST))
@@ -85,94 +47,49 @@ if(!empty($_POST))
 	$zip_code      = trim($_POST['zip_code']);
 	$setup_display = trim($_POST['setup_display']);
 	$setup_sound   = trim($_POST['setup_sound']);
-	$places_nb     = trim($_POST['places_nb']);
+	$place_nb      = trim($_POST['place_nb']);
 	$supp_info     = trim($_POST['supp_info']);
 
 	// FINAL VER - CHECK ERRORS
 
 	if (empty($errors))
     {
+	    // 1ST INSERT
+    	$query = "INSERT INTO events (event_name,begin_date,begin_hour,description,adress,city,zip_code,setup_display,setup_sound,place_nb,supp_info)
+        		  VALUES('$event_name','$begin_date','$begin_hour','$description','$adress','$city','$zip_code','$setup_display','$setup_sound','$place_nb','$supp_info')";
+        $prepare = $pdo->prepareQuery($query);
 
-        try {
-		    $pdo->beginTransaction();
+	    // 2ND INSERT
+	    // Take useful info for the insert
+	    $user_id = $_SESSION['user_id'];
+	    $event_id = $pdo->pdo->lastInsertId();
 
-		    // 1ST INSERT
-	    	$query = 'INSERT INTO events (event_name,begin_date,begin_hour,description,adress,city,zip_code,setup_display,setup_sound,places_nb,supp_info)
-	        		  VALUES(:event_name,:begin_date,:begin_hour,:description,:adress,:city,:zip_code,:setup_display,:setup_sound,:places_nb,:supp_info)';
-	        $prepare = $pdo->prepare($query);
+    	$query = "INSERT INTO organized (user_id, event_id)
+        		  VALUES($user_id, $event_id)";
+        $prepare = $pdo->prepareQuery($query);
 
-	        $prepare->bindValue('event_name',$event_name);
-	        $prepare->bindValue('begin_date',$begin_date);
-	        $prepare->bindValue('begin_hour',$begin_hour);
-	        $prepare->bindValue('description',$description);
-	        $prepare->bindValue('adress',$adress);
-	        $prepare->bindValue('city',$city);
-	        $prepare->bindValue('zip_code',$zip_code);
-	        $prepare->bindValue('setup_display',$setup_display);
-	        $prepare->bindValue('setup_sound',$setup_sound);
-	        $prepare->bindValue('places_nb',$places_nb);
-	        $prepare->bindValue('supp_info',$supp_info);
+	    // 3RD INSERT
+    	// API call to search for the movie ID
+		$movie_id = $movie->getMovieId($movie_name);
 
-		    if (!$prepare->execute())
-		        throw new PDOException('Erreur requête 1');
+	    $query = "INSERT INTO event_movies (movie_id, event_id)
+        		  VALUES($movie_id, $event_id)";
+        $prepare = $pdo->prepareQuery($query);
 
-		    // 2ND INSERT
-		    // Take useful info for the insert
-		    $user_id = $_SESSION['user_id'];
-		    $event_id = $pdo->lastInsertId();
+	    // 4RTH UPDATE - EVENT DURATION
+	    $movie_info = $movie->getMovieDetailInfo($movie_id);
+	    $delay = 10; // In minute
 
-	    	$query = 'INSERT INTO organized (user_id, event_id)
-	        		  VALUES(:user_id, :event_id)';
-	        $prepare = $pdo->prepare($query);
+	    $approximate_duration = $movie_info->runtime + $delay;
+	    $approximate_duration = convertToHoursMins($approximate_duration);
 
-	        $prepare->bindValue('user_id',$user_id);
-	        $prepare->bindValue('event_id',$event_id);
-
-		    if (!$prepare->execute())
-		        throw new PDOException('Erreur requête 2');
-
-		    // 3RD INSERT
-	    	// API call to search for the movie ID
-    		$movie_id = getMovieId($movie_name);
-
-		    $query = 'INSERT INTO event_movies (movie_id, event_id)
-	        		  VALUES(:movie_id, :event_id)';
-	        $prepare = $pdo->prepare($query);
-
-	        $prepare->bindValue('movie_id',$movie_id);
-	        $prepare->bindValue('event_id',$event_id);
-
-	        if (!$prepare->execute())
-		        throw new PDOException('Erreur requête 3');
-
-		    // 4RTH UPDATE - EVENT DURATION
-		    $movie_info = getMovieDetailInfo($movie_id);
-		    $delay = 10; // In minute
-
-		    $approximate_duration = $movie_info->runtime + $delay;
-		    $approximate_duration = convertToHoursMins($approximate_duration);
-
-		    $query = 'UPDATE events
-	        		  SET approximate_duration = :approximate_duration
-	        		  WHERE event_id = :event_id';
-	        $prepare = $pdo->prepare($query);
-
-	        $prepare->bindValue('approximate_duration',$approximate_duration);
-	        $prepare->bindValue('event_id',$event_id);
-
-	        if (!$prepare->execute())
-		        throw new PDOException('Erreur requête 4');
-
-		    $pdo->commit();
-		}
-		catch(PDOException $e) {
-		    $pdo->rollback();
-		    echo $e->getMessage();
-		}
+	    $query = "UPDATE events
+        		  SET approximate_duration = $approximate_duration
+        		  WHERE event_id = $event_id";
+        $prepare = $pdo->prepareQuery($query);
     }
 
     $movie = new getMovie($pdo);
     $movieid = $movie->getMovieId($movie_name);
-    var_dump($data);
-    die();
+
 }

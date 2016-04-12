@@ -16,6 +16,8 @@ session_start();
 //Initialized object
 $pdo = new Database('moviehome');
 $connect = new FacebookConnect(APP_ID, APP_SECRET);
+
+
 $user = null;
 $user = $connect->connect($user);
 
