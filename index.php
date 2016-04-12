@@ -15,26 +15,27 @@ $connect = new FacebookConnect(APP_ID, APP_SECRET);
 $user = null;
 $user = $connect->connect($user);
 
-if (is_string($user)) 
+if (is_string($user))
 {
   echo '<a href="' . $user . '">Log in with Facebook!</a>';
-} 
-else 
-{
+}
+else {
 	$write = new RegisterFacebook($pdo, $user);
 	$db_user = $write->checkUser($user, $pdo);
 
-  	if (!empty($db_user))
-	{        
+
+  	if (!empty($db_user)) {
 		$_SESSION['user_id'] = $db_user[0]->user_id;
 		$_SESSION['first_name'] = $db_user[0]->first_name;
 		$_SESSION['last_name'] = $db_user[0]->last_name;
-	}
-    else
-	{
-		$data = $write->getUser($user);
+
+	  } else {
+
+		$data = $write->getUser($user, $pdo);
 	}
 }
+
+var_dump($_SESSION);
 
 // Get the query
 $q = empty($_GET['q']) ? '' : $_GET['q'];

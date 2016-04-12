@@ -66,7 +66,7 @@ class FacebookConnect {
 
         // getting basic info about user
         try {
-            $profile_request = $fb->get('/me?fields=name,first_name,last_name,email,picture');
+            $profile_request = $fb->get('/me?fields=name,first_name,last_name,email,picture, gender');
             $profile = $profile_request->getGraphNode()->asArray();
 
 
@@ -117,17 +117,19 @@ class RegisterFacebook {
     $db_user = $prepare->fetchAll();
 
     return $db_user;
+
   }
 
-  public function getUser ($user) {
-    $query = 'INSERT INTO User (first_name, last_name, picture_url, email, facebook_id) 
-              VALUES (:first_name, :last_name, :picture_url, :email, :facebook_id)';
+  public function getUser ($user, $pdo) {
+    $query = 'INSERT INTO users (first_name, last_name, picture_url, email, facebook_id, genre)
+              VALUES (:first_name, :last_name, :picture_url, :email, :facebook_id, :genre)';
     $itemQuery = $this->pdo->prepare($query);
     $itemQuery->bindParam(':first_name', $user['first_name']);
     $itemQuery->bindParam(':last_name', $user['last_name']);
     $itemQuery->bindParam(':picture_url', $user['picture']['url']);
     $itemQuery->bindParam(':email', $user['email']);
     $itemQuery->bindParam(':facebook_id', $user['id']);
+    $itemQuery->bindParam(':genre', $user['gender']);
     $q = $itemQuery->execute();
 
   }

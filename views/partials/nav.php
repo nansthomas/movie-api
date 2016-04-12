@@ -12,11 +12,6 @@
 	</ul>
 </nav> -->
 
-<?php
-
-var_dump($user);
-
-?>
 
 <header class="header">
   <div class="container">
