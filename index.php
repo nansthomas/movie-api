@@ -27,8 +27,6 @@ else if($q == 'explore')
 	$page = 'explore';
 else if($q == 'seance')
 	$page = 'seance';
-// else if($q == 'seance')
-// 	$page = 'seance';
 else if($q == 'dashboard')
 	$page = 'dashboard';
 else if($q == 'creation')
@@ -42,9 +40,4 @@ include 'views/partials/html-top.php';
 include 'views/partials/nav.php';
 include 'views/pages/'.$page.'.php';
 include 'views/partials/footer.php';
-
-echo '<pre>';
-print_r($_GET);
-echo '</pre>';
-
 include 'views/partials/html-bottom.php';

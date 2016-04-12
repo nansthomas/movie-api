@@ -17,7 +17,6 @@ function convertToHoursMins($time, $format = '%02d:%02d') {
     return sprintf($format, $hours, $minutes);
 }
 
-
 function getMovieId($search_query) {
 	$url = 'https://api.themoviedb.org/3/search/movie?query='.$search_query.'&language=fr&api_key='.API_KEY;
 	
