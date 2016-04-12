@@ -21,7 +21,7 @@ class FacebookConnect {
       'app_id' => $this->appId,
       'app_secret' => $this->appSecret,
       'default_graph_version' => 'v2.4',
-      ]);
+    ]);
 
     $helper = $fb->getRedirectLoginHelper();
     $permissions = ['email'];
@@ -75,6 +75,7 @@ class FacebookConnect {
             // When Graph returns an error
             echo 'Graph returned an error: ' . $e->getMessage();
             session_destroy();
+
             // redirecting user back to app login page
             header("Location: ./");
             exit;
@@ -97,4 +98,28 @@ class FacebookConnect {
         return $loginUrl;
     }
   }
+}
+
+class RegisterFacebook {
+
+  function __construct ($pdo) {
+    $this->pdo = $pdo;
+  }
+
+  public function checkUser ($user) {
+    // SELECT
+    // IF USER FOUND -> PAS LA
+    // NOT FOUND -> PAS GETUSER
+  }
+
+  public function getUser ($user) {
+
+    $itemQuery = $this->pdo->prepare("INSERT INTO User (firstName, lastName, mail) VALUES (:firstName, :lastName, :mail)");
+    $itemQuery->bindParam(':firstName', $user['first_name']);
+    $itemQuery->bindParam(':lastName', $user['last_name']);
+    $itemQuery->bindParam(':mail', $user['email']);
+    $q = $itemQuery->execute();
+
+  }
+
 }
