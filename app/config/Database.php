@@ -48,7 +48,7 @@ class Database {
     $prepare = $this->getPDO()->prepare($query);
     $exec = $prepare->execute();
     
-    return $prepare;
+    return $exec;
   }
 
     public function beginTransaction(){

@@ -8,7 +8,7 @@ session_start();
 
 // Get the query
 $q = empty($_GET['q']) ? '' : $_GET['q'];
-$par = empty($_GET['par']) ? '' : $_GET['par'];
+$para = empty($_GET['para']) ? '' : $_GET['para'];
 
 // Routes
 if($q == 'send-attend')

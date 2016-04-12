@@ -1,6 +1,6 @@
 <?php  
 
-$event_id = $par;
+$event_id = $para;
 $user_id = $_SESSION['user_id'];
 
 $query = 'INSERT INTO attend (event_id,user_id)

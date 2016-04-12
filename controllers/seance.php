@@ -15,7 +15,7 @@ function convertToHoursMins($time, $format = '%02d:%02d') {
 $title = 'Page de l\'évênement';
 $class = 'seance';
 
-$event_id = $_GET['event_id'];
+$event_id = $_GET['para_id'];
 $user_id = $_SESSION['user_id'];
 
 // Get organisator and event info

@@ -53,6 +53,8 @@ else if($q == 'dashboard')
 	$page = 'dashboard';
 else if($q == 'creation')
 	$page = 'creation';
+else if($q == 'adminevent')
+	$page = 'adminevent';
 else if($q == 'logout')
 	$page = 'logout';
 else if($q == 'geojson')
