@@ -1,12 +1,16 @@
-<?php 
+<?php
 
 $title = 'Création d\'une séance';
 $class = 'creation';
 
-function get_http_response_code($url) {
-    $headers = get_headers($url);
-    return substr($headers[0], 9, 3);
-}
+use App\Movies\getMovie;
+
+// function get_http_response_code($url) {
+//     $headers = get_headers($url);
+//     return substr($headers[0], 9, 3);
+// }
+
+
 
 function convertToHoursMins($time, $format = '%02d:%02d') {
     if ($time < 1) {
@@ -17,25 +21,25 @@ function convertToHoursMins($time, $format = '%02d:%02d') {
     return sprintf($format, $hours, $minutes);
 }
 
-function getMovieId($search_query) {
-	$url = 'https://api.themoviedb.org/3/search/movie?query='.$search_query.'&language=fr&api_key='.API_KEY;
-	
-	if (get_http_response_code($url) == '200') {
-		// Execute if the summoner was found
-		$data = file_get_contents($url);
-		$data = json_decode($data);
-	}
-	else {
-		// Else, false
-		$data = false;
-	}
-
-	return $data->results[0]->id;
-}
+// function getMovieId($search_query) {
+// 	$url = 'https://api.themoviedb.org/3/search/movie?query='.$search_query.'&language=fr&api_key='.API_KEY;
+//
+// 	if (get_http_response_code($url) == '200') {
+// 		// Execute if the summoner was found
+// 		$data = file_get_contents($url);
+// 		$data = json_decode($data);
+// 	}
+// 	else {
+// 		// Else, false
+// 		$data = false;
+// 	}
+//
+// 	return $data->results[0]->id;
+// }
 
 function getMovieDetailInfo($movie_id) {
 	$url = 'http://api.themoviedb.org/3/movie/'.$movie_id.'?language=fr&api_key='.API_KEY;
-	
+
 	if (get_http_response_code($url) == '200') {
 		// Execute if the summoner was found
 		$data = file_get_contents($url);
@@ -91,7 +95,7 @@ if(!empty($_POST))
 
         try {
 		    $pdo->beginTransaction();
-		 
+
 		    // 1ST INSET
 	    	$query = 'INSERT INTO events (event_name,begin_date,begin_hour,description,adress,city,zip_code,setup_display,setup_sound,places_nb,supp_info)
 	        		  VALUES(:event_name,:begin_date,:begin_hour,:description,:adress,:city,:zip_code,:setup_display,:setup_sound,:places_nb,:supp_info)';
@@ -147,8 +151,8 @@ if(!empty($_POST))
 
 		    $approximate_duration = $movie_info->runtime + $delay;
 		    $approximate_duration = convertToHoursMins($approximate_duration);
-		    
-		    $query = 'UPDATE events 
+
+		    $query = 'UPDATE events
 	        		  SET approximate_duration = :approximate_duration
 	        		  WHERE event_id = :event_id';
 	        $prepare = $pdo->prepare($query);
@@ -166,4 +170,9 @@ if(!empty($_POST))
 		    echo $e->getMessage();
 		}
     }
+
+    $movie = new getMovie($pdo);
+    $movieid = $movie->getMovieId($movie_name);
+    var_dump($data);
+    die();
 }
