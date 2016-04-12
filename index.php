@@ -53,6 +53,8 @@ else if($q == 'creation')
 	$page = 'creation';
 else if($q == 'logout')
 	$page = 'logout';
+else if($q == 'geojson')
+  $page = 'geojson';
 else
 	$page = '404';
 

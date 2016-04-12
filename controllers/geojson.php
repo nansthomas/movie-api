@@ -1,8 +1,5 @@
 <?php
 
-$title = 'Explore';
-$class = 'explore';
-
 if (array_key_exists('user_id', $_SESSION)) {
 	$user_id = $_SESSION['user_id'];
 
@@ -22,3 +19,37 @@ else {
 }
 
 $events_list = $pdo->select($query);
+
+foreach ($events_list as $event) {
+  echo $event->event_name;
+  echo "<br>";
+  echo $event->begin_date;
+  echo "<br>";
+  echo $event->begin_hour;
+  echo "<br>";
+  echo $event->adress;
+  echo "<br>";
+  echo $event->zip_code;
+  echo "<br>";
+  echo $event->city;
+  echo "<br>";
+  echo $event->latitude;
+  echo "<br>";
+  echo $event->longitude;
+  echo "<br>";
+  echo $event->place_nb;
+  echo "<br>";
+  echo $event->place_taken;
+  echo "<br>";
+  echo "<br>";
+}
+
+//
+//
+// $json = array(
+//   'test'=> $caca,
+//
+// );
+
+// echo json_encode($json);
+die();
