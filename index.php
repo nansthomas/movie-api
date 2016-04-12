@@ -15,11 +15,8 @@ $connect = new FacebookConnect(APP_ID, APP_SECRET);
 $user = null;
 $user = $connect->connect($user);
 
-if (is_string($user))
+if (!is_string($user))  
 {
-  echo '<a href="' . $user . '">Log in with Facebook!</a>';
-}
-else {
 	$write = new RegisterFacebook($pdo, $user);
 	$db_user = $write->checkUser($user, $pdo);
 
@@ -67,5 +64,3 @@ include 'views/pages/'.$page.'.php';
 include 'views/partials/footer.php';
 include 'views/partials/html-bottom.php';
 
-
-var_dump($_SESSION);

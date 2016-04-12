@@ -20,15 +20,8 @@
       <a class="header-item" href="<?= URL ?>">
         <h4>SuperLogo</h4>
       </a>
-      <a class="header-tab is-active" href="<?= URL ?>">
-        Home
-      </a>
-      <a class="header-tab" href="<?= URL ?>explore">
-        Explore
-      </a>
-      <a class="header-tab" href="<?= URL ?>">
-        Documentation
-      </a>
+      <a class="header-tab is-active" href="<?= URL ?>">Home</a>
+      <a class="header-tab" href="<?= URL ?>explore">Explore</a>
     </div>
 
     <!-- Hamburger menu (on mobile) -->
@@ -40,15 +33,22 @@
 
     <!-- Right side -->
     <div class="header-right header-menu">
+      <?php if (!empty($_SESSION)): ?>
+        <span class="header-item"><p>Hey <strong><?= $_SESSION['first_name'] ?></strong>, comment vas-tu ?</p></span>
+      <?php endif ?>
       <span class="header-item">
-        <a href="#">Nav item</a>
+        <a href="<?= URL ?>dashboard">Dashboard</a>
       </span>
-      <span class="header-item">
-        <a href="#">Other nav item</a>
-      </span>
-      <span class="header-item">
-        <a class="button" href="#">Button</a>
-      </span>
+      <?php if (empty($_SESSION)): ?>
+        <span class="header-item">
+          <a class="button" href="<?= $user  ?>">Login with Facebook!</a>
+        </span>
+      <?php else: ?>
+        <span class="header-item">
+          <a class="button" href="<?= $user  ?>">Deconexion</a>
+        </span>
+      <?php endif ?>
+
     </div>
   </div>
 </header>
