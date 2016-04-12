@@ -6,8 +6,12 @@ include 'config/options.php';
 include 'config/database.php';
 
 // Force a SESSION right now, because FB connect don't work, to delete when FB Connect work
+// USER 1
 $_SESSION['user_id']    = 1;
 $_SESSION['first_name']  = 'Mickael';
+// USER 2
+// $_SESSION['user_id']    = 2;
+// $_SESSION['first_name']  = 'Jung-Um';
 
 // Get the query
 $q = empty($_GET['q']) ? '' : $_GET['q'];

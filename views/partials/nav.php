@@ -1,7 +1,7 @@
 <nav class="nav-bar">
 	<h1><a href="<?= URL ?>">H2 SI API</a></h1>
 	<?php if (!empty($_SESSION)): ?>
-		<p>CONNECTED</p>
+		<p>Connecté en tant que <?= $_SESSION['first_name'] ?></p>
 	<?php endif ?>
 	<ul>
 		<li><a href="<?= URL ?>">Home</a></li>

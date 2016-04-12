@@ -26,3 +26,8 @@ input, select {
 body > section {
 	padding: 30px;
 }
+
+.event-preview {
+	border: 1px solid #000000;
+	margin: 10px 0px;
+}

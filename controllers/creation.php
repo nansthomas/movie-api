@@ -8,6 +8,16 @@ function get_http_response_code($url) {
     return substr($headers[0], 9, 3);
 }
 
+function convertToHoursMins($time, $format = '%02d:%02d') {
+    if ($time < 1) {
+        return;
+    }
+    $hours = floor($time / 60);
+    $minutes = ($time % 60);
+    return sprintf($format, $hours, $minutes);
+}
+
+
 function getMovieId($search_query) {
 	$url = 'https://api.themoviedb.org/3/search/movie?query='.$search_query.'&language=fr&api_key='.API_KEY;
 	
@@ -22,6 +32,22 @@ function getMovieId($search_query) {
 	}
 
 	return $data->results[0]->id;
+}
+
+function getMovieDetailInfo($movie_id) {
+	$url = 'http://api.themoviedb.org/3/movie/'.$movie_id.'?language=fr&api_key='.API_KEY;
+	
+	if (get_http_response_code($url) == '200') {
+		// Execute if the summoner was found
+		$data = file_get_contents($url);
+		$data = json_decode($data);
+	}
+	else {
+		// Else, false
+		$data = false;
+	}
+
+	return $data;
 }
 
 // Instantiaze errors array
@@ -115,6 +141,24 @@ if(!empty($_POST))
 
 	        if (!$prepare->execute())
 		        throw new PDOException('Erreur requête 3');
+
+		    // 4RTH UPDATE - EVENT DURATION
+		    $movie_info = getMovieDetailInfo($movie_id);
+		    $delay = 10; // In minute
+
+		    $approximate_duration = $movie_info->runtime + $delay;
+		    $approximate_duration = convertToHoursMins($approximate_duration);
+		    
+		    $query = 'UPDATE events 
+	        		  SET approximate_duration = :approximate_duration
+	        		  WHERE event_id = :event_id';
+	        $prepare = $pdo->prepare($query);
+
+	        $prepare->bindValue('approximate_duration',$approximate_duration);
+	        $prepare->bindValue('event_id',$event_id);
+
+	        if (!$prepare->execute())
+		        throw new PDOException('Erreur requête 4');
 
 		    $pdo->commit();
 		}
