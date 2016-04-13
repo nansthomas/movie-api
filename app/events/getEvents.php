@@ -12,14 +12,14 @@ class getEvents extends Database {
 
   public function listEvent ($city, $event_name) {
     if ($city != null)
-        $city_query = " AND events.city = '$city'";
+        $city_query = " AND events.city = '$city' ";
     else
-        $city_query = "";
+        $city_query = " ";
 
     if ($event_name != null)
-        $event_name_query = " AND events.event_name LIKE '%$event_name%'";
+        $event_name_query = " AND events.event_name LIKE '%$event_name%' ";
     else
-        $event_name_query = "";
+        $event_name_query = " ";
 
     if (array_key_exists('user_id', $_SESSION)) {
     	$user_id = $_SESSION['user_id'];
@@ -42,6 +42,10 @@ class getEvents extends Database {
     }
 
     $events_list = $this->select($query);
+
+    if (empty($events_list)) {
+        $events_list = false;
+    }
 
     return $events_list;
 
