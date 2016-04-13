@@ -9,13 +9,13 @@ $query = "SELECT *
           FROM users, attend
           WHERE users.user_id = attend.user_id
           AND attend.event_id = $event_id
-          AND attend = null";
+          AND attend IS NULL";
 $waiting_list = $pdo->select($query);
+
 
 $query = "SELECT *
           FROM users, attend
           WHERE users.user_id = attend.user_id
           AND attend.event_id = $event_id
-          AND attend = yes";
+          AND attend.is_accepted = 1";
 $comfirmed_list = $pdo->select($query);
-

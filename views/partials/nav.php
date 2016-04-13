@@ -26,9 +26,6 @@
       <?php endif ?>
       <?php if (!array_key_exists('user_id', $_SESSION)): ?>
         <span class="header-item">
-          <a class="button" href="<?= URL ?>signup">Inscription</a>
-        </span>
-        <span class="header-item">
           <a class="button" href="<?= $user  ?>">Login with Facebook!</a>
         </span>
       <?php else: ?>

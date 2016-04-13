@@ -127,11 +127,11 @@ class RegisterFacebook extends Database {
     $genre = $user['gender'];
 
     $query = "INSERT INTO users (first_name, last_name, picture_url, email, facebook_id, genre)
-              VALUES ($first_name, $last_name, $picture_url, $email, $facebook_id, $genre)";
+              VALUES ('$first_name', '$last_name', '$picture_url', '$email', '$facebook_id', '$genre')";
 
     $insert = $this->prepareQuery($query);
     
-    if ($insert->execute())
+    if ($insert)
         return true;
     else
         return false;
