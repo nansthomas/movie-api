@@ -6,9 +6,10 @@ use App\Events\getEvents;
 
 $city = empty($_GET['city']) ? null : $_GET['city'];
 $event_name = empty($_GET['event_name']) ? null : $_GET['event_name'];
+$date = empty($_GET['date']) ? null : $_GET['date'];
 
 $events = new getEvents();
-$events_list = $events->listEvent($city, $event_name);
+$events_list = $events->listEvent($city, $event_name, $date);
 
 if ($events_list == false) {
   $events = array(

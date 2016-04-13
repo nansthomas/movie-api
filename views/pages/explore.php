@@ -30,27 +30,9 @@ L.mapbox.accessToken = 'pk.eyJ1Ijoid2lubyIsImEiOiJjaWs2dWFxNHIwMDU5eGFtMWZ4ZWM3d
 
 var event_name = '<?= $event_name ?>';
 var city       = '<?= $city ?>';
+var date       = '<?= $date ?>';
 
-var event_name_query;
-var city_query;
-
-if (event_name != '') {
-  event_name_query = '?event_name=' + event_name;
-
-  if (city != '')
-    city_query = '&city=' + city;
-  else
-    city_query = '';
-} else {
-  event_name_query = '';
-
-  if (city != '')
-    city_query = '?city=' + city;
-  else
-    city_query = '';
-}
-
-var url = '<?= URL ?>' + 'geojson' + event_name_query + city_query ;
+var url = '<?= URL ?>' + 'geojson' + event_name + city + date ;
 
 function Get(url, cb) {
   var Httpreq = new XMLHttpRequest(); // a new request

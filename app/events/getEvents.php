@@ -10,11 +10,16 @@ class getEvents extends Database {
 
   }
 
-  public function listEvent ($city, $event_name) {
+  public function listEvent ($city, $event_name, $date) {
     if ($city != null)
         $city_query = " AND events.city = '$city' ";
     else
         $city_query = " ";
+
+    if ($date != null)
+        $date_query = " AND events.begin_date = '$date' ";
+    else
+        $date_query = " ";
 
     if ($event_name != null)
         $event_name_query = " AND events.event_name LIKE '%$event_name%' ";
@@ -30,6 +35,7 @@ class getEvents extends Database {
                 AND events.place_nb > events.place_taken
                 AND users.user_id != $user_id"
                 .$city_query
+                .$date_query
                 .$event_name_query;
     } else {
 
@@ -38,6 +44,7 @@ class getEvents extends Database {
     		    AND users.user_id = organized.user_id
     		    AND events.place_nb > events.place_taken"
                 .$city_query
+                .$date_query
                 .$event_name_query;
     }
 

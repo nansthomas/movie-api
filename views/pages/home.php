@@ -10,7 +10,7 @@
           <option value="malzeville">Malzeville</option>
         </select>
       </span>
-      <!-- <input class="input input is-large" type="date" name="date"> -->
+      <input class="input input is-large" type="date" name="date">
       <input type="submit" class="button is-info is-large">
     </p>
   </form>
