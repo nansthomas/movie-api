@@ -8,4 +8,4 @@
 			  FROM users
 			  WHERE user_id = $user_id";
 
-	$user_info = $pdo->select($query);
+	$user_info = $pdo->select($query,false);
