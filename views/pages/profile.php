@@ -7,8 +7,6 @@
 </section>
 
 <?php
-
-var_dump($user_info->first_name);
 echo '<pre>';
 print_r($user_info);
 echo '</pre>';
