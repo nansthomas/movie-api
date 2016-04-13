@@ -9,6 +9,9 @@ use App\Facebook\FacebookConnect;
 use App\Facebook\RegisterFacebook;
 use App\Config\Database;
 
+// use Psr\Http\Message\ServerRequestInterface;
+// use Psr\Http\Message\ResponseInterface;
+
 require 'vendor/autoload.php';
 
 session_start();
@@ -38,6 +41,30 @@ if (!is_string($user))
 	}
 }
 
+
+// $app = new \Slim\App;
+//
+// $app->get('/', function (ServerRequestInterface $request, ResponseInterface $response) {
+//     include 'controllers/home.php';
+//     include 'views/partials/html-top.php';
+//     include 'views/partials/nav.php';
+//     include 'views/pages/home.php';
+//     return $response;
+// });
+// $app->get('/explore', function (ServerRequestInterface $request, ResponseInterface $response) {
+//     include 'controllers/explore.php';
+//     include 'views/partials/html-top.php';
+//     include 'views/partials/nav.php';
+//     include 'views/pages/explore.php';
+//     return $response;
+// });
+// $app->get('/geojson', function (ServerRequestInterface $request, ResponseInterface $response) {
+//     include 'controllers/geojson.php';
+//     return $response;
+// });
+// $app->run();
+
+
 // Get the query
 $q = empty($_GET['q']) ? '' : $_GET['q'];
 $event_id = empty($_GET['event_id']) ? '' : $_GET['event_id'];
@@ -49,8 +76,6 @@ else if($q == 'explore')
 	$page = 'explore';
 else if($q == 'seance')
 	$page = 'seance';
-else if($q == 'profile')
-  $page = 'profile';
 else if($q == 'dashboard')
 	$page = 'dashboard';
 else if($q == 'creation')
