@@ -34,6 +34,15 @@ $query = "SELECT *
 
 $movie_list = $pdo->select($query);
 
+// Get the list of attending person
+$query = "SELECT *
+		  FROM users,attend,events
+		  WHERE events.event_id = $event_id
+		  AND attend.event_id = events.event_id
+		  AND attend.user_id = users.user_id";
+
+$attend_list = $pdo->select($query);
+
 // User status concerning a certain event
 $query = "SELECT *
 		  FROM attend
