@@ -51,3 +51,25 @@ $('.send-confirm-no').on('click', function() {
 
 	return false;
 });
+
+var $search_movie = $(".search-movie");
+var query;
+
+if ($search_movie.length >= 0) {
+	$search_movie.on('keyup', function() {
+		if($search_movie.val().length > 3)
+		{
+			query = $search_movie.val().replace(" ", "+");
+
+		    $.ajax({
+		        url: URL+'ajax/search-movie/'+query,
+		        dataType: "json",
+		        success: function(json_data) {
+					view_data = json_data.view_data;
+					console.log(json_data);
+		        }
+		    });
+		}
+	});
+}
+

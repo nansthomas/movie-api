@@ -24,7 +24,7 @@
 				</div>
 				<div>
 					<label for="movie_name">Nom du film</label>
-					<input type="text" name="movie_name" id="movie_name" value="<?= $movie_name ?>">
+					<input type="text" class="search-movie" name="movie_name" id="movie_name" value="<?= $movie_name ?>">
 				</div>
 			</section>
 
