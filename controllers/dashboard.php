@@ -1,9 +1,15 @@
-<?php 
+<?php
 
 $title = 'Création d\'un évênement';
 $class = 'dashboard';
 
-$user_id = $_SESSION['user_id'];
+$user_id = empty($_SESSION['user_id']) ? null : $_SESSION['user_id'];
+
+if ($user_id == NULL) {
+  header('Location: ./login');
+  exit;
+}
+
 
 // Query for event that the user created
 $query = "SELECT *
@@ -27,4 +33,4 @@ $query = "SELECT *
 		  WHERE events.event_id = attend.event_id
 		  AND attend.user_id = $user_id
 		  AND attend.is_accepted IS NULL";
-$waiting_event = $pdo->select($query); 
+$waiting_event = $pdo->select($query);

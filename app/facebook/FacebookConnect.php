@@ -68,7 +68,7 @@ class FacebookConnect {
 
         // getting basic info about user
         try {
-            $profile_request = $fb->get('/me?fields=name,first_name,last_name,email,picture.width(200).height(200), gender');
+            $profile_request = $fb->get('/me?fields=name,first_name,last_name,email,picture.width(200).height(200), gender, birthday');
             $profile = $profile_request->getGraphNode()->asArray();
 
 
@@ -125,6 +125,7 @@ class RegisterFacebook extends Database {
     $email = $user['email'];
     $facebook_id = $user['id'];
     $genre = $user['gender'];
+    $age = $user['birthday']; // NEED TO CONVERT
 
     $query = "INSERT INTO users (first_name, last_name, picture_url, email, facebook_id, genre)
               VALUES ('$first_name', '$last_name', '$picture_url', '$email', '$facebook_id', '$genre')";
