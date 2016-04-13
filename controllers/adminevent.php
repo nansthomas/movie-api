@@ -9,7 +9,7 @@ $query = "SELECT *
           FROM users, attend
           WHERE users.user_id = attend.user_id
           AND attend.event_id = $event_id
-          AND attend IS NULL";
+          AND attend.is_accepted IS NULL";
 $waiting_list = $pdo->select($query);
 
 

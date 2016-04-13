@@ -8,17 +8,22 @@ include 'config/options.php';
 use App\Config\Database;
 require 'vendor/autoload.php';
 session_start();
-
 //Initialized object
 $pdo = new Database('moviehome');
 
 // Get the query
 $q = empty($_GET['q']) ? '' : $_GET['q'];
-$para = empty($_GET['para']) ? '' : $_GET['para'];
+$target = empty($_GET['target']) ? '' : $_GET['target'];
+$target1 = empty($_GET['target1']) ? '' : $_GET['target1'];
+$target2 = empty($_GET['target2']) ? '' : $_GET['target2'];
 
 // Routes
 if($q == 'send-attend')
 	$page = 'send-attend';
+else if($q == 'send-confirm-yes')
+	$page = 'send-confirm-yes';
+else if($q == 'send-confirm-no')
+	$page = 'send-confirm-no';
 else
 	$page = false;
 

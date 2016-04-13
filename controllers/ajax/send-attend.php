@@ -1,6 +1,6 @@
 <?php  
 
-$event_id = $para;
+$event_id = $target;
 $user_id = $_SESSION['user_id'];
 
 // Add request into attend table
