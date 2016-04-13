@@ -1,20 +1,20 @@
 <section>
 	<h2>Création Séance</h2>
-	
+
 	<div class="container">
 		<form action="#" method="post">
 			<section>
 				<h3><input type="text" name="event_name" id="event_name" value="<?= $event_name == '' ? 'Nom de lévènement' : $event_name ?>" ></h3>
 			</section>
 			<section>
-				
+
 
 				<h4>INFORMATIONS GENERALES</h4>
 				<div>
 					<label for="begin_date">Date</label>
 					<input type="date" name="begin_date" id="begin_date" min="<?= $today ?>" value="<?= $begin_date != '' ? $begin_date : $today ?>">
 				</div>
-				
+
 				<div>
 					<label for="begin_hour">Heure</label>
 					<input type="time" name="begin_hour" id="begin_hour" min="<?= $time ?>" value="<?= $begin_hour != '' ? $begin_hour : $time ?>">
@@ -30,18 +30,17 @@
 			</section>
 
 			<h4>LIEUX</h4>
-			<section class="places"> 
+			<section class="places">
 				<div>
-					<label for="adress">Adresse</label>
-					<input type="text" class="search-adress" name="adress" id="adress" value="<?= $adress ?>">
+          <label class="label">Adresse</label>
+            <p class="control">
+              <input class="input is-medium search-adress" type="text" name="adress" id="adress" placeholder="Chercher une adresse" value="<?= $adress ?>" autocomplete="off">
+            </p>
+					<!-- <label for="adress">Adresse</label>
+					<input type="text" class="search-adress" name="adress" id="adress" value="<?= $adress ?>"> -->
 				</div>
 
 				<div class="result-list">
-					<div class="result-1"></div>
-					<div class="result-2"></div>
-					<div class="result-3"></div>
-					<div class="result-4"></div>
-					<div class="result-5"></div>
 				</div>
 				<!-- <div>
 					<label for="city">Ville</label>
@@ -52,7 +51,7 @@
 					<input type="text" name="zip_code" id="zip_code" value="<?= $zip_code ?>">
 				</div> -->
 			</section>
-			
+
 			<h4>AUTRES</h4>
 			<section>
 				<div>
@@ -61,7 +60,7 @@
 						<option value="pc" <?= $setup_display == 'pc' ? 'selected' : '' ?> >Ordinateur</option>
 						<option value="tv" <?= $setup_display == 'tv' ? 'selected' : '' ?> >Télévision</option>
 						<option value="projecteur" <?= $setup_display == 'projecteur' ? 'selected' : '' ?> >Projecteur</option>
-					</select>				
+					</select>
 				</div>
 				<div>
 					<label for="setup_sound">Installation son</label>
@@ -85,7 +84,7 @@
 
 
 			<input type="submit">
-			
+
 		</form>
 	</div>
 </section>
