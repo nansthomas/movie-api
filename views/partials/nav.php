@@ -18,9 +18,12 @@
 
     <!-- Right side -->
     <div class="header-right header-menu">
+
+      <!-- USER CONNECTED -->
       <?php if (array_key_exists('user_id', $_SESSION)): ?>
       <span class="header-item">
-        <a href="#"><p><strong><?= $_SESSION['first_name'] ?></strong></p></a>
+        <img src="<?= $user['picture']['url'] ?>" alt="" />
+        <a href="#"><p><strong><?= $user['first_name'] ?></strong></p></a>
       </span>
       <span class="header-item">
         <a href="<?= URL.'profile?user_id='.$_SESSION['user_id'] ?>">Profil</a>
@@ -29,10 +32,14 @@
         <a href="<?= URL ?>dashboard">Dashboard</a>
       </span>
       <?php endif ?>
+
+      <!-- USER NOT CONNECTED -->
       <?php if (!array_key_exists('user_id', $_SESSION)): ?>
         <span class="header-item">
           <a class="button" href="<?= $user  ?>">Login with Facebook!</a>
         </span>
+
+      <!-- USER DECONNEXION -->
       <?php else: ?>
         <span class="header-item">
           <a class="button" href="<?= URL ?>logout">Deconexion</a>
