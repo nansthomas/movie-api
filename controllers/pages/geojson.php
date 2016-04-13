@@ -43,6 +43,7 @@ if ($events_list == false) {
         'postalCode' => $event->zip_code,
         'date' => $event->begin_date,
         'hour' => $event->begin_hour,
+        'link' => URL.'seance?event_id='.$event->event_id,
       )
     );
 

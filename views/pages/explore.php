@@ -93,7 +93,7 @@ Get(url, function (error, geojson) {
 
         if (prop.address) {
           link.innerHTML += ' <br /><small class="quiet">' + prop.address + '</small>';
-          popup += '<br /><small class="quiet">' + prop.name + '</small>';
+          popup += '<br /><a href="' + prop.link + '">Acceder</a>';
         }
 
         var details = listing.appendChild(document.createElement('div'));

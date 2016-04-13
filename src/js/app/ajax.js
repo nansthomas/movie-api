@@ -81,7 +81,8 @@ if ($search_movie.length >= 0) {
 }
 
 function doWork(data) {
-	$result_div = $('.result-live');
+	$result_div = $('.result-list');
+	console.log($result_div);
 	$result_div.remove();
 	for (var i = 0; i < data.features.length; i++) {
 		$selector = '.result-'.i;
