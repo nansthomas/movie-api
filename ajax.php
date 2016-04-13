@@ -14,10 +14,6 @@ $pdo = new Database('moviehome');
 
 // Get the query
 $q = empty($_GET['q']) ? '' : $_GET['q'];
-// $target = empty($_GET['target']) ? '' : $_GET['target'];
-// $target1 = empty($_GET['target1']) ? '' : $_GET['target1'];
-// $target2 = empty($_GET['target2']) ? '' : $_GET['target2'];
-// $query = empty($_GET['query']) ? '' : $_GET['query'];
 
 // Routes
 if($q == 'send-attend')

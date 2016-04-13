@@ -7,9 +7,3 @@ RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteRule ^ajax/([a-zA-Z-/]*)$ ./ajax.php?q=$1 [QSA]
 
 RewriteRule ^([a-zA-Z]*)$ ./index.php?q=$1 [QSA]
-
-
-#RewriteRule ^(seance|adminevent)/([0-9]+)$ ./index.php?q=$1&para_id=$2
-#RewriteRule ^(ajax)/(search-movie)/([a-zA-Z+]{3,})$ ./ajax.php?q=$2&query=$3
-#RewriteRule ^(ajax)/([a-z-]*)/([0-9]*)$ ./ajax.php?q=$2&target=$3
-#RewriteRule ^(ajax)/([a-z-]*)/([0-9]*)/([0-9]*)$ ./ajax.php?q=$2&target1=$3&target2=$4

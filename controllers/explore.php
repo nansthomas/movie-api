@@ -3,5 +3,12 @@
 $title = 'Explore';
 $class = 'explore';
 
-$city = $_GET['city'];
-$event_name = $_GET['event_name'];
+if (array_key_exists('city', $_GET))
+	$city = $_GET['city'];
+else
+	$city = '';
+
+if (array_key_exists('event_name', $_GET))
+	$event_name = $_GET['event_name'];
+else
+	$event_name = '';

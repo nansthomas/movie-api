@@ -76,6 +76,8 @@ else if($q == 'explore')
 	$page = 'explore';
 else if($q == 'seance')
 	$page = 'seance';
+else if($q == 'profile')
+	$page = 'profile';
 else if($q == 'dashboard')
 	$page = 'dashboard';
 else if($q == 'creation')

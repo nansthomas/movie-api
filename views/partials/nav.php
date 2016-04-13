@@ -23,7 +23,7 @@
         <a href="#"><p><strong><?= $_SESSION['first_name'] ?></strong></p></a>
       </span>
       <span class="header-item">
-        <a href="<?= URL ?>profile">Profil</a>
+        <a href="<?= URL.'profile?user_id='.$_SESSION['user_id'] ?>">Profil</a>
       </span>
       <span class="header-item">
         <a href="<?= URL ?>dashboard">Dashboard</a>

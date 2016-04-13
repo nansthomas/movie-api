@@ -4,8 +4,8 @@ header('Content-Type: application/json');
 
 use App\Events\getEvents;
 
-$city = empty($_GET['city']) ? '' : $_GET['city'];
-$event_name = empty($_GET['event_name']) ? '' : $_GET['event_name'];
+$city = empty($_GET['city']) ? null : $_GET['city'];
+$event_name = empty($_GET['event_name']) ? null : $_GET['event_name'];
 
 $events = new getEvents();
 $events_list = $events->listEvent($city, $event_name);
