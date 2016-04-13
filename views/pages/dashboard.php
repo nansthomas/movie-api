@@ -14,4 +14,20 @@
 			<p>Demande en attente: <?= $event_created[$i]->pending_request ?></p>
 		</div>
 	<?php endfor ?>
+
+	<h3>Participation à des séances</h3>
+	<h4>Accepté</h4>
+	<?php for ($i=0; $i < count($accepted_event); $i++): ?>
+		<div class='event-preview'>
+			<a href="<?= URL.'seance/'.$accepted_event[$i]->event_id ?>"><?= $accepted_event[$i]->event_name ?></a>
+			<p><?= $accepted_event[$i]->begin_date.' / '. $accepted_event[$i]->begin_hour ?></p>
+		</div>
+	<?php endfor ?>
+	<h4>En attente</h4>
+	<?php for ($i=0; $i < count($waiting_event); $i++): ?>
+		<div class='event-preview'>
+			<a href="<?= URL.'seance/'.$waiting_event[$i]->event_id ?>"><?= $waiting_event[$i]->event_name ?></a>
+			<p><?= $waiting_event[$i]->begin_date.' / '. $waiting_event[$i]->begin_hour ?></p>
+		</div>
+	<?php endfor ?>
 </section>

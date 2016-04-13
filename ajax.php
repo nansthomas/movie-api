@@ -1,10 +1,16 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // Config
 include 'config/options.php';
-include 'config/database.php';
 
+use App\Config\Database;
+require 'vendor/autoload.php';
 session_start();
+
+//Initialized object
+$pdo = new Database('moviehome');
 
 // Get the query
 $q = empty($_GET['q']) ? '' : $_GET['q'];
