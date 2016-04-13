@@ -94,7 +94,7 @@ else
 	$page = '404';
 
 // Includes
-include 'controllers/'.$page.'.php';
+include 'controllers/pages/'.$page.'.php';
 include 'views/partials/html-top.php';
 include 'views/partials/nav.php';
 include 'views/pages/'.$page.'.php';

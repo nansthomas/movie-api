@@ -13,9 +13,31 @@
 
 L.mapbox.accessToken = 'pk.eyJ1Ijoid2lubyIsImEiOiJjaWs2dWFxNHIwMDU5eGFtMWZ4ZWM3dDBxIn0.aixYFf9Few6MJKElA0g-0Q';
 // var url = "http://localhost:8888/geojson?city=paris";
-var city = '<?= $city ?>';
+
 var event_name = '<?= $event_name ?>';
-var url = 'http://localhost:8888/geojson?event_name=' + event_name + '&city=' + city;
+var city       = '<?= $city ?>';
+
+var event_name_query; 
+var city_query;
+
+if (event_name != '') {
+  event_name_query = '?event_name=' + event_name;
+
+  if (city != '')
+    city_query = '&city=' + city;
+  else
+    city_query = '';
+}
+else {
+  event_name_query = '';
+
+  if (city != '')
+    city_query = '?city=' + city;
+  else
+    city_query = '';
+}
+
+var url = 'http://localhost:8888/geojson' + event_name_query + city_query ;
 console.log(url);
 
 function Get(url, cb) {
