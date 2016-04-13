@@ -12,7 +12,6 @@
 <script>
 
 L.mapbox.accessToken = 'pk.eyJ1Ijoid2lubyIsImEiOiJjaWs2dWFxNHIwMDU5eGFtMWZ4ZWM3dDBxIn0.aixYFf9Few6MJKElA0g-0Q';
-// var url = "http://localhost:8888/geojson?city=paris";
 
 var event_name = '<?= $event_name ?>';
 var city       = '<?= $city ?>';
@@ -37,8 +36,7 @@ else {
     city_query = '';
 }
 
-var url = 'http://localhost:8888/geojson' + event_name_query + city_query ;
-console.log(url);
+var url = '<?= URL ?>' + 'geojson' + event_name_query + city_query ;
 
 function Get(url, cb) {
   var Httpreq = new XMLHttpRequest(); // a new request

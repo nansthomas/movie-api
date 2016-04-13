@@ -2,7 +2,7 @@
 	<h2>Dashboard</h2>
 	<h3>En tant qu'hôte</h3>
 	<ul>
-		<li><a href="<?= URL ?>creation">Création d'une séance</a></li>
+		<li><a href="<?= URL ?>create">Création d'une séance</a></li>
 	</ul>
 
 	<h3>Event créé</h3>

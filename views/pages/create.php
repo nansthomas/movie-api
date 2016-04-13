@@ -3,12 +3,13 @@
 	
 	<div class="container">
 		<form action="#" method="post">
-			<h4>INFORMATIONS GENERALES</h4>
 			<section>
-				<div> 
-					<label for="event_name">Nom de l'évènement</label>
-					<input type="text" name="event_name" id="event_name" value="<?= $event_name ?>">
-				</div>
+				<h3><input type="text" name="event_name" id="event_name" value="<?= $event_name == '' ? 'Nom de lévènement' : $event_name ?>" ></h3>
+			</section>
+			<section>
+				
+
+				<h4>INFORMATIONS GENERALES</h4>
 				<div>
 					<label for="begin_date">Date</label>
 					<input type="date" name="begin_date" id="begin_date" min="<?= $today ?>" value="<?= $begin_date != '' ? $begin_date : $today ?>">
@@ -23,8 +24,8 @@
 					<textarea name="description" id="description" value="<?= $description ?>"></textarea>
 				</div>
 				<div>
-					<label for="movie_name">Nom du film</label>
-					<input type="text" class="search-movie" name="movie_name" id="movie_name" value="<?= $movie_name ?>">
+					<label for="place_nb">Nombre de places</label>
+					<input type="number" name="place_nb" id="place_nb" value="<?= $place_nb ?>">
 				</div>
 			</section>
 
@@ -42,7 +43,10 @@
 					<label for="zip_code">Code Postal</label>
 					<input type="text" name="zip_code" id="zip_code" value="<?= $zip_code ?>">
 				</div>
-
+			</section>
+			
+			<h4>AUTRES</h4>
+			<section>
 				<div>
 					<label for="setup_display">Type d'écran</label>
 					<select name="setup_display" id="setup_display" value="<?= $setup_display ?>">
@@ -60,18 +64,17 @@
 					</select>
 				</div>
 				<div>
-					<label for="place_nb">Nombre de places</label>
-					<input type="number" name="place_nb" id="place_nb" value="<?= $place_nb ?>">
-				</div>
-			</section>
-			
-			<h4>AUTRES</h4>
-			<section>
-				<div>
 					<label for="supp_info">Informations complémentaires</label>
 					<textarea name="supp_info" id="supp_info" value="<?= $supp_info ?>" placeholder="Je n'accepte pas les enfants - Apportez des sushis - Venez déguisés"></textarea>
 				</div>
 			</section>
+			<section>
+				<div>
+					<label for="movie_name">Nom du film</label>
+					<input type="text" class="search-movie" name="movie_name" id="movie_name" value="<?= $movie_name ?>">
+				</div>
+			</section>
+
 
 			<input type="submit">
 			
