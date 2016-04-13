@@ -3,6 +3,7 @@
 $title = 'Explore';
 $class = 'explore';
 
+
 if (array_key_exists('city', $_GET))
 	$city = $_GET['city'];
 else

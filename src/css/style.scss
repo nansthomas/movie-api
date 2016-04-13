@@ -39,6 +39,28 @@ body > section {
 
 // DISCOVER
 
+// ERROR PAGE NO RESULT
+
+.error {
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #FFFFFF;
+}
+
+.leaflet-top {
+  bottom: 10px;
+  height: 70px;
+  top: initial !important;
+  right: 10px;
+  left: initial !important;
+}
+
+.leaflet-bottom {
+  display: none;
+}
+
 h1 {
     font-size:22px;
     margin:0;

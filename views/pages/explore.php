@@ -9,15 +9,29 @@
   </div>
 <div id='map' class='map pad2'>Map</div>
 
+<section class="error is-fullheight">
+  <div class="hero-content">
+    <div class="container">
+      <h1 class="title">
+        Vraiment désolé... 😢
+      </h1>
+      <h2 class="subtitle">
+        Nous n'avons trouvé aucun résultat pour votre recherche
+      </h2>
+      <a href="<?= URL ?>"class="button is-medium">Nouvelle recherche</a
+    </div>
+  </div>
+</section>
+
+
 <script>
 
 L.mapbox.accessToken = 'pk.eyJ1Ijoid2lubyIsImEiOiJjaWs2dWFxNHIwMDU5eGFtMWZ4ZWM3dDBxIn0.aixYFf9Few6MJKElA0g-0Q';
-// var url = "http://localhost:8888/geojson?city=paris";
 
 var event_name = '<?= $event_name ?>';
 var city       = '<?= $city ?>';
 
-var event_name_query; 
+var event_name_query;
 var city_query;
 
 if (event_name != '') {
@@ -27,8 +41,7 @@ if (event_name != '') {
     city_query = '&city=' + city;
   else
     city_query = '';
-}
-else {
+} else {
   event_name_query = '';
 
   if (city != '')
@@ -37,8 +50,7 @@ else {
     city_query = '';
 }
 
-var url = 'http://localhost:8888/geojson' + event_name_query + city_query ;
-console.log(url);
+var url = '<?= URL ?>' + 'geojson' + event_name_query + city_query ;
 
 function Get(url, cb) {
   var Httpreq = new XMLHttpRequest(); // a new request
@@ -52,72 +64,81 @@ function Get(url, cb) {
   Httpreq.send(null);
 }
 
+
 Get(url, function (error, geojson) {
 
-  var map = L.mapbox.map('map', 'mapbox.streets');
-  map.setView([48.856614, 2.352222], 13).featureLayer.setGeoJSON(JSON.parse(geojson));
+  var data = JSON.parse(geojson);
+
+  if (data.result === null) {
+    var error = document.querySelector('.error');
+    error.style.display = 'block';
+
+  } else {
+    var map = L.mapbox.map('map', 'mapbox.streets');
+    map.setView([48.856614, 2.352222], 13).featureLayer.setGeoJSON(JSON.parse(geojson));
 
 
-  var listings = document.getElementById('listings');
+    var listings = document.getElementById('listings');
 
-  var locations = L.mapbox.featureLayer().addTo(map);
-  locations.setGeoJSON(JSON.parse(geojson));
+    var locations = L.mapbox.featureLayer().addTo(map);
+    locations.setGeoJSON(JSON.parse(geojson));
 
-  function setActive(el) {
-    var siblings = listings.getElementsByTagName('div');
-    for (var i = 0; i < siblings.length; i++) {
-      siblings[i].className = siblings[i].className
-      .replace(/active/, '').replace(/\s\s*$/, '');
+    function setActive(el) {
+      var siblings = listings.getElementsByTagName('div');
+      for (var i = 0; i < siblings.length; i++) {
+        siblings[i].className = siblings[i].className
+        .replace(/active/, '').replace(/\s\s*$/, '');
+      }
+
+      el.className += ' active';
     }
 
-    el.className += ' active';
-  }
+    locations.eachLayer(function (locale) {
+        // Shorten locale.feature.properties to just `prop` so we're not
+        // writing this long form over and over again.
+        var prop = locale.feature.properties;
 
-  locations.eachLayer(function (locale) {
-      // Shorten locale.feature.properties to just `prop` so we're not
-      // writing this long form over and over again.
-      var prop = locale.feature.properties;
+        var popup = '<h3>Super Séance !</h3><div>' + prop.address;
 
-      var popup = '<h3>Super Séance !</h3><div>' + prop.address;
+        var listing = listings.appendChild(document.createElement('div'));
+        listing.className = 'item';
 
-      var listing = listings.appendChild(document.createElement('div'));
-      listing.className = 'item';
+        var link = listing.appendChild(document.createElement('a'));
+        link.href = '#';
+        link.className = 'title';
 
-      var link = listing.appendChild(document.createElement('a'));
-      link.href = '#';
-      link.className = 'title';
+        link.innerHTML = prop.name;
 
-      link.innerHTML = prop.name;
+        if (prop.address) {
+          link.innerHTML += ' <br /><small class="quiet">' + prop.address + '</small>';
+          popup += '<br /><small class="quiet">' + prop.name + '</small>';
+        }
 
-      if (prop.address) {
-        link.innerHTML += ' <br /><small class="quiet">' + prop.address + '</small>';
-        popup += '<br /><small class="quiet">' + prop.name + '</small>';
-      }
+        var details = listing.appendChild(document.createElement('div'));
+        details.innerHTML = prop.city;
 
-      var details = listing.appendChild(document.createElement('div'));
-      details.innerHTML = prop.city;
+        if (prop.hour) {
+          details.innerHTML += ' &middot; ' + prop.hour + 'date : ' + prop.date;
+        }
 
-      if (prop.hour) {
-        details.innerHTML += ' &middot; ' + prop.hour + 'date : ' + prop.date;
-      }
+        link.onclick = function () {
+          setActive(listing);
+          map.setView(locale.getLatLng(), 13);
+          locale.openPopup();
+          return false;
+        };
 
-      link.onclick = function () {
-        setActive(listing);
-        map.setView(locale.getLatLng(), 13);
-        locale.openPopup();
-        return false;
-      };
+        // Marker interaction
+        locale.on('click', function (e) {
+          map.panTo(this.getLatLng());
+          setActive(listing);
+        });
 
-      // Marker interaction
-      locale.on('click', function (e) {
-        map.panTo(this.getLatLng());
-        setActive(listing);
+        popup += '</div>';
+        locale.bindPopup(popup);
+
       });
-
-      popup += '</div>';
-      locale.bindPopup(popup);
-
-    });
-
+  }
 });
+
 </script>
