@@ -27,4 +27,4 @@ $query = "SELECT *
 		  WHERE events.event_id = attend.event_id
 		  AND attend.user_id = $user_id
 		  AND attend.is_accepted IS NULL";
-$waiting_event = $pdo->select($query);
+$waiting_event = $pdo->select($query); 
