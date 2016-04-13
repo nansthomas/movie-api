@@ -3,9 +3,9 @@ var URL = 'http://localhost:8888/';
 $('.send-attend').on('click', function() {
 	// get the message id
 	var event_id = $(this).attr('id');
-	var data = event_id;
+	var data = 'event_id='+event_id;
 
-	var link = URL+'ajax/send-attend/'+data;
+	var link = URL+'ajax/send-attend';
 
 	if ($(this).hasClass('send-attend')) 
 	{
@@ -13,7 +13,8 @@ $('.send-attend').on('click', function() {
 	}
 	
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
+		data: data,
 		url: link
 	});
 
@@ -24,12 +25,14 @@ $('.send-confirm-yes').on('click', function() {
 	// get the message id
 	var data = $(this).attr('id');
 	data = data.split('-');
+	data = 'user_id='+data[0]+'&event_id='+data[1];
 
-	var link = URL+'ajax/send-confirm-yes/'+data[0]+'/'+data[1];
+	var link = URL+'ajax/send-confirm-yes';
 	$(this).removeClass('send-confirm-yes').addClass('accepted').empty().append('Accepté');
 	
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
+		data: data,
 		url: link
 	});
 
@@ -40,12 +43,14 @@ $('.send-confirm-no').on('click', function() {
 	// get the message id
 	var data = $(this).attr('id');
 	data = data.split('-');
+	data = 'user_id='+data[0]+'&event_id='+data[1];
 
-	var link = URL+'ajax/send-confirm-no/'+data[0]+'/'+data[1];
+	var link = URL+'ajax/send-confirm-no';
 	$(this).removeClass('send-confirm-no').addClass('refused').empty().append('Refusé');
 	
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
+		data: data,
 		url: link
 	});
 
@@ -62,7 +67,9 @@ if ($search_movie.length >= 0) {
 			query = $search_movie.val().replace(" ", "+");
 
 		    $.ajax({
-		        url: URL+'ajax/search-movie/'+query,
+		        type: 'GET',
+		        data: 'query='+query,
+		        url: URL+'ajax/search-movie',
 		        dataType: "json",
 		        success: function(json_data) {
 					view_data = json_data.view_data;

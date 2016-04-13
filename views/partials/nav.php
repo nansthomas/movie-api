@@ -19,7 +19,12 @@
     <!-- Right side -->
     <div class="header-right header-menu">
       <?php if (array_key_exists('user_id', $_SESSION)): ?>
-        <span class="header-item"><p>Hey <strong><?= $_SESSION['first_name'] ?></strong>, comment vas-tu ?</p></span>
+      <span class="header-item">
+        <a href="#"><p><strong><?= $_SESSION['first_name'] ?></strong></p></a>
+      </span>
+      <span class="header-item">
+        <a href="<?= URL ?>profile">Profil</a>
+      </span>
       <span class="header-item">
         <a href="<?= URL ?>dashboard">Dashboard</a>
       </span>

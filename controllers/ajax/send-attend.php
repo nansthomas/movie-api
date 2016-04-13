@@ -1,6 +1,6 @@
 <?php  
 
-$event_id = $target;
+$event_id = $_GET['event_id'];
 $user_id = $_SESSION['user_id'];
 
 // Add request into attend table

@@ -3,7 +3,7 @@
 $title = 'Modération';
 $class = 'adminevent';
 
-$event_id = $_GET['para_id'];
+$event_id = $_GET['event_id'];
 
 $query = "SELECT *
           FROM users, attend

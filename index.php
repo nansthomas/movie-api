@@ -38,8 +38,6 @@ if (!is_string($user))
 	}
 }
 
-var_dump($user);
-
 // Get the query
 $q = empty($_GET['q']) ? '' : $_GET['q'];
 $event_id = empty($_GET['event_id']) ? '' : $_GET['event_id'];
@@ -51,6 +49,8 @@ else if($q == 'explore')
 	$page = 'explore';
 else if($q == 'seance')
 	$page = 'seance';
+else if($q == 'profile')
+  $page = 'profile';
 else if($q == 'dashboard')
 	$page = 'dashboard';
 else if($q == 'creation')

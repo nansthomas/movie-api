@@ -1,7 +1,7 @@
 <?php  
 
-$user_id = $target1;
-$event_id = $target2;
+$user_id = $_GET['user_id'];
+$event_id = $_GET['event_id'];
 
 // Update is_accepted status
 $query = "UPDATE attend
