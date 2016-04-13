@@ -106,37 +106,41 @@ class RegisterFacebook extends Database {
 
   }
 
-  public function checkUser ($user) {
-    $facebook_id = $user['id'];
+    public function convertBirthdayToAge($birthday_date) {
+        $from = new DateTime($birthday_date);
+        $to   = new DateTime('today');
+        return $from->diff($to)->y;
+    }
 
-    $query = "SELECT *
-          FROM users
-          WHERE facebook_id = $facebook_id";
-    $db_user = $this->select($query);
+    public function checkUser ($user) {
+        $facebook_id = $user['id'];
 
-    return $db_user;
+        $query = "SELECT *
+              FROM users
+              WHERE facebook_id = $facebook_id";
+        $db_user = $this->select($query);
 
-  }
+        return $db_user;
+    }
 
-  public function addUser ($user) {
-    $first_name = $user['first_name'];
-    $last_name = $user['last_name'];
-    $picture_url = $user['picture']['url'];
-    $email = $user['email'];
-    $facebook_id = $user['id'];
-    $genre = $user['gender'];
-    $age = $user['birthday']; // NEED TO CONVERT
+    public function addUser ($user) {
+        $first_name = $user['first_name'];
+        $last_name = $user['last_name'];
+        $picture_url = $user['picture']['url'];
+        $email = $user['email'];
+        $facebook_id = $user['id'];
+        $genre = $user['gender'];
+        $age = convertBirthdayToAge($user['birthday']);
+        $birthday_date = date("Y-m-d", strtotime($user['birthday']));
 
-    $query = "INSERT INTO users (first_name, last_name, picture_url, email, facebook_id, genre)
-              VALUES ('$first_name', '$last_name', '$picture_url', '$email', '$facebook_id', '$genre')";
+        $query = "INSERT INTO users (first_name, last_name, picture_url, email, facebook_id, genre, age, birthday_date)
+                  VALUES ('$first_name', '$last_name', '$picture_url', '$email', '$facebook_id', '$genre', '$age', '$birthday_date')";
 
-    $insert = $this->prepareQuery($query);
+        $insert = $this->prepareQuery($query);
 
-    if ($insert)
-        return true;
-    else
-        return false;
-
-  }
-
+        if ($insert)
+            return true;
+        else
+            return false;
+    }
 }

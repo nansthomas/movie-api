@@ -82,8 +82,8 @@ else if($q == 'login')
 	$page = 'login';
 else if($q == 'dashboard')
 	$page = 'dashboard';
-else if($q == 'creation')
-	$page = 'creation';
+else if($q == 'create')
+	$page = 'create';
 else if($q == 'adminevent')
 	$page = 'adminevent';
 else if($q == 'logout')
