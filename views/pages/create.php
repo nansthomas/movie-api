@@ -33,16 +33,24 @@
 			<section class="places"> 
 				<div>
 					<label for="adress">Adresse</label>
-					<input type="text" name="adress" id="adress" value="<?= $adress ?>">
+					<input type="text" class="search-adress" name="adress" id="adress" value="<?= $adress ?>">
 				</div>
-				<div>
+
+				<div class="result-list">
+					<div class="result-1"></div>
+					<div class="result-2"></div>
+					<div class="result-3"></div>
+					<div class="result-4"></div>
+					<div class="result-5"></div>
+				</div>
+				<!-- <div>
 					<label for="city">Ville</label>
 					<input type="text" name="city" id="city" value="<?= $city ?>">
 				</div>
 				<div>
 					<label for="zip_code">Code Postal</label>
 					<input type="text" name="zip_code" id="zip_code" value="<?= $zip_code ?>">
-				</div>
+				</div> -->
 			</section>
 			
 			<h4>AUTRES</h4>

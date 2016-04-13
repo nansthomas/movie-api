@@ -24,6 +24,8 @@ else if($q == 'send-confirm-no')
 	$page = 'send-confirm-no';
 else if($q == 'search-movie')
 	$page = 'search-movie';
+else if($q == 'search-adress')
+	$page = 'search-adress';
 else
 	$page = false;
 
