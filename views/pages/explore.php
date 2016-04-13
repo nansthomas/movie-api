@@ -1,7 +1,7 @@
 <script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.4/mapbox.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.4/mapbox.css' rel='stylesheet' />
 
-  <div class='sidebar'>
+<div class='sidebar'>
     <div class='heading'>
       <h1>Near you</h1>
     </div>
@@ -30,8 +30,6 @@ Get(url, function (error, geojson) {
 
   var map = L.mapbox.map('map', 'mapbox.streets');
   map.setView([48.856614, 2.352222], 13).featureLayer.setGeoJSON(JSON.parse(geojson));
-
-  console.log(map);
 
 
   var listings = document.getElementById('listings');
@@ -67,14 +65,14 @@ Get(url, function (error, geojson) {
 
       if (prop.address) {
         link.innerHTML += ' <br /><small class="quiet">' + prop.address + '</small>';
-        popup += '<br /><small class="quiet">' + prop.address + '</small>';
+        popup += '<br /><small class="quiet">' + prop.name + '</small>';
       }
 
       var details = listing.appendChild(document.createElement('div'));
       details.innerHTML = prop.city;
 
       if (prop.hour) {
-        details.innerHTML += ' &middot; ' + prop.hour;
+        details.innerHTML += ' &middot; ' + prop.hour + 'date : ' + prop.date;
       }
 
       link.onclick = function () {
