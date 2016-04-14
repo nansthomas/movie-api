@@ -38,20 +38,22 @@ class getEvents extends Database {
         if (array_key_exists('user_id', $_SESSION)) {
         	$user_id = $_SESSION['user_id'];
 
-        	$query = "SELECT events.*, users.*  FROM events, users, organized
+        	$query = "SELECT events.*, users.*, event_movies.*  FROM events, users, organized, event_movies
                     WHERE events.event_id = organized.event_id
                     AND users.user_id = organized.user_id
                     AND events.place_nb > events.place_taken
+                    AND events.event_id = event_movies.event_id
                     AND users.user_id != $user_id"
                     .$city_query
                     .$date_query
                     .$event_name_query;
         } else {
 
-        	$query = "SELECT events.*, users.* FROM events, users, organized
+        	$query = "SELECT events.*, users.*, event_movies.*  FROM events, users, organized, event_movies
                     WHERE events.event_id = organized.event_id
-        		    AND users.user_id = organized.user_id
-        		    AND events.place_nb > events.place_taken"
+                    AND users.user_id = organized.user_id
+                    AND events.place_nb > events.place_taken
+                    AND events.event_id = event_movies.event_id"
                     .$city_query
                     .$date_query
                     .$event_name_query;
