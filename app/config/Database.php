@@ -11,7 +11,7 @@ class Database {
   // private $db_pass;
   // private $db_host;
   public $pdo;
-
+  //
   // public function __construct ($db_name) {
   //   $this->db_name = $db_name;
   //   $this->db_user = $db_user;
@@ -47,7 +47,7 @@ class Database {
   public function prepareQuery($query){
     $prepare = $this->getPDO()->prepare($query);
     $exec = $prepare->execute();
-    
+
     return $exec;
   }
 

@@ -21,8 +21,8 @@ $today = date('Y-m-d');
 $time = date('H:i', strtotime('+1 hour'));
 
 // Instantiaze variable for the form
-$form_data = (object) 
-	array('event_name' => '', 
+$form_data = (object)
+	array('event_name' => '',
 		  'begin_date' => '',
 		  'begin_hour' => '',
 		  'description' => '',
@@ -69,7 +69,7 @@ if(!empty($_POST))
 		$movie_id = $movie_result[0]->id;
 		$movie_name = $movie_result[0]->title;
 
-		$movie->insertEventMovie($movie_id, $event_id, $movie_name, $);
+		$movie->insertEventMovie($movie_id, $event_id, $movie_name);
 
     }
 

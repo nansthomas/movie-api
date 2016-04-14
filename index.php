@@ -1,6 +1,10 @@
 <?php
+$time = microtime(TRUE);
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
+define('ROOT', dirname(__FILE__));
 
 // Config
 include 'config/options.php';
@@ -8,6 +12,7 @@ include 'config/options.php';
 use App\Facebook\FacebookConnect;
 use App\Facebook\RegisterFacebook;
 use App\Config\Database;
+use App\Config\Cache;
 
 // use Psr\Http\Message\ServerRequestInterface;
 // use Psr\Http\Message\ResponseInterface;
@@ -17,8 +22,11 @@ require 'vendor/autoload.php';
 session_start();
 
 //Initialized object
-$pdo = new Database('moviehome');
+$pdo = new Database();
 $connect = new FacebookConnect(APP_ID, APP_SECRET);
+
+// Cache
+$Cache = new Cache(ROOT.'/tmp', 10);
 
 
 $user = null;

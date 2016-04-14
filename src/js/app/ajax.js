@@ -63,13 +63,15 @@ function doWorkMovie(data) {
   for (var i = 0; i < 4; i++) {
     var value = data[i].title;
     var cover = data[i].poster_path;
-    $('.movie-list').append('<div class="cover-list"><img src="https://image.tmdb.org/t/p/original' + cover + '"><p id="item-' + i + '" class="movie-propose" onClick="return getMovie(this)">' + value + '</p></div>');
+    var id = data[i].id;
+    $('.movie-list').append('<div class="cover-list" onClick="return getMovie(this)"><img src="https://image.tmdb.org/t/p/original' + cover + '"><p id="item-' + i + '" class="movie-propose">' + value + '</p><input class="hiden-id" type="hidden" value="' + id +'"></div>');
   }
 }
 
 function getMovie(e){
-  $('#movie_name').val(e.innerHTML);
+  $('#movie_name').val(e.getElementsByClassName('movie-propose')[0].innerHTML);
   $('.movie-list').children('div').remove();
+  $('.movie-list').append('<input id="film-id" type="hidden" value="' + e.getElementsByClassName('hiden-id')[0].value +'">');
   $('#movie-control').removeClass('is-loading');
   $('#movie-control').addClass('has-icon has-icon-right');
   $('#movie_name').addClass('is-success');

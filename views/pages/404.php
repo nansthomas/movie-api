@@ -1,3 +1,3 @@
 <section>
-	<h2>404</h2>
+  <h1 class="title">404 NOT FOUND BATARD</h1>
 </section>
