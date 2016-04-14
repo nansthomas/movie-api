@@ -181,8 +181,6 @@ class getEvents extends Database {
                     longitude = $data[1]
                 WHERE event_id = $event_id";
 
-      var_dump($query);
-      die();
       $prepare = $this->prepareQuery($query);
       return $prepare;
 

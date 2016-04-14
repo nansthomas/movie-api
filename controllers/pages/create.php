@@ -56,15 +56,14 @@ if(!empty($_POST))
 	if (empty($errors))
     {
     	$user_id = $_SESSION['user_id'];
-    	$event->createEvent($form_data);
-
-    	$event_id = $pdo->getPDO()->lastInsertId();
-      var_dump($pdo->lastInsertId());
-      die();
+    	$event_id = $event->createEvent($form_data);
+		if ($event_id === FALSE) {
+			die('ERROR !!');
+		}    	
 
 	    $event->insertIntoOrganized($user_id, $event_id);
 
-	    $localisation = $event->getLocalisation($form_data->adress, $event_id);
+	    $localisation = $event->getLocalisation($form_data->adress,$event_id);
 	    $event->updateLocalisation($localisation, $event_id);
 	    // 3RD INSERT
     	// API call to search for the movie ID

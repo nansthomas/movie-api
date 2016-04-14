@@ -5,8 +5,6 @@ namespace App\Config;
 use \PDO;
 
 class Database {
-
-
   public $pdo;
 
   public function getPDO(){
@@ -38,7 +36,12 @@ class Database {
     $prepare = $this->getPDO()->prepare($query);
     $exec = $prepare->execute();
 
-    return $exec;
+    if ($exec)
+      $return = $this->getPDO()->lastInsertId();
+    else
+      $return = FALSE;
+    
+    return $return;
   }
 
     public function beginTransaction(){
