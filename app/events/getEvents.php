@@ -132,8 +132,8 @@ class getEvents extends Database {
                   FROM attend
                   WHERE user_id = $user_id
                   AND event_id = $event_id";
-        $prepare = $this->select($query);
-        return $prepare[0];
+        $request = $this->select($query);
+        return $request[0];
     }
 
     // Update is_accepted status
@@ -208,6 +208,23 @@ class getEvents extends Database {
                 WHERE event_id = $event_id";
 
       $prepare = $this->prepareQuery($query);
+      return $prepare;
+    }
+
+    // Add request into attend table
+    public function addRequest($event_id,$user_id) {
+      $query = "INSERT INTO attend (event_id,user_id)
+                VALUES ($event_id,$user_id)";
+      $prepare = $pdo->prepareQuery($query);
+      return $prepare;
+    }
+
+    // Add +1 to the pending request value
+    public function addPendingRequest($event_id) {
+      $query = "UPDATE events
+            SET pending_request = pending_request + 1
+            WHERE event_id = $event_id";
+      $prepare = $pdo->prepareQuery($query);
       return $prepare;
     }
 }
