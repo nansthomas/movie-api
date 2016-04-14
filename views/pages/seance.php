@@ -8,7 +8,12 @@
       <h2 class="subtitle"><?= $event_info[0]->description ?></h2>
       <span><?= $event_info[0]->begin_date ?></span>| <span><?= $event_info[0]->begin_hour ?></span> | <span><?= $event_info[0]->label ?></span>
       <br>
-      <a id='<?= $event_info[0]->event_id ?>' class='send-attend button is-medium is-success' href='#'><span class="icon"><i class="fa fa-check"></i></span><span><?= empty($user_status) == true  ? 'Participer' : 'En attente' ?></span></a>
+      <?php if ($user_id == NULL): ?>
+        <a id='<?= $event_info[0]->event_id ?>' class='button is-medium is-success' href='<?= URL ?>login'><span class="icon"><i class="fa fa-check"></i></span><span>Participer</span></a>
+      <?php else: ?>
+        <a id='<?= $event_info[0]->event_id ?>' class='send-attend button is-medium is-success' href='#'><span class="icon"><i class="fa fa-check"></i></span><span><?= empty($user_status) == true  ? 'Participer' : 'En attente' ?></span></a>
+      <?php endif ?>
+      
     </div>
   </div>
 </section>
