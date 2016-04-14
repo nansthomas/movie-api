@@ -187,12 +187,15 @@ class getEvents extends Database {
       $longitude = $localisation->geometry->coordinates[1];
       $city = $localisation->properties->city;
       $zip_code = $localisation->properties->postcode;
-
+      $house_number = $localisation->properties->housenumber;
+      $street = $localisation->properties->street;
       $query = "UPDATE events
                 SET latitude = '$latitude',
                     longitude = '$longitude',
                     city = '$city',
-                    zip_code = '$zip_code'
+                    zip_code = '$zip_code',
+                    house_number = '$house_number',
+                    street = '$street'
                 WHERE event_id = $event_id";
 
       $prepare = $this->prepareQuery($query);
