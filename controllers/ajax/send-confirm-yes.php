@@ -1,18 +1,14 @@
 <?php  
 
+use App\Events\getEvents;
+$update = new getEvents();
+
 $user_id = $_GET['user_id'];
 $event_id = $_GET['event_id'];
 
-// Update is_accepted status
-$query = "UPDATE attend
-		  SET is_accepted = 1
-		  WHERE user_id = $user_id
-		  AND event_id = $event_id";
-$prepare = $pdo->prepareQuery($query);
+$status = $update->getAttendInfo($user_id,$event_id);
 
-// -1 to pending request and +1 to place taken
-$query = "UPDATE events
-		  SET pending_request = pending_request - 1,
-		      place_taken = place_taken + 1
-		  WHERE event_id = $event_id";
-$prepare = $pdo->prepareQuery($query);
+if ($status->is_accepted != 1) {
+	$is_accepted_status = $update->setIsAccepted($user_id,$event_id,1);
+	$update_events = $update->updateEventPlaces($event_id, 1);
+}

@@ -59,11 +59,9 @@ class getEvents extends Database {
 
     // Create event
     public function createEvent ($data) {
-            
-        $query = "INSERT INTO events (event_name,begin_date,begin_hour,description,adress,city,zip_code,setup_display,setup_sound,place_nb,supp_info)
+        $query = "INSERT INTO events (event_name,begin_date,begin_hour,description,adress,setup_display,setup_sound,place_nb,supp_info)
                   VALUES('$data->event_name','$data->begin_date','$data->begin_hour','$data->description','$data->adress',
-                         '$data->city','$data->zip_code','$data->setup_display','$data->setup_sound','$data->place_nb',
-                         '$data->supp_info')";
+                         '$data->setup_display','$data->setup_sound','$data->place_nb','$data->supp_info')";
         $prepare = $pdo->prepareQuery($query);
         return $prepare;
     }
@@ -104,7 +102,7 @@ class getEvents extends Database {
         return $prepare;
     }
 
-        // Query for event that the user want to attend and are still pending
+    // Query for event that the user want to attend and are still pending
     public function pendingEvent($user_id) {
         $query = "SELECT *
                   FROM events,attend
@@ -113,5 +111,41 @@ class getEvents extends Database {
                   AND attend.is_accepted IS NULL";
         $prepare = $this->select($query);
         return $prepare;
+    }
+
+    // to know attend info of a specific user for a specific event
+    public function getAttendInfo ($user_id, $event_id) {
+        $query = "SELECT *
+                  FROM attend
+                  WHERE user_id = $user_id
+                  AND event_id = $event_id";
+        $prepare = $this->select($query);
+        return $prepare[0];
+    }
+
+    // Update is_accepted status
+    public function setIsAccepted ($user_id,$event_id,$bool) {
+        $query = "UPDATE attend
+                  SET is_accepted = $bool
+                  WHERE user_id = $user_id
+                  AND event_id = $event_id";
+        $prepare = $this->prepareQuery($query);
+        return $prepare;
+    }
+
+    public function updateEventPlaces($event_id, $isConfirmed) {
+      if ($isConfirmed == 1) {
+        $query = "UPDATE events
+                  SET pending_request = pending_request - 1,
+                      place_taken = place_taken + 1
+                  WHERE event_id = $event_id";
+      } else {
+        $query = "UPDATE events
+                  SET pending_request = pending_request - 1,
+                  WHERE event_id = $event_id";
+      }
+      $prepare = $this->prepareQuery($query);
+
+      return $prepare;
     }
 }
