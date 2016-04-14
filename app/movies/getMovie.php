@@ -35,7 +35,7 @@ class getMovie {
   		// Execute if the summoner was found
   		$data = file_get_contents($url);
   		$data = json_decode($data);
-      $data = $data->results[0];
+      $data = $data->results;
   	} else {
   		// Else, false
   		$data = false;

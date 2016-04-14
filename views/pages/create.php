@@ -32,10 +32,10 @@
 			<h4>LIEUX</h4>
 			<section class="places">
 				<div>
-          			<label class="label">Adresse</label>
-            		<p class="control">
-              			<input class="input is-medium search-adress" type="text" name="adress" id="adress" placeholder="Chercher une adresse" value="<?= $form_data->adress ?>" autocomplete="off">
-            		</p>
+          <label class="label">Adresse</label>
+          <p id="adress-control" class="control is-loading">
+            <input class="input is-medium search-adress" type="text" name="adress" id="adress" placeholder="Chercher une adresse" value="<?= $form_data->adress ?>" autocomplete="off">
+          </p>
 				</div>
 				<div class="result-list"></div>
 			</section>
@@ -65,9 +65,12 @@
 			</section>
 			<section>
 				<div>
-					<label for="movie_name">Nom du film</label>
-					<input type="text" class="search-movie" name="movie_name" id="movie_name" value="<?= $form_data->movie_name ?>">
+          <label class="label">Nom du film</label>
+          <p id="movie-control"class="control is-loading">
+              <input class="input is-medium search-movie" type="text" name="movie_name" id="movie_name" placeholder="Chercher un film" value="<?= $form_data->movie_name ?>" autocomplete="off">
+          </p>
 				</div>
+        <div class="movie-list"></div>
 			</section>
 
 

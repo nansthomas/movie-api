@@ -47,8 +47,47 @@ body > section {
 
 // SEARCH
 
+// ADRESS
+.result-list {
+  background-color: white;
+  border-radius: 0px 0px 5px 5px;
+  position: absolute;
+  width: 100%;
+}
+
 .adress-propose {
   cursor: pointer;
+  padding: 5px 5px 5px 12px;
+  &:hover {
+    background-color: #F6F6F6;
+  }
+}
+
+.movie-list {
+  background-color: white;
+  border-radius: 0px 0px 5px 5px;
+  position: absolute;
+  width: 100%;
+}
+
+.movie-propose {
+  display: inline-block;
+  position: absolute;
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+.cover-list {
+  cursor: pointer;
+  &:hover {
+    background-color: #F6F6F6;
+  }
+  img {
+    height: 60px;
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
 }
 
 // DISCOVER

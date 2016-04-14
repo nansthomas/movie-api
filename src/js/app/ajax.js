@@ -56,12 +56,32 @@ $('.send-confirm-no').on('click', function () {
   return false;
 });
 
+function doWorkMovie(data) {
+
+  $('.movie-list').children('div').remove();
+
+  for (var i = 0; i < 4; i++) {
+    var value = data[i].title;
+    var cover = data[i].poster_path;
+    $('.movie-list').append('<div class="cover-list"><img src="https://image.tmdb.org/t/p/original' + cover + '"><p id="item-' + i + '" class="movie-propose" onClick="return getMovie(this)">' + value + '</p></div>');
+  }
+}
+
+function getMovie(e){
+  $('#movie_name').val(e.innerHTML);
+  $('.movie-list').children('div').remove();
+  $('#movie-control').removeClass('is-loading');
+  $('#movie-control').addClass('has-icon has-icon-right');
+  $('#movie_name').addClass('is-success');
+}
+
+
 var $search_movie = $(".search-movie");
 var query_movie;
 
 if ($search_movie.length >= 0) {
 	$search_movie.on('keyup', function() {
-    if ($search_movie.val().length > 2) {
+    if ($search_movie.val().length > 4) {
       query_movie = $search_movie.val().replace(" ", "+");
 
       $.ajax({
@@ -70,28 +90,30 @@ if ($search_movie.length >= 0) {
         url: URL + 'ajax/search-movie',
         dataType: 'json',
         success: function (json_data) {
-          view_data = json_data.view_data;
-          console.log(view_data);
+          doWorkMovie(json_data);
         },
       });
     }
   });
 }
 
-function doWork(data) {
+function doWorkAdress(data) {
 
   $('.result-list').children('p').remove();
 
   for (var i = 0; i < data.features.length; i++) {
     var value = data.features[i].properties.label;
-    $('.result-list').append('<p id="item-' + i + '" class="adress-propose" onClick="return testFunction(this)">' + value + '</div>');
+    $('.result-list').append('<p id="item-' + i + '" class="adress-propose" onClick="return getAdress(this)">' + value + '</div>');
   }
 }
 
-function testFunction(current){
-  $('#adress').val(current.innerHTML);
+function getAdress(e) {
+  $('#adress').val(e.innerHTML);
   $('.result-list').children('p').remove();
- }
+  $('#adress-control').removeClass('is-loading');
+  $('#adress-control').addClass('has-icon has-icon-right');
+  $('#adress').addClass('is-success');
+}
 
 var $search_adress = $(".search-adress");
 var query_adress;
@@ -107,9 +129,7 @@ if ($search_adress.length >= 0) {
         url: URL + 'ajax/search-adress',
         dataType: 'json',
         success: function (json_data) {
-          // view_data = json_data.view_data;
-          // console.log(view_data);
-          doWork(json_data);
+          doWorkAdress(json_data);
         },
 
       });
