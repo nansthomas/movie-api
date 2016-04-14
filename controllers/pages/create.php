@@ -1,7 +1,8 @@
 <?php
 
+$menuStyle = '';
+$logoStyle = 'black';
 $title = 'Création d\'une séance';
-$class = 'creation';
 
 use App\Movies\getMovie;
 use App\Events\getEvents;

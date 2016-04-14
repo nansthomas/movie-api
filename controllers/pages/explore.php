@@ -1,7 +1,8 @@
 <?php
 
+$menuStyle = '';
+$logoStyle = 'black';
 $title = 'Explore';
-$class = 'explore';
 
 
 if (array_key_exists('city', $_GET)) {
