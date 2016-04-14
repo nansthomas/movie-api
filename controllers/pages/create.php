@@ -1,9 +1,5 @@
 <?php
 
-// echo '<pre>';
-// print_r($_POST);
-// echo '</pre>';
-// die();
 $title = 'Création d\'une séance';
 $class = 'creation';
 
@@ -60,13 +56,15 @@ if(!empty($_POST))
 	if (empty($errors))
     {
     	$user_id = $_SESSION['user_id'];
-echo '/ BEFORE createEvent done /';
     	$event->createEvent($form_data);
-    	$event_id = $pdo->getLastId();
-    	echo '/ createEvent done /';
+
+    	$event_id = $pdo->getPDO()->lastInsertId();
+      var_dump($pdo->lastInsertId());
+      die();
+
 	    $event->insertIntoOrganized($user_id, $event_id);
-	    echo '/ insertIntoOrganized done /';
-	    $localisation = $event->getLocalisation($form_data->adress);
+
+	    $localisation = $event->getLocalisation($form_data->adress, $event_id);
 	    $event->updateLocalisation($localisation, $event_id);
 	    // 3RD INSERT
     	// API call to search for the movie ID

@@ -18,7 +18,7 @@ class getEvents extends Database {
     $query = str_replace(' ', '+', $query);
     return $query;
   }
-  
+
     public function listEvent ($city, $event_name, $date) {
         if ($city != null)
             $city_query = " AND events.city = '$city' ";
@@ -92,7 +92,7 @@ class getEvents extends Database {
 
     // Query for event that the user created
     public function userEvent($user_id) {
-       
+
         $query = "SELECT *
                   FROM events,organized
                   WHERE events.event_id = organized.event_id
@@ -159,7 +159,7 @@ class getEvents extends Database {
       return $prepare;
     }
 
-    public function getLocalisation($adress) {
+    public function getLocalisation($adress, $event_id) {
       $adress = $this->parseQuery($adress);
       $url = 'http://api-adresse.data.gouv.fr/search/?q='.$adress;
 
@@ -172,8 +172,23 @@ class getEvents extends Database {
         // Else, false
         $data = false;
       }
+      //
+      // $latitude = $localisation[0];
+      // $longitude = $localisation[1];
 
-      return $data;
+      $query = "UPDATE events
+                SET latitude = $data[0],
+                    longitude = $data[1]
+                WHERE event_id = $event_id";
+
+      var_dump($query);
+      die();
+      $prepare = $this->prepareQuery($query);
+      return $prepare;
+
+      // // return $data;
+      // var_dump($data);
+      // die();
 
     }
 

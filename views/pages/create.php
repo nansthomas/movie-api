@@ -1,7 +1,8 @@
-<section>
-	<h2>Création Séance</h2>
+<section class="hero is-success is-fullheight">
+  <div class="hero-content">
 
 	<div class="container">
+    <h2>Création Séance</h2>
 		<form action="#" method="post">
 			<section>
 				<h3><input type="text" name="event_name" id="event_name" value="<?= $form_data->event_name == '' ? 'Nom de l\'évènement' : $form_data->event_name ?>" ></h3>
@@ -78,4 +79,5 @@
 
 		</form>
 	</div>
+</div>
 </section>
