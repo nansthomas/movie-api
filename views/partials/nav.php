@@ -1,12 +1,10 @@
-<header class="header">
+<header class="header <?= $menuStyle ?>">
   <div class="container">
     <!-- Left side -->
     <div class="header-left">
       <a class="header-item" href="<?= URL ?>">
-        <h4>SuperLogo</h4>
+        <img id="logo" src="src/img/pophome_<?= $logoStyle ?>.svg" alt="" />
       </a>
-      <a class="header-tab is-active" href="<?= URL ?>">Home</a>
-      <a class="header-tab" href="<?= URL ?>explore">Explore</a>
     </div>
 
     <!-- Hamburger menu (on mobile) -->
@@ -21,28 +19,35 @@
 
       <!-- USER CONNECTED -->
       <?php if (array_key_exists('user_id', $_SESSION)): ?>
-      <span class="header-item">
+
+      <span class="header-item dropdown">
         <img src="<?= $user['picture']['url'] ?>" alt="" />
-        <a href="#"><p><strong><?= $user['first_name'] ?></strong></p></a>
+        <a class="header-name" href="#"><p><strong><?= 'Bonjour ' . $user['first_name'] . ' !' ?></strong></p></a>
       </span>
       <span class="header-item">
-        <a href="<?= URL.'profile?user_id='.$_SESSION['user_id'] ?>">Profil</a>
+        <a class="header-item" href="<?= URL ?>explore">Explore</a>
       </span>
       <span class="header-item">
-        <a href="<?= URL ?>dashboard">Dashboard</a>
+        <a class="header-item" href="<?= URL.'profile?user_id='.$_SESSION['user_id'] ?>">Profil</a>
+      </span>
+      <span class="header-item">
+        <a class="header-item" href="<?= URL ?>dashboard">Dashboard</a>
+      </span>
+      <span class="header-item">
+        <a class="header-item" href="<?= URL ?>logout">Logout</a>
       </span>
       <?php endif ?>
 
       <!-- USER NOT CONNECTED -->
       <?php if (!array_key_exists('user_id', $_SESSION)): ?>
         <span class="header-item">
-          <a class="button" href="<?= $user  ?>">Login with Facebook!</a>
+          <a class="header-item" href="<?= URL ?>explore">Explore</a>
         </span>
-
-      <!-- USER DECONNEXION -->
-      <?php else: ?>
         <span class="header-item">
-          <a class="button" href="<?= URL ?>logout">Deconexion</a>
+          <a class="header-item" href="#">How it works</a>
+        </span>
+        <span class="header-item">
+          <a class="button is-info facebook" href="<?= $user  ?>"><i class="fa fa-facebook-square fa-fw"></i> Connect with facebook</a></span>
         </span>
       <?php endif ?>
 

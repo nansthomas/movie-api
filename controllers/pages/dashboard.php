@@ -7,7 +7,7 @@ if ($user_id == NULL) {
   exit;
 }
 
-namespace App\Events;
+// namespace App\Events;
 
 $title = 'Création d\'un évênement';
 $class = 'dashboard';

@@ -12,11 +12,13 @@ function convertToHoursMins($time, $format = '%02d:%02d') {
     return sprintf($format, $hours, $minutes);
 }
 
+$menuStyle = 'transparent';
+$logoStyle = 'white';
 $title = 'Page de l\'évênement';
-$class = 'seance';
+
 
 $event_id = $_GET['event_id'];
-$user_id = $_SESSION['user_id'];
+$user_id = empty($_SESSION['user_id']) ? null : $_SESSION['user_id'];
 
 // Get organisator and event info
 $query = "SELECT users.*, events.*
