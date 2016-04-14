@@ -7,6 +7,7 @@ use App\Config\Database;
 use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Facebook;
+use DateTime;
 
 class FacebookConnect {
 
@@ -130,8 +131,15 @@ class RegisterFacebook extends Database {
         $email = $user['email'];
         $facebook_id = $user['id'];
         $genre = $user['gender'];
-        $age = convertBirthdayToAge($user['birthday']);
-        $birthday_date = date("Y-m-d", strtotime($user['birthday']));
+
+        if (array_key_exists('birthday',$user)) {
+            $age = $this->convertBirthdayToAge($user['birthday']);
+            $birthday_date = date("Y-m-d", strtotime($user['birthday']));
+        }
+        else {
+            $age = NULL;
+            $birthday_date = NULL;
+        }
 
         $query = "INSERT INTO users (first_name, last_name, picture_url, email, facebook_id, genre, age, birthday_date)
                   VALUES ('$first_name', '$last_name', '$picture_url', '$email', '$facebook_id', '$genre', '$age', '$birthday_date')";

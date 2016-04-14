@@ -35,7 +35,7 @@
 				<div>
           <label class="label">Adresse</label>
           <p id="adress-control" class="control is-loading">
-            <input class="input is-medium search-adress" type="text" name="adress" id="adress" placeholder="Chercher une adresse" value="<?= $form_data->adress ?>" autocomplete="off">
+            <input class="input is-medium search-adress" type="text" name="label" id="label" placeholder="Chercher une adresse" value="<?= $form_data->adress ?>" autocomplete="off">
           </p>
 				</div>
 				<div class="result-list"></div>

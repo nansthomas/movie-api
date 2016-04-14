@@ -45,7 +45,7 @@ if(!empty($_POST))
 	$form_data->begin_hour    = trim($_POST['begin_hour']);
 	$form_data->description   = trim($_POST['description']);
 	$form_data->movie_name    = trim($_POST['movie_name']);
-	$form_data->adress        = trim($_POST['adress']);
+	$form_data->label         = trim($_POST['label']);
 	$form_data->setup_display = trim($_POST['setup_display']);
 	$form_data->setup_sound   = trim($_POST['setup_sound']);
 	$form_data->place_nb      = trim($_POST['place_nb']);
@@ -57,16 +57,15 @@ if(!empty($_POST))
     {
     	$user_id = $_SESSION['user_id'];
     	$event_id = $event->createEvent($form_data);
+
 		if ($event_id === FALSE) {
 			die('ERROR !!');
-		}    	
+		}
 
 	    $event->insertIntoOrganized($user_id, $event_id);
 
-	    $localisation = $event->getLocalisation($form_data->adress,$event_id);
+	    $localisation = $event->getLocalisation($form_data->label,$event_id);
 	    $event->updateLocalisation($localisation, $event_id);
-	    // 3RD INSERT
-    	// API call to search for the movie ID
     	$movie_detail = $movie->getMovieDetailInfo($form_data->movie_id);
 
 		$movie_name = $movie_detail->title;
@@ -76,5 +75,4 @@ if(!empty($_POST))
 		// Insert into DB
 		$event->insertEventMovie($form_data->movie_id, $event_id, $movie_name, $poster_path, $backdrop_path);
     }
-
 }

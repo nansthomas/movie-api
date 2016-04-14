@@ -68,8 +68,8 @@ class getEvents extends Database {
 
     // Create event
     public function createEvent ($data) {
-        $query = "INSERT INTO events (event_name,begin_date,begin_hour,description,adress,setup_display,setup_sound,place_nb,supp_info)
-                  VALUES('$data->event_name','$data->begin_date','$data->begin_hour','$data->description','$data->adress',
+        $query = "INSERT INTO events (event_name,begin_date,begin_hour,description,label,setup_display,setup_sound,place_nb,supp_info)
+                  VALUES('$data->event_name','$data->begin_date','$data->begin_hour','$data->description','$data->label',
                          '$data->setup_display','$data->setup_sound','$data->place_nb','$data->supp_info')";
         $prepare = $this->prepareQuery($query);
 
@@ -79,15 +79,15 @@ class getEvents extends Database {
     public function insertIntoOrganized($user_id, $event_id) {
         $query = "INSERT INTO organized (user_id, event_id)
                   VALUES($user_id, $event_id)";
-        $prepare = $this->prepareQuery($query);
-        return $prepare;
+        $exec = $this->prepareQuery($query);
+        return $exec;
     }
 
     public function insertEventMovie($movie_id, $event_id, $movie_name, $poster_path, $backdrop_path) {
         $query = "INSERT INTO event_movies (movie_id,event_id,movie_name,poster_path,backdrop_path)
                   VALUES($movie_id,$event_id,$movie_name,$poster_path,$backdrop_path)";
-        $prepare = $this->prepareQuery($query);
-        return $prepare;
+        $exec = $this->prepareQuery($query);
+        return $exec;
     }
 
     // Query for event that the user created
@@ -159,15 +159,15 @@ class getEvents extends Database {
       return $prepare;
     }
 
-    public function getLocalisation($adress, $event_id) {
-      $adress = $this->parseQuery($adress);
-      $url = 'http://api-adresse.data.gouv.fr/search/?q='.$adress;
+    public function getLocalisation($label, $event_id) {
+      $label = $this->parseQuery($label);
+      $url = 'http://api-adresse.data.gouv.fr/search/?q='.$label;
 
       if ($this->get_http_response_code($url) == '200') {
         // Execute if the summoner was found
         $data = file_get_contents($url);
         $data = json_decode($data);
-        $data = $data->features[0]->geometry->coordinates;
+        $data = $data->features[0];
       } else {
         // Else, false
         $data = false;
@@ -176,27 +176,31 @@ class getEvents extends Database {
       // $latitude = $localisation[0];
       // $longitude = $localisation[1];
 
-      $query = "UPDATE events
-                SET latitude = $data[0],
-                    longitude = $data[1]
-                WHERE event_id = $event_id";
+      // $query = "UPDATE events
+      //           SET latitude = $data[0],
+      //               longitude = $data[1],
+      //           WHERE event_id = $event_id";
 
-      $prepare = $this->prepareQuery($query);
-      return $prepare;
-
-      // // return $data;
-      // var_dump($data);
-      // die();
+      // $prepare = $this->prepareQuery($query);
+      return $data;
 
     }
 
     public function updateLocalisation($localisation, $event_id) {
-      $latitude = $localisation[0];
-      $longitude = $localisation[1];
+      $latitude = $localisation->geometry->coordinates[0];
+      $longitude = $localisation->geometry->coordinates[1];
+      $house_number = $localisation->properties->housenumber;
+      $street = $localisation->properties->street;
+      $city = $localisation->properties->housenumber;
+      $zip_code = $localisation->properties->postcode;
 
       $query = "UPDATE events
                 SET latitude = $latitude,
-                    longitude = $longitude
+                    longitude = $longitude,
+                    house_number = $house_number,
+                    street = $street,
+                    city = $city,
+                    zip_code = $zip_code
                 WHERE event_id = $event_id";
       $prepare = $this->prepareQuery($query);
       return $prepare;
