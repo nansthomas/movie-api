@@ -82,4 +82,36 @@ class getEvents extends Database {
         return $prepare;
     }
 
+    // Query for event that the user created
+    public function userEvent($user_id) {
+       
+        $query = "SELECT *
+                  FROM events,organized
+                  WHERE events.event_id = organized.event_id
+                  AND organized.user_id = $user_id";
+        $prepare = $this->select($query);
+        return $prepare;
+    }
+
+    // Query for event that the user want to attend and are alreay accepted
+    public function acceptedEvent($user_id) {
+        $query = "SELECT *
+                  FROM events,attend
+                  WHERE events.event_id = attend.event_id
+                  AND attend.user_id = $user_id
+                  AND attend.is_accepted = 1";
+        $prepare = $this->select($query);
+        return $prepare;
+    }
+
+        // Query for event that the user want to attend and are still pending
+    public function pendingEvent($user_id) {
+        $query = "SELECT *
+                  FROM events,attend
+                  WHERE events.event_id = attend.event_id
+                  AND attend.user_id = $user_id
+                  AND attend.is_accepted IS NULL";
+        $prepare = $this->select($query);
+        return $prepare;
+    }
 }

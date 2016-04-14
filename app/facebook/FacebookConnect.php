@@ -143,4 +143,15 @@ class RegisterFacebook extends Database {
         else
             return false;
     }
+
+    // Get organisator and event info
+    public function displayUser ($user_id) {
+        $query = "SELECT *
+                  FROM users
+                  WHERE user_id = $user_id";
+
+        $data = $this->select($query,false);
+
+        return $data;
+    }
 }

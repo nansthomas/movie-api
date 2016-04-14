@@ -24,10 +24,10 @@
 		</div>
 	<?php endfor ?>
 	<h4>En attente</h4>
-	<?php for ($i=0; $i < count($waiting_event); $i++): ?>
+	<?php for ($i=0; $i < count($pending_event); $i++): ?>
 		<div class='event-preview'>
-			<a href="<?= URL.'seance?event_id='.$waiting_event[$i]->event_id ?>"><?= $waiting_event[$i]->event_name ?></a>
-			<p><?= $waiting_event[$i]->begin_date.' / '. $waiting_event[$i]->begin_hour ?></p>
+			<a href="<?= URL.'seance?event_id='.$pending_event[$i]->event_id ?>"><?= $pending_event[$i]->event_name ?></a>
+			<p><?= $pending_event[$i]->begin_date.' / '. $pending_event[$i]->begin_hour ?></p>
 		</div>
 	<?php endfor ?>
 </section>

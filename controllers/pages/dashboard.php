@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Events;
+
 $title = 'Création d\'un évênement';
 $class = 'dashboard';
 
@@ -10,27 +12,8 @@ if ($user_id == NULL) {
   exit;
 }
 
+$get_event = new getEvents();
 
-// Query for event that the user created
-$query = "SELECT *
-		  FROM events,organized
-		  WHERE events.event_id = organized.event_id
-		  AND organized.user_id = $user_id";
-$event_created = $pdo->select($query);
-
-// Query for event that the user want to attend
-// --> Accepted
-$query = "SELECT *
-		  FROM events,attend
-		  WHERE events.event_id = attend.event_id
-		  AND attend.user_id = $user_id
-		  AND attend.is_accepted = 1";
-$accepted_event = $pdo->select($query);
-
-// --> Still waiting
-$query = "SELECT *
-		  FROM events,attend
-		  WHERE events.event_id = attend.event_id
-		  AND attend.user_id = $user_id
-		  AND attend.is_accepted IS NULL";
-$waiting_event = $pdo->select($query);
+$event_created = $get_event->userEvent($user_id);
+$accepted_event = $get_event->acceptedEvent($user_id);
+$pending_event = $get_event->pendingEvent($user_id);

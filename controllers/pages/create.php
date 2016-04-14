@@ -66,10 +66,10 @@ if(!empty($_POST))
 	    // 3RD INSERT
     	// API call to search for the movie ID
 		$movie_result = $movie->searchMovie($movie_name);
-		$movie_id = $movie_result->id;
-		$movie_name = $movie_result->title;
+		$movie_id = $movie_result[0]->id;
+		$movie_name = $movie_result[0]->title;
 
-		$movie->insertEventMovie($movie_id, $event_id, $movie_name);
+		$movie->insertEventMovie($movie_id, $event_id, $movie_name, $);
 
     }
 

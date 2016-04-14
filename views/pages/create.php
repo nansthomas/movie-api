@@ -4,7 +4,7 @@
 	<div class="container">
 		<form action="#" method="post">
 			<section>
-				<h3><input type="text" name="event_name" id="event_name" value="<?= $form_data->event_name == '' ? 'Nom de lévènement' : $form_data->event_name ?>" ></h3>
+				<h3><input type="text" name="event_name" id="event_name" value="<?= $form_data->event_name == '' ? 'Nom de l\'évènement' : $form_data->event_name ?>" ></h3>
 			</section>
 			<section>
 
@@ -25,7 +25,7 @@
 				</div>
 				<div>
 					<label for="place_nb">Nombre de places</label>
-					<input type="number" name="place_nb" id="place_nb" value="<?= $place_nb ?>">
+					<input type="number" name="place_nb" id="place_nb" value="<?= $form_data->place_nb ?>">
 				</div>
 			</section>
 

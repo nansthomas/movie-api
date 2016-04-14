@@ -1,11 +1,10 @@
 <?php
 
-	$title = $_SESSION['first_name'].' '.$_SESSION['last_name'];
-	$user_id = $_GET['user_id'];
+use App\Facebook\RegisterFacebook;
 
-	// Get organisator and event info
-	$query = "SELECT *
-			  FROM users
-			  WHERE user_id = $user_id";
+$title = $_SESSION['first_name'].' '.$_SESSION['last_name'];
+$user_id = $_GET['user_id'];
 
-	$user_info = $pdo->select($query,false);
+$u = new RegisterFacebook();
+
+$user_info = $u->displayUser($user_id);
