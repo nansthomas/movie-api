@@ -62,6 +62,14 @@ if(!empty($_POST))
 			die('ERROR !!');
 		}
 
+    	// $event->createEvent($form_data);
+      //
+      // $event_id = $pdo->lastInsertId();
+      //
+    	// // $event_id = $pdo->getPDO()->lastInsertId();
+      // var_dump($event_id);
+      // die();
+
 	    $event->insertIntoOrganized($user_id, $event_id);
 
 	    $localisation = $event->getLocalisation($form_data->label,$event_id);

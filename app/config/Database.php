@@ -5,6 +5,7 @@ namespace App\Config;
 use \PDO;
 
 class Database {
+
   public $pdo;
 
   public function getPDO(){
@@ -15,7 +16,6 @@ class Database {
       $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
 
       $this->pdo = $pdo;
-    } else {
     }
     return $this->pdo;
   }
@@ -40,7 +40,7 @@ class Database {
       $return = $this->getPDO()->lastInsertId();
     else
       $return = FALSE;
-    
+
     return $return;
   }
 
