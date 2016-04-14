@@ -9,7 +9,16 @@ class getEvents extends Database {
   function __construct () {
 
   }
+  private function get_http_response_code($url) {
+      $headers = get_headers($url);
+      return substr($headers[0], 9, 3);
+  }
 
+  private function parseQuery($query){
+    $query = str_replace(' ', '+', $query);
+    return $query;
+  }
+  
     public function listEvent ($city, $event_name, $date) {
         if ($city != null)
             $city_query = " AND events.city = '$city' ";
@@ -62,21 +71,22 @@ class getEvents extends Database {
         $query = "INSERT INTO events (event_name,begin_date,begin_hour,description,adress,setup_display,setup_sound,place_nb,supp_info)
                   VALUES('$data->event_name','$data->begin_date','$data->begin_hour','$data->description','$data->adress',
                          '$data->setup_display','$data->setup_sound','$data->place_nb','$data->supp_info')";
-        $prepare = $pdo->prepareQuery($query);
+        $prepare = $this->prepareQuery($query);
+
         return $prepare;
     }
 
     public function insertIntoOrganized($user_id, $event_id) {
         $query = "INSERT INTO organized (user_id, event_id)
                   VALUES($user_id, $event_id)";
-        $prepare = $pdo->prepareQuery($query);
+        $prepare = $this->prepareQuery($query);
         return $prepare;
     }
 
-    public function insertEventMovie($movie_id, $event_id, $movie_name) {
-        $query = "INSERT INTO event_movies (movie_id, event_id, movie_name)
-                  VALUES($movie_id, $event_id, $movie_name)";
-        $prepare = $pdo->prepareQuery($query);
+    public function insertEventMovie($movie_id, $event_id, $movie_name, $poster_path, $backdrop_path) {
+        $query = "INSERT INTO event_movies (movie_id,event_id,movie_name,poster_path,backdrop_path)
+                  VALUES($movie_id,$event_id,$movie_name,$poster_path,$backdrop_path)";
+        $prepare = $this->prepareQuery($query);
         return $prepare;
     }
 
@@ -146,6 +156,36 @@ class getEvents extends Database {
       }
       $prepare = $this->prepareQuery($query);
 
+      return $prepare;
+    }
+
+    public function getLocalisation($adress) {
+      $adress = $this->parseQuery($adress);
+      $url = 'http://api-adresse.data.gouv.fr/search/?q='.$adress;
+
+      if ($this->get_http_response_code($url) == '200') {
+        // Execute if the summoner was found
+        $data = file_get_contents($url);
+        $data = json_decode($data);
+        $data = $data->features[0]->geometry->coordinates;
+      } else {
+        // Else, false
+        $data = false;
+      }
+
+      return $data;
+
+    }
+
+    public function updateLocalisation($localisation, $event_id) {
+      $latitude = $localisation[0];
+      $longitude = $localisation[1];
+
+      $query = "UPDATE events
+                SET latitude = $latitude,
+                    longitude = $longitude
+                WHERE event_id = $event_id";
+      $prepare = $this->prepareQuery($query);
       return $prepare;
     }
 }

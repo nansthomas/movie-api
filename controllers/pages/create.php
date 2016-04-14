@@ -1,5 +1,9 @@
 <?php
 
+// echo '<pre>';
+// print_r($_POST);
+// echo '</pre>';
+// die();
 $title = 'Création d\'une séance';
 $class = 'creation';
 
@@ -34,7 +38,8 @@ $form_data = (object)
 		  'setup_display' => '',
 		  'setup_sound' => '',
 		  'place_nb' => '',
-		  'supp_info' => '');
+		  'supp_info' => '',
+		  'movie_id' => '');
 
 if(!empty($_POST))
 {
@@ -49,27 +54,30 @@ if(!empty($_POST))
 	$form_data->setup_sound   = trim($_POST['setup_sound']);
 	$form_data->place_nb      = trim($_POST['place_nb']);
 	$form_data->supp_info     = trim($_POST['supp_info']);
+	$form_data->movie_id      = trim($_POST['movie_id']);
 
 	// FINAL VER - CHECK ERRORS
-
 	if (empty($errors))
     {
+    	$user_id = $_SESSION['user_id'];
+echo '/ BEFORE createEvent done /';
     	$event->createEvent($form_data);
-	    // 2ND INSERT
-	    // Take useful info for the insert
-	    $user_id = $_SESSION['user_id'];
-	    $event_id = $pdo->pdo->lastInsertId();
-
+    	$event_id = $pdo->getLastId();
+    	echo '/ createEvent done /';
 	    $event->insertIntoOrganized($user_id, $event_id);
-
+	    echo '/ insertIntoOrganized done /';
+	    $localisation = $event->getLocalisation($form_data->adress);
+	    $event->updateLocalisation($localisation, $event_id);
 	    // 3RD INSERT
     	// API call to search for the movie ID
-		$movie_result = $movie->searchMovie($movie_name);
-		$movie_id = $movie_result[0]->id;
-		$movie_name = $movie_result[0]->title;
-		$movie->insertEventMovie($movie_id, $event_id, $movie_name);
-    }
+    	$movie_detail = $movie->getMovieDetailInfo($form_data->movie_id);
 
-    $movieid = $movie->searchMovie($movie_name);
+		$movie_name = $movie_detail->title;
+		$poster_path = $movie_detail->poster_path;
+		$backdrop_path = $movie_detail->backdrop_path;
+
+		// Insert into DB
+		$event->insertEventMovie($form_data->movie_id, $event_id, $movie_name, $poster_path, $backdrop_path);
+    }
 
 }

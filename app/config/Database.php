@@ -19,7 +19,7 @@ class Database {
   //   $this->db_host = $db_host;
   // }
 
-  private function getPDO(){
+  public function getPDO(){
     if ($this->pdo === null) {
       $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME,DB_USER,DB_PASS);
 
@@ -27,8 +27,10 @@ class Database {
       $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
 
       $this->pdo = $pdo;
+      echo '/ getPDO /';
+    } else {
+      echo '/ no getPDO /';
     }
-
     return $this->pdo;
   }
 
@@ -54,4 +56,11 @@ class Database {
     public function beginTransaction(){
       $this->getPDO()->beginTransaction();
     }
+
+    public function getLastId(){
+      $id = $this->getPDO()->lastInsertId();
+      return $id;
+    }
+
+
 }

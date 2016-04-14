@@ -1,7 +1,15 @@
 <?php  
 
+use App\Events\getEvents;
+$update = new getEvents();
+
 $event_id = $_GET['event_id'];
 $user_id = $_SESSION['user_id'];
+
+// // Search if its already done or not
+// $query = "SELECT attend (event_id,user_id)
+// 		  VALUES ($event_id,$user_id)";
+// $prepare = $pdo->prepareQuery($query);
 
 // Add request into attend table
 $query = "INSERT INTO attend (event_id,user_id)

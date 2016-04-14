@@ -71,7 +71,7 @@ function doWorkMovie(data) {
 function getMovie(e){
   $('#movie_name').val(e.getElementsByClassName('movie-propose')[0].innerHTML);
   $('.movie-list').children('div').remove();
-  $('.movie-list').append('<input id="film-id" type="hidden" value="' + e.getElementsByClassName('hiden-id')[0].value +'">');
+  $('.movie-list').append('<input name="movie_id" type="hidden" value="' + e.getElementsByClassName('hiden-id')[0].value +'">');
   $('#movie-control').removeClass('is-loading');
   $('#movie-control').addClass('has-icon has-icon-right');
   $('#movie_name').addClass('is-success');
