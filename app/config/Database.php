@@ -47,11 +47,4 @@ class Database {
     public function beginTransaction(){
       $this->getPDO()->beginTransaction();
     }
-
-    // public function getLastId(){
-    //   $id = $this->getPDO()->lastInsertId();
-    //   return $id;
-    // }
-
-
 }

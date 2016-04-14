@@ -110,11 +110,11 @@ function doWorkAdress(data) {
 }
 
 function getAdress(e) {
-  $('#adress').val(e.innerHTML);
+  $('#label').val(e.innerHTML);
   $('.result-list').children('p').remove();
   $('#adress-control').removeClass('is-loading');
   $('#adress-control').addClass('has-icon has-icon-right');
-  $('#adress').addClass('is-success');
+  $('#label').addClass('is-success');
 }
 
 var $search_adress = $(".search-adress");

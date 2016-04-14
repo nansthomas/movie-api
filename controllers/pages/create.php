@@ -71,8 +71,7 @@ if(!empty($_POST))
       // die();
 
 	    $event->insertIntoOrganized($user_id, $event_id);
-
-	    $localisation = $event->getLocalisation($form_data->label,$event_id);
+	    $localisation = $event->getLocalisation($form_data->label);
 	    $event->updateLocalisation($localisation, $event_id);
     	$movie_detail = $movie->getMovieDetailInfo($form_data->movie_id);
 

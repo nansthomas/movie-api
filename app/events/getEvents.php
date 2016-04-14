@@ -85,7 +85,8 @@ class getEvents extends Database {
 
     public function insertEventMovie($movie_id, $event_id, $movie_name, $poster_path, $backdrop_path) {
         $query = "INSERT INTO event_movies (movie_id,event_id,movie_name,poster_path,backdrop_path)
-                  VALUES($movie_id,$event_id,$movie_name,$poster_path,$backdrop_path)";
+                  VALUES('$movie_id','$event_id','$movie_name','$poster_path','$backdrop_path')";
+
         $exec = $this->prepareQuery($query);
         return $exec;
     }
@@ -159,7 +160,7 @@ class getEvents extends Database {
       return $prepare;
     }
 
-    public function getLocalisation($label, $event_id) {
+    public function getLocalisation($label) {
       $label = $this->parseQuery($label);
       $url = 'http://api-adresse.data.gouv.fr/search/?q='.$label;
 
@@ -172,16 +173,7 @@ class getEvents extends Database {
         // Else, false
         $data = false;
       }
-      //
-      // $latitude = $localisation[0];
-      // $longitude = $localisation[1];
 
-      // $query = "UPDATE events
-      //           SET latitude = $data[0],
-      //               longitude = $data[1],
-      //           WHERE event_id = $event_id";
-
-      // $prepare = $this->prepareQuery($query);
       return $data;
 
     }
@@ -191,17 +183,18 @@ class getEvents extends Database {
       $longitude = $localisation->geometry->coordinates[1];
       $house_number = $localisation->properties->housenumber;
       $street = $localisation->properties->street;
-      $city = $localisation->properties->housenumber;
+      $city = $localisation->properties->city;
       $zip_code = $localisation->properties->postcode;
 
       $query = "UPDATE events
-                SET latitude = $latitude,
-                    longitude = $longitude,
-                    house_number = $house_number,
-                    street = $street,
-                    city = $city,
-                    zip_code = $zip_code
+                SET latitude = '$latitude',
+                    longitude = '$longitude',
+                    house_number = '$house_number',
+                    street = '$street',
+                    city = '$city',
+                    zip_code = '$zip_code'
                 WHERE event_id = $event_id";
+
       $prepare = $this->prepareQuery($query);
       return $prepare;
     }
