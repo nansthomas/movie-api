@@ -3,6 +3,16 @@
 		border: 1px solid red;
 	}
 </style>
+
+<section class="hero is-create is-fullheight">
+  <div class="hero-content">
+    <div class="container">
+      <h1 class="title">Créer une séance, chez vous.</h1>
+      <h2 class="subtitle">Et partager une exéprience unique.</h2>
+  </div>
+</section>
+
+
 <section class="hero is-success is-fullheight">
   <div class="hero-content">
 

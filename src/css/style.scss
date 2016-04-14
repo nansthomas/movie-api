@@ -201,6 +201,19 @@ $font-stack   : Hanken;
   }
 }
 
+
+// CREATE
+
+.is-create {
+  background: linear-gradient(-134deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.72) 100%), url(../img/popcorn.jpg) no-repeat center fixed;
+  h1{
+    color: $white;
+  }
+  h2 {
+    color: $white;
+  }
+}
+
 // HEADER
 
 .header {

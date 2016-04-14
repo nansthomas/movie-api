@@ -8,8 +8,8 @@ if ($user_id == NULL) {
 }
 
 
-$menuStyle = '';
-$logoStyle = 'black';
+$menuStyle = 'transparent';
+$logoStyle = 'white';
 $title = 'Création d\'une séance';
 
 use App\Movies\getMovie;
@@ -45,23 +45,23 @@ $form_data = (object)
 		  'supp_info' => null,
 		  'movie_id' => null);
 
-foreach ($form_data as $key => $value) {
-		$errors->$key = null;
-}
+// foreach ($form_data as $key => $value) {
+// 		$errors->$key = null;
+// }
 
 if(!empty($_POST))
 {
 	// Set variables
-	$form_data->event_name 	  = mysql_real_escape_string(trim($_POST['event_name']));
+	$form_data->event_name 	  = trim($_POST['event_name']);
 	$form_data->begin_date    = trim($_POST['begin_date']);
 	$form_data->begin_hour    = trim($_POST['begin_hour']);
-	$form_data->description   = mysql_real_escape_string(trim($_POST['description']));
-	$form_data->movie_name    = mysql_real_escape_string(trim($_POST['movie_name']));
-	$form_data->label         = mysql_real_escape_string(trim($_POST['label']));
+	$form_data->description   = trim($_POST['description']);
+	$form_data->movie_name    = trim($_POST['movie_name']);
+	$form_data->label         = trim($_POST['label']);
 	$form_data->setup_display = trim($_POST['setup_display']);
 	$form_data->setup_sound   = trim($_POST['setup_sound']);
 	$form_data->place_nb      = trim($_POST['place_nb']);
-	$form_data->supp_info     = mysql_real_escape_string(trim($_POST['supp_info']));
+	$form_data->supp_info     = trim($_POST['supp_info']);
 	$form_data->movie_id      = trim($_POST['movie_id']);
 
 	echo '<pre>';
@@ -146,6 +146,6 @@ if(!empty($_POST))
     }
 }
 
-	echo '<pre>';
-	var_dump($errors);
-	echo '</pre>';
+	// echo '<pre>';
+	// var_dump($errors);
+	// echo '</pre>';
