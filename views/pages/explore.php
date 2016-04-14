@@ -80,28 +80,53 @@ Get(url, function (error, geojson) {
         // writing this long form over and over again.
         var prop = locale.feature.properties;
 
-        var popup = '<h3>Super Séance !</h3><div>' + prop.address;
+        // TITLE OF POPUP
+        var popup = '<h3 style="background: url('+ prop.cover +') no-repeat center center !important; height: 70px; background-size:cover;">'+ prop.name +'</h3><div>' + prop.address;
+        popup += '<br /><a href="' + prop.link + '">Acceder</a>';
+
 
         var listing = listings.appendChild(document.createElement('div'));
         listing.className = 'item';
 
-        var link = listing.appendChild(document.createElement('a'));
+        // COVER
+        var img = listing.appendChild(document.createElement('img'));
+        img.href = '#';
+        img.className = 'cover';
+        img.src = prop.cover;
+
+        // CREATE INFOS DIV
+        var infos = listing.appendChild(document.createElement('div'));
+        infos.className = 'infos';
+
+        // CREATE TITLE
+        var link = infos.appendChild(document.createElement('a'));
         link.href = '#';
         link.className = 'title';
-
         link.innerHTML = prop.name;
 
-        if (prop.address) {
-          link.innerHTML += ' <br /><small class="quiet">' + prop.address + '</small>';
-          popup += '<br /><a href="' + prop.link + '">Acceder</a>';
-        }
+        // CREATE ADRESS
+        var adress = infos.appendChild(document.createElement('p'));
+        adress.className = 'adress';
+        adress.innerHTML = prop.address + ' ' + prop.city + ' ' + prop.postalCode;
 
-        var details = listing.appendChild(document.createElement('div'));
-        details.innerHTML = prop.city;
+        // CREATE HOUR
+        var hours = infos.appendChild(document.createElement('p'));
+        hours.className = 'hours';
+        hours.innerHTML = 'le : ' + prop.date + ' à : ' + prop.hour;
 
-        if (prop.hour) {
-          details.innerHTML += ' &middot; ' + prop.hour + 'date : ' + prop.date;
-        }
+
+
+        // if (prop.address) {
+        //   link.innerHTML += ' <br /><small class="quiet">' + prop.address + '</small>';
+        //   popup += '<br /><a href="' + prop.link + '">Acceder</a>';
+        // }
+        //
+        // var details = listing.appendChild(document.createElement('div'));
+        // details.innerHTML = prop.city;
+
+        // if (prop.hour) {
+        //   details.innerHTML += ' &middot; ' + prop.hour + 'date : ' + prop.date;
+        // }
 
         link.onclick = function () {
           setActive(listing);

@@ -17,3 +17,15 @@
 	print_r($movie_detail);
 	echo '</pre>'; ?>
 </section>
+
+<section class="hero is-seance is-medium">
+  <div class="hero-content">
+  </div>
+</section>
+
+<div class="container">
+  <img src="<?= $event_info[0]->picture_url ?>" alt="" />
+  <div class="notification">
+    This container is <strong>centered</strong> on desktop.
+  </div>
+</div>

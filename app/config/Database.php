@@ -10,6 +10,7 @@ class Database {
   // private $db_user;
   // private $db_pass;
   // private $db_host;
+
   public $pdo;
   //
   // public function __construct ($db_name) {
@@ -27,9 +28,7 @@ class Database {
       $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
 
       $this->pdo = $pdo;
-      echo '/ getPDO /';
     } else {
-      echo '/ no getPDO /';
     }
     return $this->pdo;
   }

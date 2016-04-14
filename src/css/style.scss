@@ -1,41 +1,15 @@
-body {
-	background:#eee;
-	font-family:Helvetica,Arial;
-	font-size:14px;
+// INTRO
+
+.is-home {
+  background: url('../img/people_tv.jpg') no-repeat center center;
+  background-size: cover;
 }
 
-h1 {
-	font-size: 30px;
-	margin-bottom: 12px;
-}
+// SEANCE
 
-h2 {
-	font-size: 24px;
-	margin-bottom: 10px;
-}
-
-h3 {
-	font-size: 20px;
-	margin-bottom: 8px;
-}
-
-h4 {
-	font-size: 16px;
-	margin: 12px 6px;
-}
-
-input, select {
-	border-bottom: 1px solid #7f7f7f;
-  height: 30px;
-}
-
-body > section {
-	padding: 30px;
-}
-
-.event-preview {
-	border: 1px solid #000000;
-	margin: 10px 0px;
+.is-seance {
+  background: url('https://image.tmdb.org/t/p/original/vFJ31Mp68hwtlB4opsAP29gFqhr.jpg') no-repeat center center;
+  background-size: cover;
 }
 
 // HEADER
@@ -114,6 +88,30 @@ body > section {
   display: none;
 }
 
+.cover {
+  height: 100px;
+  display: inline-block;
+}
+
+.infos {
+  display: inline-block;
+  margin-left: 15px;
+  position: absolute;
+  margin-top: 15px;
+}
+
+.leaflet-popup-close-button, .map-tooltip.closable .close {
+  display: none !important;
+}
+
+.leaflet-popup-content {
+  padding: 0 !important;
+}
+
+.leaflet-popup-content h3 {
+  height: 70px !important;
+}
+
 h1 {
     font-size:22px;
     margin:0;
@@ -132,6 +130,9 @@ h1 {
     top:0;left:0;
     overflow:hidden;
     border-right:1px solid rgba(0,0,0,0.25);
+    @media screen and (max-width: 975px) {
+      display: none;
+    }
   }
   .pad2 {
     padding:20px;
@@ -144,6 +145,10 @@ h1 {
     left:33.3333%;
     width:66.6666%;
     top:0;bottom:0;
+    @media screen and (max-width: 975px) {
+      left:0%;
+      width:100%;
+    }
   }
   .heading {
     background:#fff;
@@ -165,16 +170,17 @@ h1 {
     text-decoration:none;
   }
   .listings .item:last-child { border-bottom:none; }
+
   .listings .item .title {
     display:block;
-    color:#00853e;
-    font-weight:700;
+    color:#2C3E50;
+    margin-bottom: 6px;
   }
   .listings .item .title small { font-weight:400; }
   .listings .item.active .title,
-  .listings .item .title:hover { color:#8cc63f; }
+  .listings .item .title:hover { color:#3498DB; }
   .listings .item.active {
-    background-color:#f8f8f8;
+    background-color:#EDEFF5;
   }
 
   ::-webkit-scrollbar {
@@ -187,7 +193,7 @@ h1 {
     background:none;
   }
   ::-webkit-scrollbar-thumb {
-    background:#00853e;
+    background:#3498DB;
     border-radius:0;
   }
 

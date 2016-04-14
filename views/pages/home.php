@@ -1,4 +1,4 @@
-<section class="hero is-success is-fullheight">
+<section class="hero is-home is-fullheight">
   <div class="hero-content">
     <div class="container">
       <?php if (array_key_exists('user_id', $_SESSION)): ?>
