@@ -1,5 +1,12 @@
 <?php
 
+$user_id = empty($_SESSION['user_id']) ? null : $_SESSION['user_id'];
+
+if ($user_id == NULL) {
+  header('Location: ./login');
+  exit;
+}
+
 $title = 'Création d\'une séance';
 $class = 'creation';
 
