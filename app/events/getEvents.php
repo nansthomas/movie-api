@@ -228,3 +228,28 @@ class getEvents extends Database {
       return $prepare;
     }
 }
+
+  class eventForm {
+
+    // public function checkInput($form_data) {
+    //   $errors = (object) array();
+
+    //   $errors = $this->checkIsSet($form_data);
+    //   // $obj_merged = (object) array_merge((array) $obj1, (array) $obj2);
+    //   $errors = (object) array_merge((array) $errors, (array) $this->checkDate);
+
+
+    // }
+
+    // public function checkIsSet($form_data) {
+    //   foreach ($form_data as $key => $value) {
+    //     if (!isset($form_data->$key))
+    //       $errors->isSet->$key = false;
+    //     else
+    //       $errors->isSet->$key = true;
+    //   }
+    //   return $errors;
+    // }
+
+    // public function checkDate($date);
+  }
