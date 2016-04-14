@@ -218,6 +218,17 @@ class getEvents extends Database {
       $prepare = $this->prepareQuery($query);
       return $prepare;
     }
+
+    // TO CHANGE, ONLY ONE THAT ALREADY HAPPENED
+    public function participatedEvent($event_id, $user_id) {
+      $query = "SELECT events.*
+                FROM events, attend
+                WHERE events.event_id = $event_id
+                AND events.event_id = attend.event_id
+                AND attend.user_id = $user_id";
+      $result = $this->select($query);
+      return $result;
+    }
 }
 
   class eventForm {

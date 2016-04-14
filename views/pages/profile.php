@@ -6,8 +6,23 @@
   <a class="button is-warning" href="<?= 'mailto:'.$user_info->email ?>">Contacter par mail</a>
 </section>
 
+<h2>Info de l'utilisateur</h2>
 <?php
 echo '<pre>';
 print_r($user_info);
+echo '</pre>';
+?>
+
+<h2>Séances organisé par l'utilisateur</h2>
+<?php 
+echo '<pre>';
+print_r($user_event);
+echo '</pre>';
+?>
+
+<h2>Séance dont l'utilisateur a participé</h2>
+<?php 
+echo '<pre>';
+print_r($participated_event);
 echo '</pre>';
 ?>
