@@ -183,8 +183,18 @@ class getEvents extends Database {
     public function updateLocalisation($localisation, $event_id) {
       $latitude = $localisation->geometry->coordinates[0];
       $longitude = $localisation->geometry->coordinates[1];
-      $house_number = $localisation->properties->housenumber;
-      $street = $localisation->properties->street;
+      if (property_exists($localisation,'housenumber')){
+        $house_number = $localisation->properties->housenumber;
+      }
+      else {
+        $house_number = NULL;
+      }
+      if (property_exists($localisation,'street')){
+        $street = $localisation->properties->street;
+      }
+      else {
+        $street = NULL;
+      }
       $city = $localisation->properties->city;
       $zip_code = $localisation->properties->postcode;
 
