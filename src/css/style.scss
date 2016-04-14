@@ -214,6 +214,34 @@ $font-stack   : Hanken;
   }
 }
 
+.eventName, .dateAndHours, .places, .properties, .films {
+  display:none;
+}
+
+#adress-control {
+  width: 490px;
+}
+
+.result-list {
+  text-align: left;
+  top: 93px;
+  position: absolute;
+  z-index: 3;
+}
+
+.movie-list {
+  text-align: left;
+  top: 93px;
+  z-index: 3;
+}
+
+.loader, .control.is-loading:after, .button.is-loading:after, .pagination a.is-loading:after {
+  width: 20px;
+  top: 14px;
+  right: 15px;
+  height: 20px;
+}
+
 // HEADER
 
 .header {
