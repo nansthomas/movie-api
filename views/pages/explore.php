@@ -2,9 +2,9 @@
 <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.4/mapbox.css' rel='stylesheet' />
 
 <div class='sidebar'>
-    <div class='heading'>
+    <!-- <div class='heading'>
       <h1>Near you</h1>
-    </div>
+    </div> -->
     <div id='listings' class='listings'></div>
   </div>
 <div id='map' class='map pad2'>Map</div>
@@ -114,20 +114,6 @@ Get(url, function (error, geojson) {
         hours.className = 'hours';
         hours.innerHTML = 'le : ' + prop.date + ' à : ' + prop.hour;
 
-
-
-        // if (prop.address) {
-        //   link.innerHTML += ' <br /><small class="quiet">' + prop.address + '</small>';
-        //   popup += '<br /><a href="' + prop.link + '">Acceder</a>';
-        // }
-        //
-        // var details = listing.appendChild(document.createElement('div'));
-        // details.innerHTML = prop.city;
-
-        // if (prop.hour) {
-        //   details.innerHTML += ' &middot; ' + prop.hour + 'date : ' + prop.date;
-        // }
-
         link.onclick = function () {
           setActive(listing);
           map.setView(locale.getLatLng(), 13);
@@ -145,7 +131,7 @@ Get(url, function (error, geojson) {
         locale.bindPopup(popup);
 
       });
-  }
+    }
 });
 
 </script>

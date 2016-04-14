@@ -7,8 +7,10 @@ if ($user_id == NULL) {
   exit;
 }
 
+
+$menuStyle = '';
+$logoStyle = 'black';
 $title = 'Création d\'une séance';
-$class = 'creation';
 
 use App\Movies\getMovie;
 use App\Events\getEvents;
@@ -68,14 +70,6 @@ if(!empty($_POST))
 		if ($event_id === FALSE) {
 			die('ERROR !!');
 		}
-
-    	// $event->createEvent($form_data);
-      //
-      // $event_id = $pdo->lastInsertId();
-      //
-    	// // $event_id = $pdo->getPDO()->lastInsertId();
-      // var_dump($event_id);
-      // die();
 
 	    $event->insertIntoOrganized($user_id, $event_id);
 	    $localisation = $event->getLocalisation($form_data->label);

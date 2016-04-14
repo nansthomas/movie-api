@@ -35,10 +35,11 @@ if ($events_list == false) {
       ),
 
       'properties' => array(
-        'marker-color' => '#3498DB',
+        'marker-color' => '#F5D76E',
+        'marker-size' => 'large',
         'name' => $event->event_name,
-        'cover' => 'https://resizing.flixster.com/bBiINc0J64btBDSR5_HGxL5iE1o=/800x1184/v1.bTsxMTQyMDkxNDtqOzE3MDExOzIwNDg7MTAwMDsxNDgw',
-        'address' => $event->adress,
+        'cover' => 'https://image.tmdb.org/t/p/original' .$event->poster_path,
+        'address' => $event->street,
         'city' => $event->city,
         'country' => 'France',
         'postalCode' => $event->zip_code,
