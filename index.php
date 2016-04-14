@@ -102,6 +102,8 @@ else if($q == 'logout')
 	$page = 'logout';
 else if($q == 'geojson')
   $page = 'geojson';
+else if($q == 'send-event')
+  $page = 'send-event';
 else
 	$page = '404';
 

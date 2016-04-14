@@ -70,9 +70,10 @@ class getEvents extends Database {
 
     // Create event
     public function createEvent ($data) {
-        $query = "INSERT INTO events (event_name,begin_date,begin_hour,description,label,setup_display,setup_sound,place_nb,supp_info)
+        $query = "INSERT INTO events (event_name,begin_date,begin_hour,description,label,setup_display,setup_sound,place_nb)
                   VALUES('$data->event_name','$data->begin_date','$data->begin_hour','$data->description','$data->label',
-                         '$data->setup_display','$data->setup_sound','$data->place_nb','$data->supp_info')";
+                         '$data->setup_display','$data->setup_sound','$data->place_nb')";
+
         $prepare = $this->prepareQuery($query);
 
         return $prepare;
@@ -163,46 +164,33 @@ class getEvents extends Database {
     }
 
     public function getLocalisation($label) {
-      $label = $this->parseQuery($label);
       $url = 'http://api-adresse.data.gouv.fr/search/?q='.$label;
-
+      $url = $this->parseQuery($url);
       if ($this->get_http_response_code($url) == '200') {
-        // Execute if the summoner was found
+        // Execute if the label was found
         $data = file_get_contents($url);
         $data = json_decode($data);
-        $data = $data->features[0];
+
+        for ($i=0; $i < count($data->features); $i++) { 
+          if ($data->query === $data->features[$i]->properties->label) {
+            $result = $data->features[$i];
+          }
+        }
       } else {
-        // Else, false
-        $data = false;
+        $result = false;
       }
-
-      return $data;
-
+      return $result;
     }
 
     public function updateLocalisation($localisation, $event_id) {
       $latitude = $localisation->geometry->coordinates[0];
       $longitude = $localisation->geometry->coordinates[1];
-      if (property_exists($localisation,'housenumber')){
-        $house_number = $localisation->properties->housenumber;
-      }
-      else {
-        $house_number = NULL;
-      }
-      if (property_exists($localisation,'street')){
-        $street = $localisation->properties->street;
-      }
-      else {
-        $street = NULL;
-      }
       $city = $localisation->properties->city;
       $zip_code = $localisation->properties->postcode;
 
       $query = "UPDATE events
                 SET latitude = '$latitude',
                     longitude = '$longitude',
-                    house_number = '$house_number',
-                    street = '$street',
                     city = '$city',
                     zip_code = '$zip_code'
                 WHERE event_id = $event_id";

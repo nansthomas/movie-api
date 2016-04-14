@@ -6,4 +6,4 @@ RewriteCond %{SCRIPT_FILENAME} !-f
 
 RewriteRule ^ajax/([a-zA-Z-/]*)$ ./ajax.php?q=$1 [QSA]
 
-RewriteRule ^([a-zA-Z]*)$ ./index.php?q=$1 [QSA]
+RewriteRule ^([a-zA-Z-]*)$ ./index.php?q=$1 [QSA]
