@@ -1,5 +1,9 @@
 <?php
 
+$menuStyle = 'transparent';
+$logoStyle = 'white';
+$title = 'Gestion de l\'évènement';
+
 $user_id = empty($_SESSION['user_id']) ? null : $_SESSION['user_id'];
 
 if ($user_id == NULL) {

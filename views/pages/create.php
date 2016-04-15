@@ -46,30 +46,6 @@
           <a id="places" class="button is-medium is-dashboard is-outlined">Suivant</a>
         </div>
 
-        <!-- PROPERTIES -->
-        <div class="properties">
-          <h1 class="title">Quelques options ?</h1>
-          <p class="control is-grouped line">
-            <span class="select">
-              <select name="setup_display" class="setup_display" id="setup_display">
-    						<option value="pc">Ordinateur</option>
-    						<option value="tv">Télévision</option>
-    						<option value="projecteur">Projecteur</option>
-    					</select>
-            </span>
-            <br>
-            <span class="select">
-    					<select name="setup_sound" id="setup_sound" value="<?= $form_data->setup_sound ?>">
-    						<option value="natif">Natif</option>
-    						<option value="bq">Enceinte Basse-Qualité</option>
-    						<option value="hq">Enceinte Haute-Qualité</option>
-    					</select>
-            </span>
-          </p>
-          <br>
-          <a id="properties" class="button is-medium is-dashboard is-outlined">Suivant</a>
-        </div>
-
         <!-- FILM -->
         <div class="films">
           <h1 class="title">Quelle film pour la projection ? 🎥</h1>
@@ -83,4 +59,41 @@
 
       </form>
   </div>
+  
+  <script>
+
+  var startButton         = document.querySelector('#start');
+  var start               = document.querySelector('.start');
+  var eventName           = document.querySelector('.eventName');
+  var eventNameButton     = document.querySelector('#eventName');
+  var dateAndHours        = document.querySelector('.dateAndHours');
+  var dateAndHoursButton  = document.querySelector('#dateAndHours');
+  var places              = document.querySelector('.places');
+  var placeButton         = document.querySelector('#places');
+  var properties         = document.querySelector('.properties');
+  var propertiesButton         = document.querySelector('#properties');
+  var films         = document.querySelector('.films');
+  var filmsButton         = document.querySelector('#films');
+
+  startButton.addEventListener('click', function () {
+    start.style.display = 'none';
+    eventName.style.display = 'block';
+  });
+
+  eventNameButton.addEventListener('click', function () {
+    eventName.style.display = 'none';
+    dateAndHours.style.display = 'block';
+  });
+
+  dateAndHoursButton.addEventListener('click', function () {
+    dateAndHours.style.display = 'none';
+    places.style.display = 'block';
+  });
+
+  placeButton.addEventListener('click', function () {
+    places.style.display = 'none';
+    films.style.display = 'block';
+  });
+
+  </script>
 </section>

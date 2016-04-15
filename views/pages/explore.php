@@ -81,8 +81,8 @@ Get(url, function (error, geojson) {
         var prop = locale.feature.properties;
 
         // TITLE OF POPUP
-        var popup = '<h3 style="background: url('+ prop.cover +') no-repeat center center !important; height: 70px; background-size:cover;">'+ prop.name +'</h3><div>' + prop.address;
-        popup += '<br /><a href="' + prop.link + '">Acceder</a>';
+        var popup = '<h3 style="background: linear-gradient(-134deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.3) 100%), url('+ prop.cover +') no-repeat center center !important; height: 70px; background-size:cover;">'+ prop.name +'</h3><div style="text-align:center;margin-bottom:7px;">' + prop.address;
+        popup += '<br /><a style="margin-top:6px;"class="button is-warning" href="' + prop.link + '">Voir la séance</a>';
 
 
         var listing = listings.appendChild(document.createElement('div'));

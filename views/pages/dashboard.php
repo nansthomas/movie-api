@@ -2,7 +2,7 @@
   <div class="hero-content">
     <div class="container">
       <h1 class="title">Dashboard</h1>
-      <a class="button is-dashboard is-outlined"><i class="fa fa-plus-square-o fa-fw" aria-hidden="true"></i> Créer une séance</a>
+      <a href="<?= URL ?>create" class="button is-dashboard is-outlined"><i class="fa fa-plus-square-o fa-fw" aria-hidden="true"></i> Créer une séance</a>
     </div>
   </div>
 </section>
