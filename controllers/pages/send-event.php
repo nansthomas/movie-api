@@ -39,8 +39,6 @@ $form_data = (object)
 		  'description' => null,
 		  'movie_name' => null,
 		  'label' => null,
-		  'setup_display' => null,
-		  'setup_sound' => null,
 		  'place_nb' => null,
 		  'movie_id' => null);
 
@@ -59,8 +57,6 @@ if(!empty($_POST))
 	$form_data->movie_name    = htmlspecialchars($form_data->movie_name, ENT_QUOTES, 'UTF-8');
 	$form_data->label         = trim($_POST['label']);
 	$form_data->label         = htmlspecialchars($form_data->label, ENT_QUOTES, 'UTF-8');
-	$form_data->setup_display = trim($_POST['setup_display']);
-	$form_data->setup_sound   = trim($_POST['setup_sound']);
 	$form_data->place_nb      = trim($_POST['place_nb']);
 	$form_data->movie_id      = trim($_POST['movie_id']);
 
@@ -93,16 +89,6 @@ if(!empty($_POST))
 
 	// Check label and shouldn't be empty
 	if (empty($event->getLocalisation($form_data->label))) {
-		$errors = true;
-	}
-
-	// CHECK SETUP
-	if ($form_data->setup_display != ('tv' || 'pc' || 'projecteur')) {
-		$errors = true;
-	}
-
-	// CHECK SETUP
-	if ($form_data->setup_sound != ('natif' || 'hq' || 'bq')) {
 		$errors = true;
 	}
 

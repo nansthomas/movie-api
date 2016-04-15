@@ -70,10 +70,9 @@ class getEvents extends Database {
 
     // Create event
     public function createEvent ($data) {
-        $query = "INSERT INTO events (event_name,begin_date,begin_hour,description,label,setup_display,setup_sound,place_nb)
+        $query = "INSERT INTO events (event_name,begin_date,begin_hour,description,label,place_nb)
                   VALUES('$data->event_name','$data->begin_date','$data->begin_hour','$data->description','$data->label',
-                         '$data->setup_display','$data->setup_sound','$data->place_nb')";
-
+                         '$data->place_nb')";
         $prepare = $this->prepareQuery($query);
 
         return $prepare;

@@ -27,7 +27,6 @@ $query = "SELECT *
           AND attend.is_accepted IS NULL";
 $waiting_list = $pdo->select($query);
 
-
 $query = "SELECT *
           FROM users, attend
           WHERE users.user_id = attend.user_id
