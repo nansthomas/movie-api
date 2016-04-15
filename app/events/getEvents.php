@@ -171,7 +171,7 @@ class getEvents extends Database {
         $data = file_get_contents($url);
         $data = json_decode($data);
 
-        for ($i=0; $i < count($data->features); $i++) { 
+        for ($i=0; $i < count($data->features); $i++) {
           if ($data->query === $data->features[$i]->properties->label) {
             $result = $data->features[$i];
           }

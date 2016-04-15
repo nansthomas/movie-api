@@ -1,5 +1,9 @@
 <?php
 
+$menuStyle = 'transparent';
+$logoStyle = 'white';
+$title = 'Explore';
+
 use App\Facebook\RegisterFacebook;
 use App\Events\getEvents;
 

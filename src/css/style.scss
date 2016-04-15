@@ -304,6 +304,12 @@ $font-stack   : Hanken;
   height: 100%;
   width: 100%;
   background-color: #FFFFFF;
+  .hero-content {
+    margin-top: 230px;
+  }
+  .createbutton {
+    margin-left: 10px;
+  }
 }
 
 .leaflet-top {

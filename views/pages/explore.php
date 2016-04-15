@@ -16,9 +16,9 @@
         Vraiment désolé... 😢
       </h1>
       <h2 class="subtitle">
-        Nous n'avons trouvé aucun résultat pour votre recherche
+        Personne n'a créée ce que vous cherchez.
       </h2>
-      <a href="<?= URL ?>"class="button is-medium">Nouvelle recherche</a
+      <a href="<?= URL ?>"class="button is-medium">Nouvelle recherche</a><a href="<?= URL ?>create"class="button is-medium createbutton">Créer une séance</a
     </div>
   </div>
 </section>
