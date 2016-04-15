@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Apr 14, 2016 at 08:50 PM
+-- Generation Time: Apr 15, 2016 at 03:52 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -31,10 +31,13 @@ CREATE TABLE `attend` (
 --
 
 INSERT INTO `attend` (`user_id`, `event_id`, `is_accepted`) VALUES
-(2, 5, NULL),
-(2, 5, NULL),
-(2, 5, NULL),
-(2, 5, NULL);
+(2, 5, 1),
+(2, 5, 1),
+(2, 5, 1),
+(2, 5, 1),
+(2, 9, 1),
+(1, 10, 1),
+(2, 12, 1);
 
 -- --------------------------------------------------------
 
@@ -64,17 +67,18 @@ CREATE TABLE `events` (
   `pending_request` int(11) NOT NULL DEFAULT '0',
   `rating_event` float DEFAULT NULL,
   `is_public` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `events`
 --
 
 INSERT INTO `events` (`event_id`, `event_name`, `begin_date`, `begin_hour`, `approximate_duration`, `label`, `house_number`, `street`, `zip_code`, `city`, `latitude`, `longitude`, `setup_display`, `setup_sound`, `description`, `supp_info`, `place_nb`, `place_taken`, `pending_request`, `rating_event`, `is_public`) VALUES
-(5, 'SoirÃ©e Deadpool ðŸŽ‰', '2016-04-16', '20:45:00', NULL, '2 Rue du Sentier 75002 Paris', '2', 'Rue du Sentier', '75002', 'Paris', '2.3454890', '48.8678310', 'projecteur', 'hq', 'SoirÃ©e Deadpool, les costumes, la biÃ¨re et la bonne humeurs sont les bienvenues ! A trÃ¨s vite !', '', 15, 0, 4, NULL, 1),
-(6, 'OSS 117', '2016-04-16', '21:00:00', NULL, '17 Rue Saint-Augustin 75002 Paris', '17', 'Rue Saint-Augustin', '75002', 'Paris', '2.3363780', '48.8688260', 'pc', 'natif', 'Fans de Jean Dujardin ? Et si nous re-regardions un des films cultes de notre agents ? Pas de pistolet ! ðŸ˜‚', '', 6, 0, 0, NULL, 1),
-(7, 'OSS 117', '2016-04-16', '22:00:00', NULL, '13 Rue Daunou 75002 Paris', '', '', '75002', 'Paris', '2.3313790', '48.8695670', 'pc', 'natif', 'SoirÃ©e avec les copains', '', 10, 0, 0, NULL, 1),
-(8, 'zef', '2016-04-16', '16:57:00', NULL, '273 Rue du Puits 76740 La Chapelle-sur-Dun', '', '', '76740', 'La Chapelle-sur-Dun', '0.8455950', '49.8594220', 'pc', 'natif', 'zefzef', '', 2, 0, 0, NULL, 1);
+(5, 'SoirÃ©e Deadpool ðŸŽ‰', '2016-04-16', '20:45:00', NULL, '2 Rue du Sentier 75002 Paris', '2', 'Rue du Sentier', '75002', 'Paris', '2.3454890', '48.8678310', 'projecteur', 'hq', 'SoirÃ©e Deadpool, les costumes, la biÃ¨re et la bonne humeurs sont les bienvenues ! A trÃ¨s vite !', '', 15, 1, 3, NULL, 1),
+(9, 'Antman 3D', '2016-04-16', '22:00:00', NULL, '27 Rue du ProgrÃ¨s 93100 Montreuil', '27', 'Rue du ProgrÃ¨s', '93100', 'Montreuil', '2.4214890', '48.8518660', 'projecteur', 'hq', 'Je viens de recevoir mon nouveau video projecteur 3D, je vous invite donc Ã  venir le tester avec moi ! ðŸ‘', NULL, 20, 1, 0, NULL, 1),
+(10, 'OSS 117', '2016-04-17', '13:00:00', NULL, '167 Rue du Temple 75003 Paris', '167', 'Rue du Temple', '75003', 'Paris', '2.3596880', '48.8648920', 'pc', 'natif', 'Super soirÃ©e pour les fans de OSS 117 ðŸš€', NULL, 5, 1, 0, NULL, 1),
+(11, 'zef', '2016-04-16', '15:23:00', NULL, '27 Rue du Chazeau 54220 MalzÃ©ville', '27', 'Rue du Chazeau', '54220', 'MalzÃ©ville', '6.1876160', '48.7153560', '', '', 'fznefzefzef', NULL, 3, 0, 0, NULL, 1),
+(12, 'Test redirect', '2016-04-30', '15:30:00', NULL, '27 Rue du Chazeau 54220 MalzÃ©ville', '27', 'Rue du Chazeau', '54220', 'MalzÃ©ville', '6.1876160', '48.7153560', '', '', 'fnzeifnzef', NULL, 2, 1, 0, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -96,7 +100,10 @@ CREATE TABLE `event_movies` (
 
 INSERT INTO `event_movies` (`event_id`, `movie_id`, `movie_name`, `poster_path`, `backdrop_path`) VALUES
 (5, 293660, 'Deadpool', '/eJyRzC5uFjQryu8Hm61yqtrzj4S.jpg', '/n1y094tVDFATSzkTnFxoGZ1qNsG.jpg'),
-(8, 27205, 'Inception', '/d5AfeWE8Ozk5QSbjB7rF3GN2d76.jpg', '/s2bT29y0ngXxxu2IA8AOzzXTRhd.jpg');
+(9, 102899, 'Ant-Man', '/n2guSYqwSQfWJnh301xIfV8OjUm.jpg', '/kvXLZqY0Ngl1XSw7EaMQO0C1CCj.jpg'),
+(10, 15588, 'OSS 117 : Rio ne rÃ©pond plus', '/zBs9y04GVM31gIl12hoqgcxHVK2.jpg', '/gRZPAilYlNoaTApTk9FpibkqEyW.jpg'),
+(11, 150540, 'Vice-versa', '/7N5B2fyYS95ARjyMLfX5vbAYjT1.jpg', '/szytSpLAyBh3ULei3x663mAv5ZT.jpg'),
+(12, 271110, 'Captain America - Civil War', '/ehjpo1YkXN3jiVt5L0SJMbTDAtQ.jpg', '/rqAHkvXldb9tHlnbQDwOzRi0yVD.jpg');
 
 -- --------------------------------------------------------
 
@@ -115,9 +122,10 @@ CREATE TABLE `organized` (
 
 INSERT INTO `organized` (`user_id`, `event_id`) VALUES
 (1, 5),
-(1, 6),
-(1, 7),
-(1, 8);
+(1, 9),
+(2, 10),
+(1, 11),
+(1, 12);
 
 -- --------------------------------------------------------
 
@@ -197,7 +205,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `users`
 --

@@ -54,31 +54,6 @@ if (!is_string($user))
 	}
 }
 
-
-
-// $app = new \Slim\App;
-//
-// $app->get('/', function (ServerRequestInterface $request, ResponseInterface $response) {
-//     include 'controllers/home.php';
-//     include 'views/partials/html-top.php';
-//     include 'views/partials/nav.php';
-//     include 'views/pages/home.php';
-//     return $response;
-// });
-// $app->get('/explore', function (ServerRequestInterface $request, ResponseInterface $response) {
-//     include 'controllers/explore.php';
-//     include 'views/partials/html-top.php';
-//     include 'views/partials/nav.php';
-//     include 'views/pages/explore.php';
-//     return $response;
-// });
-// $app->get('/geojson', function (ServerRequestInterface $request, ResponseInterface $response) {
-//     include 'controllers/geojson.php';
-//     return $response;
-// });
-// $app->run();
-
-
 // Get the query
 $q = empty($_GET['q']) ? '' : $_GET['q'];
 $event_id = empty($_GET['event_id']) ? '' : $_GET['event_id'];

@@ -2,7 +2,7 @@
 
 $menuStyle = 'transparent';
 $logoStyle = 'white';
-$title = 'Explore';
+$title = 'Profil';
 
 use App\Facebook\RegisterFacebook;
 use App\Events\getEvents;

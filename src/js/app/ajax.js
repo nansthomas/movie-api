@@ -1,4 +1,4 @@
-var URL = 'http://localhost:8888/';
+var URL = 'mickaelzhang.com';
 
 $('.send-attend').on('click', function () {
   // get the message id

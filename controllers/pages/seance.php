@@ -14,7 +14,7 @@ function convertToHoursMins($time, $format = '%02d:%02d') {
 
 $menuStyle = 'transparent';
 $logoStyle = 'white';
-$title = 'Page de l\'évênement';
+$title = 'Séance';
 
 
 $event_id = $_GET['event_id'];
