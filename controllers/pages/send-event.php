@@ -77,6 +77,7 @@ if(!empty($_POST))
 	// 	echo "2";
 	// }
 
+	// CHECK DATE - If the date is in the future -> good
 	if ($form_data->begin_date <= $today) {
 		$errors = true;
 	}
@@ -85,22 +86,27 @@ if(!empty($_POST))
 	// 	$errors = true;
 	// }
 
+	// Check number of place, should be superior to 0
 	if (1 >= $form_data->place_nb) {
 		$errors = true;
 	}
 
+	// Check label and shouldn't be empty
 	if (empty($event->getLocalisation($form_data->label))) {
 		$errors = true;
 	}
 
+	// CHECK SETUP
 	if ($form_data->setup_display != ('tv' || 'pc' || 'projecteur')) {
 		$errors = true;
 	}
 
+	// CHECK SETUP
 	if ($form_data->setup_sound != ('natif' || 'hq' || 'bq')) {
 		$errors = true;
 	}
 
+	// Check if the movie ID is filled
 	if ($form_data->movie_id == '') {
 		$errors = true;
 	}
@@ -126,8 +132,8 @@ if(!empty($_POST))
 		// Insert into DB
 		$exec = $event->insertEventMovie($form_data->movie_id, $event_id, $movie_name, $poster_path, $backdrop_path);
 
-		if ($exec) {
-		  	header('Location: ./dashboard');
+		if ($exec != FALSE) {
+		  	header('Location: ./seance?event_id='.$event_id);
 		  	exit;
 		} else {
 			header('Location: ./create');
