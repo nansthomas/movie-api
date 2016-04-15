@@ -12,7 +12,7 @@ include 'config/options.php';
 
 use App\facebook\FacebookConnect;
 use App\facebook\RegisterFacebook;
-use App\Config\database;
+use App\Config\Database;
 use App\Config\Cache;
 
 // use Psr\Http\Message\ServerRequestInterface;
