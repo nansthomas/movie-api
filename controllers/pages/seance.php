@@ -53,5 +53,16 @@ $query = "SELECT *
 
 $user_status = $pdo->select($query);
 
+if (empty($user_status)) {
+	$status_text = "Participer";
+} else {
+	if ($user_status[0]->is_accepted == TRUE) {
+		$status_text = "Accepté";
+	} else {
+		$status_text = "En attente";
+	}
+}
+
+
 $movie_detail = $movie->getMovieDetailInfo($movie_list[0]->movie_id);
 $movie_detail->runtime = convertToHoursMins($movie_detail->runtime);

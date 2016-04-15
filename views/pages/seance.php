@@ -9,9 +9,8 @@
       <?php if ($user_id == NULL): ?>
         <a id='<?= $event_info[0]->event_id ?>' class='button is-medium is-success' href='<?= URL ?>login'><span class="icon"><i class="fa fa-check"></i></span><span>Participer</span></a>
       <?php else: ?>
-        <a id='<?= $event_info[0]->event_id ?>' class='send-attend button is-medium is-success' href='#'><span class="icon"><i class="fa fa-check"></i></span><span><?= empty($user_status) == true  ? 'Participer' : 'En attente' ?></span></a>
+        <a id='<?= $event_info[0]->event_id ?>' class='send-attend button is-medium is-success' href='#'><span class="icon"><i class="fa fa-check"></i></span><span><?= $status_text ?></span></a>
       <?php endif ?>
-
     </div>
   </div>
 </section>
