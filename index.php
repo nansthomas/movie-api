@@ -10,10 +10,10 @@ define('ROOT', dirname(__FILE__));
 // Config
 include 'config/options.php';
 
-use app\facebook\FacebookConnect;
-use app\facebook\RegisterFacebook;
-use app\config\database;
-use app\config\Cache;
+use App\facebook\FacebookConnect;
+use App\facebook\RegisterFacebook;
+use App\Config\database;
+use App\Config\Cache;
 
 // use Psr\Http\Message\ServerRequestInterface;
 // use Psr\Http\Message\ResponseInterface;
