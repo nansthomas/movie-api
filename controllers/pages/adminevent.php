@@ -7,6 +7,10 @@ if ($user_id == NULL) {
   exit;
 }
 
+use App\Events\getEvents;
+
+$event = new getEvents();
+
 $title = 'Modération';
 $class = 'adminevent';
 
@@ -26,3 +30,5 @@ $query = "SELECT *
           AND attend.event_id = $event_id
           AND attend.is_accepted = 1";
 $comfirmed_list = $pdo->select($query);
+
+$event_movie_info = $event->getEventMovieInfo ($event_id);

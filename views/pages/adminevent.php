@@ -18,5 +18,8 @@
 echo '<pre>';
 print_r($comfirmed_list);
 echo '</pre>';
+echo '<pre>';
+print_r($event_movie_info);
+echo '</pre>';
 ?>
 </section>

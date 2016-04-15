@@ -232,6 +232,14 @@ class getEvents extends Database {
       $result = $this->select($query);
       return $result;
     }
+
+    public function getEventMovieInfo ($event_id) {
+      $query = "SELECT *
+                FROM event_movies
+                WHERE event_movies.event_id = $event_id";
+      $result = $this->select($query);
+      return $result;
+    }
 }
 
   class eventForm {
