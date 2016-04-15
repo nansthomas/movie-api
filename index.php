@@ -10,10 +10,10 @@ define('ROOT', dirname(__FILE__));
 // Config
 include 'config/options.php';
 
-use App\Facebook\FacebookConnect;
-use App\Facebook\RegisterFacebook;
-use App\Config\Database;
-use App\Config\Cache;
+use app\facebook\FacebookConnect;
+use app\facebook\RegisterFacebook;
+use app\config\Database;
+use app\config\Cache;
 
 // use Psr\Http\Message\ServerRequestInterface;
 // use Psr\Http\Message\ResponseInterface;
@@ -33,11 +33,11 @@ $Cache = new Cache(ROOT.'/tmp', 10);
 $user = null;
 $user = $connect->connect($user);
 
-$write = new RegisterFacebook();
 
 if (!is_string($user))
 {
-	
+
+  $write = new RegisterFacebook();
 
 	$db_user = $write->checkUser($user);
 
