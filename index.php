@@ -2,6 +2,9 @@
 
 $time = microtime(TRUE);
 
+
+require 'vendor/autoload.php';
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -17,8 +20,6 @@ use App\Config\Cache;
 
 // use Psr\Http\Message\ServerRequestInterface;
 // use Psr\Http\Message\ResponseInterface;
-
-require 'vendor/autoload.php';
 
 session_start();
 

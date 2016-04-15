@@ -1,11 +1,11 @@
 <?php
 
-namespace App\config;
+namespace App\Config;
 
 
 // use \PDO;
 
-class database {
+class Database {
 
   public $pdo;
 
