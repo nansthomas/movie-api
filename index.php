@@ -33,9 +33,11 @@ $Cache = new Cache(ROOT.'/tmp', 10);
 $user = null;
 $user = $connect->connect($user);
 
+$write = new RegisterFacebook();
+
 if (!is_string($user))
 {
-	$write = new RegisterFacebook();
+	
 
 	$db_user = $write->checkUser($user);
 

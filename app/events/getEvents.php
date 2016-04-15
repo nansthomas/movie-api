@@ -241,6 +241,14 @@ class getEvents extends Database {
       $result = $this->select($query);
       return $result;
     }
+
+    public function getUser ($user_id) {
+      $query = "SELECT *
+                FROM users
+                WHERE user_id = $user_id";
+      $result = $this->select($query);
+      return $result;
+    }
 }
 
   class eventForm {
