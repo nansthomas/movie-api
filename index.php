@@ -12,7 +12,7 @@ include 'config/options.php';
 
 use app\facebook\FacebookConnect;
 use app\facebook\RegisterFacebook;
-use app\config\Database;
+use app\config\database;
 use app\config\Cache;
 
 // use Psr\Http\Message\ServerRequestInterface;
@@ -23,7 +23,7 @@ require 'vendor/autoload.php';
 session_start();
 
 //Initialized object
-$pdo = new Database();
+$pdo = new database();
 $connect = new FacebookConnect(APP_ID, APP_SECRET);
 
 // Cache

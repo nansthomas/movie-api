@@ -2,9 +2,9 @@
 
 namespace app\config;
 
-use \PDO;
+// use \PDO;
 
-class Database {
+class database {
 
   public $pdo;
 
