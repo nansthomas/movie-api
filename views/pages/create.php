@@ -7,7 +7,7 @@
         <div class="start">
           <h1 class="title">Créer une séance, chez vous.</h1>
           <h2 class="subtitle">Et partager une expérience unique.</h2>
-          <a id="start" class="button is-medium is-primary is-outlined">Commencer</a>
+          <a id="start" class="button is-medium is-dashboard is-outlined">Commencer</a>
         </div>
 
         <!-- NAME OF EVENT -->
@@ -18,7 +18,7 @@
             <input class="input is-large" type="text" autocomplete="off" placeholder="Nom de l'évenement" name="event_name" id="event_name">
           </p>
           <br>
-          <a id="eventName" class="button is-medium is-primary is-outlined">Suivant</a>
+          <a id="eventName" class="button is-medium is-dashboard is-outlined">Suivant</a>
         </div>
 
         <!-- DATE / HEURES / DESCRIPTION / PLACES -->
@@ -26,13 +26,13 @@
           <p class="control is-grouped line">
             <input class="input is-large" type="date" autocomplete="off" name="begin_date" id="begin_date" value="$today ?>">
             <input class="input is-large" type="time" autocomplete="off" name="begin_hour" id="begin_hour" value="<?= $time ?>">
-            <input class="input is-large" type="number" autocomplete="off" palceholder="Places" min="1" name="place_nb" id="place_nb">
+            <input class="input is-large" type="number" autocomplete="off" placeholder="Places" min="1" name="place_nb" id="place_nb">
           </p>
           <p class="control is-grouped">
             <textarea class="textarea" placeholder="Selon vous, quelles sont les élèments pour que votre séance soit réussie ?" name="description" id="description"></textarea>
           </p>
           <br>
-          <a id="dateAndHours" class="button is-medium is-primary is-outlined">Suivant</a>
+          <a id="dateAndHours" class="button is-medium is-dashboard is-outlined">Suivant</a>
         </div>
 
         <!-- LIEU -->
@@ -43,7 +43,7 @@
           </p>
           <div class="result-list"></div>
           <br>
-          <a id="places" class="button is-medium is-primary is-outlined">Suivant</a>
+          <a id="places" class="button is-medium is-dashboard is-outlined">Suivant</a>
         </div>
 
         <!-- PROPERTIES -->
@@ -67,7 +67,7 @@
             </span>
           </p>
           <br>
-          <a id="properties" class="button is-medium is-primary is-outlined">Suivant</a>
+          <a id="properties" class="button is-medium is-dashboard is-outlined">Suivant</a>
         </div>
 
         <!-- FILM -->
@@ -78,7 +78,7 @@
           </p>
           <div class="movie-list"></div>
           <br>
-          <button class="button is-medium is-primary" type="submit" name="button">Créer</button>
+          <button class="button is-medium is-dashboard" type="submit" name="button">Créer</button>
         </div>
 
       </form>

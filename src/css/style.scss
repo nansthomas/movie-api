@@ -37,6 +37,12 @@ $font-stack   : Hanken;
   border-radius: 45px;
 }
 
+.button.is-dashboard.is-outlined, .pagination a.is-primary.is-outlined {
+  background: transparent;
+  border-color: $white;
+  color: $white;
+}
+
 .header {
   height: 70px;
   border-bottom : 1px solid #D2D2D2;
@@ -240,6 +246,31 @@ $font-stack   : Hanken;
   top: 14px;
   right: 15px;
   height: 20px;
+}
+
+// PROFIL
+
+#poster_profil {
+  height: 110px;
+}
+
+.infos_profil {
+  display: inline-block;
+  position: relative;
+  bottom: 38px;
+  margin-left: 10px;
+}
+
+#facebook-dashboard {
+  height: 24px;
+  border-radius: 45px;
+  top: 7px;
+  position: relative;
+  left: 5px;
+}
+
+#name {
+  margin-left: 10px;
 }
 
 // HEADER
