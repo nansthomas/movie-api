@@ -111,8 +111,9 @@ class getEvents extends Database {
     // Query for event that the user want to attend and are alreay accepted
     public function acceptedEvent($user_id) {
         $query = "SELECT *
-                  FROM events,attend
-                  WHERE events.event_id = attend.event_id
+                  FROM events,attend,organized
+                  WHERE organized.event_id = events.event_id
+                  AND events.event_id = attend.event_id
                   AND attend.user_id = $user_id
                   AND attend.is_accepted = 1";
         $prepare = $this->select($query);
