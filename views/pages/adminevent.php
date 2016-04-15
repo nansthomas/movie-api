@@ -13,47 +13,44 @@
   <?php if (!empty($waiting_list)): ?>
       <h1 class="title">Ils attentent votre réponse 😎</h1>
   <?php endif; ?>
-  <?php foreach ($waiting_list as $event): ?>
-    <div class="card is-fullwidth">
-      <header class="card-header">
-        <p class="card-header-title"><?= $event->event_name ?></p>
-      </header>
+  <?php foreach ($waiting_list as $profil): ?>
+    <div class="card is-fullwidth waiting-user">
       <div class="card-content">
         <div class="content">
-          <?= $event->description ?>
+          <img id="profil-image-facebook" src="<?= $profil->picture_url ?>" alt="">
           <br>
-          <small><?= $event->place_taken ?> sur <?= $event->place_nb ?> sont déjà réservé ! 👍</small><br>
-          <small><?= $event->begin_hour ?> - <?= $event->begin_date ?></small><br>
-          <small><?= $event->label ?></small>
+          <div class="infos_user">
+          <a href="<?= URL ?>profile?user_id=<?= $profil->user_id?>"><h1 class="title"><?= $profil->first_name ?> <?= $profil->last_name ?></h1></a>
+          <span class="two-button">
+            <a class="button is-success" id="<?= $profil->user_id.'-'.$event_id ?>" class="send-confirm-yes" href="#">Accepter</a>
+            <a class="button is-danger" id="<?= $profil->user_id.'-'.$event_id ?>" class="send-confirm-no" href="#">Refuser</a>
+          <span>
         </div>
       </div>
-      <footer class="card-footer">
-        <a href="<?= URL ?>adminevent?event_id=<?= $event->event_id ?>"class="card-footer-item"><?= $event->pending_request ?> demandes en attente</a>
-        <a href="<?= URL ?>adminevent?event_id=<?= $event->event_id ?>"class="card-footer-item">Gérer l'évènement</a>
-      </footer>
     </div>
-    <br>
+  </div>
+  <br>
   <?php endforeach; ?>
 
-<section>
-<h4>Waiting List</h4>
-<ul>
-	<?php for ($i=0; $i < count($waiting_list); $i++): ?>
-		<li>
-			<p><?= $waiting_list[$i]->first_name.' '.$waiting_list[$i]->last_name ?></p>
-			<div class="admin-yn">
-				<a id="<?= $waiting_list[$i]->user_id.'-'.$event_id ?>" class="send-confirm-yes" href="#">Accepter</a> |
-				<a id="<?= $waiting_list[$i]->user_id.'-'.$event_id ?>" class="send-confirm-no" href="#">Refuser</a>
-			</div>
-		</li>
-	<?php endfor ?>
-</ul>
-</section>
-<section>
-<h4>Comfirmed List</h4>
-<?php
-echo '<pre>';
-print_r($comfirmed_list);
-echo '</pre>';
-?>
-</section>
+  <!-- ILS SERONT LA -->
+  <?php if (!empty($comfirmed_list)): ?>
+      <h1 class="title">Ils seront là ! 🍻</h1>
+  <?php endif; ?>
+  <?php foreach ($comfirmed_list as $profil): ?>
+    <div class="card is-fullwidth waiting-user">
+      <div class="card-content">
+        <div class="content">
+          <img id="profil-image-facebook" src="<?= $profil->picture_url ?>" alt="">
+          <br>
+          <div class="infos_user">
+          <a href="<?= URL ?>profile?user_id=<?= $profil->user_id?>"><h1 class="title"><?= $profil->first_name ?> <?= $profil->last_name ?></h1></a>
+          <span class="two-button">
+            <a class="button is-success" id="<?= $profil->user_id.'-'.$event_id ?>" class="send-confirm-yes" href="#">Accepter</a>
+            <a class="button is-danger" id="<?= $profil->user_id.'-'.$event_id ?>" class="send-confirm-no" href="#">Refuser</a>
+          <span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <?php endforeach; ?>

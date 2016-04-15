@@ -207,6 +207,29 @@ $font-stack   : Hanken;
   }
 }
 
+#profil-image-facebook {
+  height: 60px;
+  border-radius: 50%;
+}
+
+.infos_user {
+  top: -47px;
+  left: 80px;
+  position: relative;
+  h1 {
+    display: inline-block;
+  }
+  .two-button {
+    float: right;
+    position: relative;
+    right: 80px;
+  }
+}
+
+.waiting-user {
+  height: 110px;
+}
+
 
 // CREATE
 
@@ -465,7 +488,7 @@ h1 {
     background:none;
   }
   ::-webkit-scrollbar-thumb {
-    background:#3498DB;
+    background:$yellow;
     border-radius:0;
   }
 

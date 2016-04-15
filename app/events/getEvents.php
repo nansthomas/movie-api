@@ -126,7 +126,7 @@ class getEvents extends Database {
                   AND users.user_id = organized.user_id
                   AND events.event_id = attend.event_id
                   AND attend.user_id = $user_id
-                  AND attend.is_accepted = NULL";
+                  AND attend.is_accepted is NULL";
         $prepare = $this->select($query);
         return $prepare;
     }

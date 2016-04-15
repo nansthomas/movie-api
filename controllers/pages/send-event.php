@@ -122,10 +122,8 @@ if(!empty($_POST))
 		  	header('Location: ./seance?event_id='.$event_id);
 		  	exit;
 		} else {
-			header('Location: ./create');
+			header('Location: ./seance?event_id='.$event_id);
 		  	exit;
 		}
     }
 }
-
-die();
