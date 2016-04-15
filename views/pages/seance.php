@@ -27,22 +27,35 @@
   </div>
 
   <nav class="navbar number">
-    <div class="navbar-item has-text-centered">
-      <p class="navbar-number">Budget</p>
-      <p class="title"><?= $movie_detail->budget ?></p>
-    </div>
-    <div class="navbar-item has-text-centered">
-      <p class="navbar-number">Moyenne</p>
-      <p class="title"><?= $movie_detail->vote_average ?></p>
-    </div>
-    <div class="navbar-item has-text-centered">
-      <p class="navbar-number">Durée</p>
-      <p class="title"><?= $movie_detail->runtime ?></p>
-    </div>
-    <div class="navbar-item has-text-centered">
-      <p class="navbar-number">Nombre de vote</p>
-      <p class="title"><?= $movie_detail->vote_count ?></p>
-    </div>
+    <?php if (!empty($movie_detail->budget)): ?>
+      <div class="navbar-item has-text-centered">
+        <p class="navbar-number">Budget</p>
+        <p class="title"><?= $movie_detail->budget ?></p>
+      </div>
+    <?php endif ?>
+
+    <?php if (!empty($movie_detail->vote_average)): ?>
+      <div class="navbar-item has-text-centered">
+        <p class="navbar-number">Moyenne</p>
+        <p class="title"><?= $movie_detail->vote_average ?></p>
+      </div>
+    <?php endif ?>
+
+    <?php if (!empty($movie_detail->runtime)): ?>
+      <div class="navbar-item has-text-centered">
+        <p class="navbar-number">Durée</p>
+        <p class="title"><?= $movie_detail->runtime ?></p>
+      </div>
+    <?php endif ?>
+
+    <?php if (!empty($movie_detail->vote_count)): ?>
+      <div class="navbar-item has-text-centered">
+        <p class="navbar-number">Nombre de vote</p>
+        <p class="title"><?= $movie_detail->vote_count ?></p>
+      </div>
+    <?php endif ?>
+
+
   </nav>
 </div>
 
