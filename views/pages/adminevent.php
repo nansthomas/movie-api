@@ -22,8 +22,8 @@
           <div class="infos_user">
           <a href="<?= URL ?>profile?user_id=<?= $profil->user_id?>"><h1 class="title"><?= $profil->first_name ?> <?= $profil->last_name ?></h1></a>
           <span class="two-button">
-            <a class="button is-success" id="<?= $profil->user_id.'-'.$event_id ?>" class="send-confirm-yes" href="#">Accepter</a>
-            <a class="button is-danger" id="<?= $profil->user_id.'-'.$event_id ?>" class="send-confirm-no" href="#">Refuser</a>
+            <a class="button is-success send-confirm-yes" id="<?= $profil->user_id.'-'.$event_id ?>" href="#">Accepter</a>
+            <a class="button is-danger send-confirm-no" id="<?= $profil->user_id.'-'.$event_id ?>" href="#">Refuser</a>
           <span>
         </div>
       </div>
