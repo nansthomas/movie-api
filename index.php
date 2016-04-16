@@ -2,15 +2,13 @@
 
 $time = microtime(TRUE);
 
-
-require 'vendor/autoload.php';
-
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 define('ROOT', dirname(__FILE__));
 
 // Config
+require 'vendor/autoload.php';
 include 'config/options.php';
 
 use App\facebook\FacebookConnect;
@@ -24,7 +22,7 @@ use App\Config\Cache;
 session_start();
 
 //Initialized object
-$pdo = new database();
+$pdo = new Database();
 $connect = new FacebookConnect(APP_ID, APP_SECRET);
 
 // Cache

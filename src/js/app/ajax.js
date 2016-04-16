@@ -1,4 +1,4 @@
-var URL = 'mickaelzhang.com';
+var URL = '';
 
 $('.send-attend').on('click', function () {
   // get the message id
